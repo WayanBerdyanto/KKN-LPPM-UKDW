@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- My Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
@@ -12,7 +17,8 @@
         <div class="container">
             <div class="flex items-center justify-between relative py-3">
                 <div class="px-4">
-                    <img src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png" alt="">
+                    <img src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png"
+                        alt="">
                 </div>
                 <div class="flex items-center px-2">
                     <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
@@ -44,8 +50,8 @@
                                     class="lg:text-white text-dark text-base font-medium py-2 mx-6 group-hover:text-yellow-500 flex transition duration-200">Tautan</a>
                             </li>
                             <li class="group">
-                                <a href="auth/login"
-                                    class="text-white text-base font-medium mt-1 py-1 px-4 mx-6 rounded-full group-hover:bg-blue-600 flex transition duration-200 bg-blue-500 w-20">Login</a>
+                                <a href="/login"
+                                    class="text-white text-base font-medium mt-1 py-1 px-6 mx-6 lg:rounded-full rounded-lg bg-yellow-500 group-hover:bg-yellow-400 flex transition duration-200 max-w-min">Login</a>
                             </li>
                         </ul>
                     </nav>
@@ -54,12 +60,12 @@
         </div>
     </header>
 
-    <section class="relative px-6 pt-16 lg:px-8 ">
+    <section class="relative px-6 pt-16 lg:px-8 mt-36">
         <div class="flex flex-wrap">
             <div class="w-full px-4 mb-10 lg:w-1/2">
-                <div class="mx-auto max-w-2xl py-20 sm:py-48 lg:py-28">
+                <div class="mx-auto max-w-2xl">
                     <div class="text-left">
-                        <h1 class="text-3xl font-bold tracking-tight text-white sm:text-5xl">Lembaga Penelitian Dan
+                        <h1 class="text-3xl font-bold min-w-min tracking-tight text-white sm:text-4xl">Lembaga Penelitian Dan
                             Pengabdian
                             Pada Masyarakat</h1>
                         <p class="mt-6 text-lg leading-8 text-gray-300">
@@ -76,10 +82,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="w-full px-4 mb-10 lg:w-1/2">
-                <div class="mx-auto max-w-2xl py-20 sm:py-48 lg:py-28">
-                    <img src="{{asset('img/hero.jpg')}}" alt="Slide 2" class="rounded-lg">
+                <div class="mx-auto max-w-2xl">
+                    <img src="{{ asset('img/hero.jpg') }}" alt="Slide 2" class="rounded-lg">
                 </div>
             </div>
         </div>

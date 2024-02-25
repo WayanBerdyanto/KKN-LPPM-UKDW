@@ -10,6 +10,10 @@
 
     @vite('resources/css/login.css')
     <link rel="stylesheet" href="{{ asset('fontawesome-free-6.5.1-web/css/all.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -21,12 +25,12 @@
                 </div>
             </div>
             <div class="w-full lg:w-1/2 flex flex-col justify-center">
-                <form class="lg:mx-auto md:max-w-full md:px-14 lg:w-3/4 px-2">
+                <form class="lg:mx-auto md:max-w-full md:px-14 lg:w-3/4 px-2 lg:border lg:py-3">
                     <h1 class="text-center font-semibold text-gray-900 text-2xl lg:text-4xl">Sign In</h1>
                     <div class="mb-5">
-                        <label for="email"
+                        <label for="nim"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark lg:text-lg">NIM</label>
-                        <input type="email" id="email"
+                        <input type="text" id="nim"
                             class="lg:py-2 lg:text-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring focus:ring-blue-500 focus:outline-none duration-500"
                             placeholder="NIM" required />
                     </div>
@@ -34,7 +38,8 @@
                         <label for="password"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark lg:text-lg">
                             Password</label>
-                        <div class="bg-gray-50 border border-gray-300  w-full rounded-lg flex items-center duration-500 focus-within:ring focus-within:ring-blue-500">
+                        <div
+                            class="bg-gray-50 border border-gray-300  w-full rounded-lg flex items-center duration-500 focus-within:ring focus-within:ring-blue-500">
                             <input type="password" id="password"
                                 class="lg:text-lg lg:py-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none border-none bg-gray-50"
                                 placeholder="**********" required />
@@ -42,9 +47,9 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="lg:py-2 md:w-full lg:text-lg text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        class="lg:py-2 md:w-full lg:text-lg text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                    <a href="/" class="lg:text-xl  block text-center my-4 text-blue-500">Back to Home</a>
                 </form>
-                <a href="/" class="lg:text-xl text-center mt-4 text-blue-500">Back to Home</a>
             </div>
         </div>
     </div>
