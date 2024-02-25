@@ -1,11 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html{
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
 }
 body{
-    @apply bg-dark
+    @apply bg-dark;
+    font-family: 'Poppins', sans-serif;
 }
 .navbar-fixed{
     @apply fixed z-[9999] bg-dark bg-opacity-80;
