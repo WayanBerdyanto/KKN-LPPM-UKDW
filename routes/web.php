@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,8 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
-Route::get('/login', function () {
-    return view('auth.auth');
-});
+Route::get('/login', [AuthController::class, 'index']);
+
+Route::get('dosen/', [DosenController::class, 'index'] );
+
+Route::get('dosen/detail/', [DosenController::class, 'detailKelompok'] );
