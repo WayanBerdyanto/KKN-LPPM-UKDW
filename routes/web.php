@@ -27,4 +27,11 @@ Route::get('dosen/', [DosenController::class, 'index']);
 Route::get('dosen/detail/', [DosenController::class, 'detailKelompok']);
 
 Route::get('admin/', [AdminController::class, 'index']);
+
 Route::get('admin/kelompok', [AdminController::class, 'kelompok']);
+
+Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok']);
+
+Route::get('/admin/kelompok/detail/rencana', [AdminController::class, 'detailKelompokRencana']);
+
+Route::get('/admin/kelompok/detail/logbook', [AdminController::class, 'detailKelompokLogbook']);

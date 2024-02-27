@@ -14,4 +14,16 @@ class AdminController extends Controller
     {
         return view('admin.kelompok');
     }
+    public function detailKelompok()
+    {
+        return view('admin.detailkelompok');
+    }
+    public function detailKelompokRencana()
+    {
+        return view('admin.rencana');
+    }
+    public function detailKelompokLogbook()
+    {
+        return view('admin.logbook');
+    }
 }
