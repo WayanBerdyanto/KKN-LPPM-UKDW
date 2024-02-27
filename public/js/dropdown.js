@@ -6,3 +6,11 @@ dropdown.addEventListener("click", (event) => {
     dropdownMenu.classList.toggle("hidden");
 });
 
+document.addEventListener("click", (event) => {
+    if (
+        !dropdown.contains(event.target) &&
+        !dropdownMenu.contains(event.target)
+    ) {
+        dropdownMenu.classList.add("hidden");
+    }
+});
