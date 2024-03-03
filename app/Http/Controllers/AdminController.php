@@ -8,22 +8,18 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.layouts.main');
+        return view('admin.index',['key'=>'home']);
     }
     public function kelompok()
     {
-        return view('admin.kelompok');
+        return view('admin.kelompok', ['key'=> 'kelompok']);
     }
     public function detailKelompok()
     {
-        return view('admin.detailkelompok');
-    }
-    public function detailKelompokRencana()
-    {
-        return view('admin.rencana');
+        return view('admin.detailkelompok', ['key'=>'kelompok','active'=> 'rencana']);
     }
     public function detailKelompokLogbook()
     {
-        return view('admin.logbook');
+        return view('admin.logbook', ['key'=>'kelompok', 'active'=>'logbook']);
     }
 }

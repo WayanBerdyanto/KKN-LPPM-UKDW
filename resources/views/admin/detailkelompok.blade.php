@@ -7,19 +7,20 @@
     </div>
     <div class="">
         <ul
-            class="flex flex-wrap text-sm font-medium text-center justify-center md:justify-start text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 mt-2">
+            class="flex flex-wrap text-sm font-medium text-center justify-center md:justify-start text-dark border-b border-gray-200 dark:border-gray-700 mt-2">
             <li class="me-2">
-                <a href="/admin/kelompok/detail/rencana"
-                    class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Rencana
+                <a href="/admin/kelompok/detail"
+                    class="inline-block px-4 py-2 rounded-t-lg duration-500 {{ $active == 'rencana' ? 'bg-yellow-500 text-white' : 'hover:text-white hover:bg-yellow-500'}}">Rencana
                     & Laporan Kegiatan</a>
             </li>
             <li class="me-2">
                 <a href="/admin/kelompok/detail/logbook"
-                    class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Logbook</a>
+                    class="inline-block px-4 py-2 rounded-t-lg duration-500 {{ $active == 'logbook' ? 'bg-yellow-500 text-white' : 'hover:text-white hover:bg-yellow-500'}}">Logbook</a>
             </li>
         </ul>
     </div>
-    <div class="px-4">
-        @yield('isiDetail')
+    <div class="px-4 mt-4">
+        @include('admin.rencana')
+        @yield('contentDetail')
     </div>
 @endsection
