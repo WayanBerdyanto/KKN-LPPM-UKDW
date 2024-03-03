@@ -2,7 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: 'Poppins', sans-serif;
+body {
+    font-family: "Poppins", sans-serif;
 }
+.custom-shape-divider-bottom-1709427909 {
+    @apply absolute bottom-0 left-0 w-full overflow-hidden;
+    line-height: 0;
+    /* transform: rotate(180deg); */
+}
+
+.custom-shape-divider-bottom-1709427909 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.1px);
+    height: 80px;
+}
+
+.custom-shape-divider-bottom-1709427909 .shape-fill {
+    @apply fill-primary
+}
+
+.custom-shape-divider-top-1709427909 {
+    @apply absolute top-0 left-0 w-full overflow-hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1709427909 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.1px);
+    height: 60px;
+}
+
+.custom-shape-divider-top-1709427909 .shape-fill {
+    @apply fill-primary
+}
+
 

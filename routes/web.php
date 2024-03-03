@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
+Route::get('/test', function () {
+    return view('dosen.test');
+});
+
 Route::get('/login', [AuthController::class, 'index']);
 
 Route::get('dosen/', [DosenController::class, 'index']);
@@ -31,7 +35,5 @@ Route::get('admin/', [AdminController::class, 'index']);
 Route::get('admin/kelompok', [AdminController::class, 'kelompok']);
 
 Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok']);
-
-Route::get('/admin/kelompok/detail/rencana', [AdminController::class, 'detailKelompokRencana']);
 
 Route::get('/admin/kelompok/detail/logbook', [AdminController::class, 'detailKelompokLogbook']);

@@ -16,16 +16,16 @@
 
 <body>
     <button id="hamburger" type="button"
-        class="inline-flex items-center p-2 mt-5 ms-3 text-sm text-gray-500 rounded-lg sm:hidden  absolute z-10">
+        class="inline-flex items-center p-2 mt-5 ms-3 text-sm text-dark rounded-lg md:hidden absolute z-10">
         <span class="sr-only">Open sidebar</span>
-        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-bars text-3xl -mt-3 font-bold"></i>
     </button>
 
     @include('admin.layouts.header')
 
     @include('admin.layouts.sidebar')
 
-    <div class="sm:ml-64">
+    <div class="md:ml-64">
         <div class="p-4 ">
             @yield('content')
         </div>
@@ -33,7 +33,7 @@
 
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/dropdown.js') }}"></script>
-
+    <script type="module" src="{{ asset('js/tabs.js') }}"></script>
 </body>
 
 </html>

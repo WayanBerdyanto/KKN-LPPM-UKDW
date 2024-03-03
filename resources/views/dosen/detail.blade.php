@@ -1,5 +1,5 @@
 @section('title', 'Dosen')
-@include('dosen.layouts.main')
+@extends('dosen.layouts.main')
 
 @section('content')
     <h1>Helloo</h1>
