@@ -1,5 +1,28 @@
 @extends('admin.layouts.main')
 @section('content')
+    <nav class="flex" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li>
+                <div class="flex items-center">
+                    <a href="/admin/kelompok" class="ms-1 text-sm font-medium text-gray-700 hover:text-primary">
+                        <i class="fa-solid fa-users-line mr-1"></i>
+                        Kelompok
+                    </a>
+                </div>
+            </li>
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 9 4-4-4-4" />
+                    </svg>
+                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Detail</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
     <div class="relative flex flex-wrap justify-between items-center w-full p-2.5">
         <div class="w-full mb-5 lg:w-2/6">
             <img src="{{ asset('img/logo-ukdw.png') }}" alt=""
@@ -65,12 +88,15 @@
                     <form action="">
                         <div class="border rounded-lg focus-within:ring focus-within:ring-blue-400 duration-700">
                             <input type="text" class="outline-none px-1">
-                            <button type="submit" class="bg-primary text-secondary py-1.5 px-3 rounded-r-lg hover:bg-blue-500">
+                            <button type="submit"
+                                class="bg-primary text-secondary py-1.5 px-3 rounded-r-lg hover:bg-blue-500">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
                     </form>
-                    <a href="" class="ml-0 lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary py-1.5 px-2 font-normal rounded-lg text-center hover:bg-blue-500">Laporan dan Masukan</a>
+                    <a href=""
+                        class="ml-0 lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary py-1.5 px-2 font-normal rounded-lg text-center hover:bg-blue-500">Laporan
+                        dan Masukan</a>
                 </div>
             </div>
             <hr class="mt-2 border">

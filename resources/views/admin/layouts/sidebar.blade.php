@@ -13,7 +13,7 @@
                 <a href="/admin"
                     class="flex items-center p-2 text-secondary rounded-lg  group {{ $key == 'home' ? 'bg-primary' : 'hover:bg-gray-600' }}">
                     <i class="fa-solid fa-house"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
                 </a>
             </li>
             <li class="pt-5">
