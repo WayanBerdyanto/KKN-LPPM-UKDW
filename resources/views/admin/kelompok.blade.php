@@ -1,7 +1,16 @@
 @section('title', 'Kelompok')
 @extends('admin.layouts.main')
 @section('content')
-
+    <div class="px-3 flex items-center text-right py-2">
+        <form action="">
+            <div class="border rounded-lg focus-within:ring focus-within:ring-blue-400 duration-700">
+                <input type="text" class="outline-none px-4 placeholder:italic text-left" placeholder="Cari">
+                <button type="submit" class="bg-primary text-secondary py-1.5 px-3 rounded-r-lg hover:bg-blue-500">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+    </div>
     <div class="my-5 py-2 border-b-2 flex justify-between items-center px-3">
         <h2 class="font-semibold text-2xl">DAFTAR KELOMPOK KKN UKDW 2024</h2>
         <a href=""

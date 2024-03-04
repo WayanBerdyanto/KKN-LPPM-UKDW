@@ -32,7 +32,10 @@
             <div class="flex justify-between border-b-2 border-gray-300 py-2">
                 <div>
                     <h1 class="text-dark text-md font-bold">Kelompok 01</h1>
-                    <h2 class="text-dark mt-1 text-sm font-normal block">Beji, Ngawen, Gunung Kidul, DIY</h2>
+                    <h2 class="text-dark mt-1 text-sm font-normal block">
+                        <i class="fa-solid fa-location-dot mr-1"></i>
+                        Beji, Ngawen, Gunung Kidul, DIY
+                    </h2>
                 </div>
                 <div>
                     <a href="" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-blue-500">
@@ -65,7 +68,9 @@
                             <span class="font-normal">Peserta</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-semibold">10</span>
+                            <span class="font-semibold">
+                                10 <i class="fa-solid fa-user ml-1"></i>
+                            </span>
 
                         </td>
                     </tr>
@@ -82,21 +87,13 @@
             </div>
         </div>
         <div class="w-full mt-5 relative overflow-x-auto">
-            <div class="flex justify-between md:items-center py-2">
+            <div class="flex justify-between items-center py-2">
                 <h1 class="font-semibold text-lg lg:text-2xl uppercase">Daftar Peserta</h1>
-                <div class="block lg:flex lg:items-center text-right py-2">
-                    <form action="">
-                        <div class="border rounded-lg focus-within:ring focus-within:ring-blue-400 duration-700">
-                            <input type="text" class="outline-none px-1">
-                            <button type="submit"
-                                class="bg-primary text-secondary py-1.5 px-3 rounded-r-lg hover:bg-blue-500">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-                    </form>
+                <div class="flex items-center text-right py-2">
                     <a href=""
-                        class="ml-0 lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary py-1.5 px-2 font-normal rounded-lg text-center hover:bg-blue-500">Laporan
-                        dan Masukan</a>
+                        class="ml-0 lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary py-1.5 px-2 font-normal rounded-lg text-center hover:bg-blue-500">
+                        Laporan
+                        & Masukan</a>
                 </div>
             </div>
             <hr class="mt-2 border">
@@ -121,7 +118,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
+                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             72210487
                         </th>
@@ -139,7 +136,7 @@
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
+                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             72210487
                         </th>
@@ -157,7 +154,7 @@
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
+                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             72210487
                         </th>
@@ -175,7 +172,7 @@
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                         </td>
                     </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
+                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                             72210487
                         </th>
