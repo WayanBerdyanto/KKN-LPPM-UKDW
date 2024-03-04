@@ -4,14 +4,16 @@
     <h1 class="font-normal text-xl">Selamat Pagi Wayan....</h1>
     <div class="flex flex-wrap">
         <div class="w-full relative flex items-center mt-6 lg:w-1/2">
-            <div class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
+            <div
+                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
                 <div class="w-full font-semibold">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
                 <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
             </div>
-            <div class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
+            <div
+                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
                 <div class="w-full font-semibold">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
@@ -20,14 +22,16 @@
             </div>
         </div>
         <div class="w-full relative flex items-center mt-6 lg:w-1/2">
-            <div class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
+            <div
+                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
                 <div class="w-full font-semibold">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
                 <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
             </div>
-            <div class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
+            <div
+                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
                 <div class="w-full font-semibold">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
@@ -49,6 +53,10 @@
                         </button>
                     </div>
                 </form>
+                <a href=""
+                    class="ml-1 flex bg-primary items-center py-2 px-3 shadow-lg text-secondary rounded-3xl text-md font-normal hover:bg-blue-500">
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
             </div>
         </div>
         <hr class="mt-2 border">
