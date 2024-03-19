@@ -5,38 +5,38 @@
     <div class="flex flex-wrap">
         <div class="w-full relative flex items-center mt-6 lg:w-1/2">
             <div
-                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
-                <div class="w-full font-semibold">
+                class="flex items-center justify-between px-4 w-1/2 py-3 shadow-lg rounded-lg  mr-2 cursor-pointer text-secondary hover:bg-blue-500 bg-primary duration-300">
+                <div class="w-full font-semibold py-3">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
-                <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
+                <i class="fa-solid fa-chart-line rounded-full p-2 ml-5"></i>
             </div>
             <div
-                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
-                <div class="w-full font-semibold">
+                class="flex items-center justify-between px-4 w-1/2 py-3 shadow-lg rounded-lg  mr-2 cursor-pointer text-secondary bg-red-600 hover:bg-red-500 duration-300">
+                <div class="w-full font-semibold py-3">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
-                <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
+                <i class="fa-solid fa-chart-line rounded-full p-2 ml-5"></i>
             </div>
         </div>
         <div class="w-full relative flex items-center mt-6 lg:w-1/2">
             <div
-                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
-                <div class="w-full font-semibold">
+                class="flex items-center justify-between px-4 w-1/2 py-3 shadow-lg rounded-lg mr-2 cursor-pointer text-secondary bg-yellow-600 hover:bg-yellow-500 duration-300">
+                <div class="w-full font-semibold py-3">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
-                <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
+                <i class="fa-solid fa-chart-line rounded-full p-2 ml-5"></i>
             </div>
             <div
-                class="flex items-center justify-between px-4 w-1/2 py-3 border-2 rounded-lg border-slate-600 mr-2 cursor-pointer text-slate-600 hover:bg-primary hover:text-secondary hover:border-secondary duration-500">
-                <div class="w-full font-semibold">
+                class="flex items-center justify-between px-4 w-1/2 py-3 shadow-lg rounded-lg  mr-2 cursor-pointer border-red-600 text-secondary bg-green-600 hover:bg-green-500 duration-300">
+                <div class="w-full font-semibold py-3">
                     <h3>230</h3>
                     <span>Mahasiswa</span>
                 </div>
-                <i class="fa-solid fa-chart-line rounded-full border-2 border-slate-600 text-slate-600 p-2 ml-5"></i>
+                <i class="fa-solid fa-chart-line rounded-full p-2 ml-5"></i>
             </div>
         </div>
     </div>
