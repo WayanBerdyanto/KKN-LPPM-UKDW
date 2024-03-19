@@ -16,7 +16,8 @@
 </head>
 
 <body class="min-h-screen flex items-center bg-gradient-to-br from-purple-200 to-indigo-400">
-    <div class="max-w-3xl mx-auto px-8 sm:px-0">
+  {{ $result }}
+    {{-- <div class="max-w-3xl mx-auto px-8 sm:px-0">
       <div class="sm:w-7/12 sm:mx-auto">
         <div
           role="tablist"
@@ -85,7 +86,7 @@
       </div>
     </div>
 
-    <script type="module" src="{{asset('js/test.js')}}"></script>
+    <script type="module" src="{{asset('js/test.js')}}"></script> --}}
   </body>
 
 </html>

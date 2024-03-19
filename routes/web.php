@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DosenController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Dosen\DosenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,18 +24,17 @@ Route::get('/test', function () {
     return view('dosen.test');
 });
 
-Route::get('/login', [AuthController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
-Route::post('/postLogin', [AuthController::class, 'login']);
+Route::post('/postLogin', [AuthController::class, 'postLogin']);
+// Route::get('/postLogin', [AuthController::class, 'postLogin']);
 
-Route::get('dosen/', [DosenController::class, 'index']);
+Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
 
-Route::get('dosen/detail/', [DosenController::class, 'detailKelompok']);
+Route::get('/dosen/detail', [DosenController::class, 'detailKelompok'])->name('dosen');
 
-Route::get('admin/', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-Route::get('admin/kelompok', [AdminController::class, 'kelompok']);
+Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
 
-Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok']);
-
-Route::get('/admin/kelompok/detail/logbook', [AdminController::class, 'detailKelompokLogbook']);
+Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');

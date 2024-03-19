@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('dosens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('kode_dosen',8)->unique();
             $table->string('username',20)->unique();
             $table->string('password',100);
             $table->string('nama',100);
+            $table->string('status',100)->default('dosen');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('dosens');
     }
 };

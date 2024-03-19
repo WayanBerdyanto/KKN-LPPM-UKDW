@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mahasiswa extends Authenticatable
+class Mahasiswa extends Model
 {
+
     use HasFactory;
+    
 }
