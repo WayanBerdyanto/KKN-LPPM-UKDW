@@ -9,4 +9,11 @@ class AuthController extends Controller
     public function index(){
         return view('auth.auth');
     }
+
+    public function login(){
+        $validate = $request->validate([
+            'user' => ['required'],
+            'password' => ['required'],
+        ]);
+    }
 }

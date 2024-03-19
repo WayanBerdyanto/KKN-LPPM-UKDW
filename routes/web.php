@@ -26,6 +26,8 @@ Route::get('/test', function () {
 
 Route::get('/login', [AuthController::class, 'index']);
 
+Route::post('/postLogin', [AuthController::class, 'login']);
+
 Route::get('dosen/', [DosenController::class, 'index']);
 
 Route::get('dosen/detail/', [DosenController::class, 'detailKelompok']);
