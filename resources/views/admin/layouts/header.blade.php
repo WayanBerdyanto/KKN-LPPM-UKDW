@@ -1,8 +1,12 @@
 <header class="h-16 w-full flex items-center justify-end relative px-5 space-x-10 bg-secondary shadow-md">
     <button id="dropdown" type="button" class="flex flex-shrink-0 items-center space-x-4 text-dark">
         <div class="flex flex-col items-end ">
-            <div class="text-md font-medium ">Unknow Unknow</div>
-            <div class="text-sm font-regular">Admin</div>
+            <div class="text-md font-medium ">
+                {{ Auth::guard('admin')->user()->username}}
+            </div>
+            <div class="text-sm font-regular">
+                {{ Auth::guard('admin')->user()->status}}
+            </div>
         </div>
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
     </button>

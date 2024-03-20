@@ -1,7 +1,7 @@
 @section('title', 'Admin')
 @extends('admin.layouts.main')
 @section('content')
-    <h1 class="font-normal text-xl">Selamat Pagi Wayan....</h1>
+    <h1 class="font-normal text-xl">Selamat Datang <strong>{{ Auth::guard('admin')->user()->username }}</strong> ....</h1>
     <div class="flex flex-wrap">
         <div class="w-full relative flex items-center mt-6 lg:w-1/2">
             <div

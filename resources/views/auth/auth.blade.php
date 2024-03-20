@@ -14,9 +14,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
 </head>
 
 <body>
+
     <div class="relative flex flex-wrap h-full mx-auto">
         <div class="w-full flex justify-center mt-24 md:32">
             <img src="{{ asset('img/logo-ukdw.png') }}" alt="" class="h-28 object-cover">
@@ -65,6 +67,10 @@
     </div>
 
     <script src="{{ asset('js/password.js') }}"></script>
+
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
+
 </body>
 
 </html>

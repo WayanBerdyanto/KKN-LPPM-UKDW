@@ -17,6 +17,7 @@
 </head>
 
 <body>
+
     <button id="hamburger" type="button"
         class="inline-flex items-center p-2 mt-5 ms-3 text-sm text-dark rounded-lg md:hidden absolute z-10">
         <span class="sr-only">Open sidebar</span>
@@ -36,6 +37,9 @@
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/dropdown.js') }}"></script>
     <script type="module" src="{{ asset('js/tabs.js') }}"></script>
+
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
 </body>
 
 </html>
