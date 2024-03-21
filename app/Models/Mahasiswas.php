@@ -20,6 +20,7 @@ class Mahasiswas extends Authenticatable
         'password',
         'prodi',
         'gender',
+        'role',
         'status',
     ];
 

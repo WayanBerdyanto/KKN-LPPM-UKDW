@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admins;
-use App\Models\Dosens;
 
 class AuthController extends Controller
 {
@@ -28,22 +26,17 @@ class AuthController extends Controller
         if ($adminAuthAttempt || $dosenAuthAttempt || $mahasiswaAuthAttempt) {
             $request->session()->regenerate();
             switch (true) {
-                case $adminAuthAttempt && Auth::guard('admin')->user()->status === 'admin':
+                case $adminAuthAttempt && Auth::guard('admin')->user()->status == 'admin':
                     $user = Auth::guard('admin')->user()->username;
                     alert()->success('Login Berhasil', 'Selamat datang, Admin ' . $user . ' 😃');
                     return redirect('/admin');
                     break;
-                case $dosenAuthAttempt && Auth::guard('dosen')->user()->status === 'dosen':
+                case $dosenAuthAttempt && Auth::guard('dosen')->user()->status == 'dosen':
                     $user = Auth::guard('dosen')->user()->username;
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/dosen');
                     break;
-                case $mahasiswaAuthAttempt && Auth::guard('mahasiswa')->user()->status === 'ketua':
-                    $user = Auth::guard('mahasiswa')->user()->nama;
-                    alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
-                    return redirect('/mahasiswa');
-                    break;
-                case $mahasiswaAuthAttempt && Auth::guard('mahasiswa')->user()->status === 'anggota':
+                case $mahasiswaAuthAttempt && (Auth::guard('mahasiswa')->user()->role):
                     $user = Auth::guard('mahasiswa')->user()->nama;
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/mahasiswa');
@@ -54,8 +47,8 @@ class AuthController extends Controller
                     break;
             }
         }
-
         toast('Login Gagal', 'error');
         return redirect('/login')->withInput();
+
     }
 }

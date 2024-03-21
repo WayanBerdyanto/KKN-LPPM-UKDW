@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('password', 100);
             $table->string('prodi', 50);
             $table->string('gender', 15);
+            $table->string('role',100)->default('mahasiswa');
             $table->enum('status', ['ketua', 'anggota'])->default('anggota');
             $table->timestamps();
         });

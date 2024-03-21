@@ -50,6 +50,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'prodi' => 'Sistem Informasi',
                 'gender' => 'Laki-laki',
+                'status' => 'mahasiswa',
                 'status' => 'ketua',
             ],
             [
@@ -59,6 +60,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'prodi' => 'Sistem Informasi',
                 'gender' => 'Laki-laki',
+                'status' => 'mahasiswa',
                 'status' => 'anggota',
             ]
         ]);
