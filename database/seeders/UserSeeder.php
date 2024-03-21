@@ -28,21 +28,41 @@ class UserSeeder extends Seeder
 
         DB::table("dosens")->insert([
             [
-                'kode_dosen' => '72210481',
+                'kode_dosen' => 'KD123456',
                 'username' => 'wayandosen',
                 'password' => bcrypt('12345678'),
                 'nama' => 'Wayan Berdyanto',
                 'status' => 'dosen',
             ],
             [
-                'kode_dosen' => '72210487',
+                'kode_dosen' => 'KD654321',
                 'username' => 'vinodosen',
                 'password' => bcrypt('12345678'),
                 'nama' => 'Vino Eko',
                 'status' => 'dosen',
             ]
         ]);
+        DB::table("mahasiswas")->insert([
+            [
+                'nim' => '72210481',
+                'username' => '72210481',
+                'nama' => 'Wayan Berdyanto',
+                'password' => bcrypt('12345678'),
+                'prodi' => 'Sistem Informasi',
+                'gender' => 'Laki-laki',
+                'status' => 'ketua',
+            ],
+            [
+                'nim' => '72210487',
+                'username' => '72210487',
+                'nama' => 'Kalistus Alvino',
+                'password' => bcrypt('12345678'),
+                'prodi' => 'Sistem Informasi',
+                'gender' => 'Laki-laki',
+                'status' => 'anggota',
+            ]
+        ]);
 
-        
+
     }
 }

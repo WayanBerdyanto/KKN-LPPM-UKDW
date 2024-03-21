@@ -86,7 +86,7 @@ return [
         ],
         'mahasiswa' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class,
+            'model' => App\Models\Mahasiswas::class,
         ],
 
         // 'users' => [

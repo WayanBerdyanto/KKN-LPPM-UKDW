@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
@@ -38,3 +39,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
 
 Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
+
+Route::get('/ketua', [MahasiswaController::class, 'indexKetua'])->name('ketua');
+
+Route::get('/anggota', [MahasiswaController::class, 'indexAnggota'])->name('anggota');
