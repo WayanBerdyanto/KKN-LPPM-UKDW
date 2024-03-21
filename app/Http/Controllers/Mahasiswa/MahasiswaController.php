@@ -7,12 +7,8 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    public function indexKetua()
+    public function dashboard()
     {
-        return view('mahasiswa.ketua.index');
-    }
-    public function indexAnggota()
-    {
-        return view('mahasiswa.anggota.index');
+        return view('mahasiswa.dashboard');
     }
 }

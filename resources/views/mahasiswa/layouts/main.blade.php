@@ -22,9 +22,9 @@
         <i class="fa-solid fa-bars text-3xl -mt-3 font-bold"></i>
     </button>
 
-    @include('mahasiswa.ketua.layouts.header')
+    @include('mahasiswa.layouts.header')
 
-    @include('mahasiswa.ketua.layouts.sidebar')
+    @include('mahasiswa.layouts.sidebar')
 
     <div class="md:ml-64">
         <div class="p-4 ">
