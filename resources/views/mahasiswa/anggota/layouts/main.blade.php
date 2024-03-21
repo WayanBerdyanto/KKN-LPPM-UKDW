@@ -35,6 +35,8 @@
 
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/dropdown.js') }}"></script>
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
 </body>
 
 </html>
