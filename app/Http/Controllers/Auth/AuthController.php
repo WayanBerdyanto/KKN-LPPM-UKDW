@@ -39,12 +39,12 @@ class AuthController extends Controller
                     return redirect('/dosen');
                     break;
                 case $mahasiswaAuthAttempt && Auth::guard('mahasiswa')->user()->status === 'ketua':
-                    $user = Auth::guard('mahasiswa')->user()->username;
+                    $user = Auth::guard('mahasiswa')->user()->nama;
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/mahasiswa');
                     break;
                 case $mahasiswaAuthAttempt && Auth::guard('mahasiswa')->user()->status === 'anggota':
-                    $user = Auth::guard('mahasiswa')->user()->username;
+                    $user = Auth::guard('mahasiswa')->user()->nama;
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/mahasiswa');
                     break;
