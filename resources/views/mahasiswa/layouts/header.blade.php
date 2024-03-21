@@ -2,10 +2,10 @@
     <button id="dropdown" type="button" class="flex flex-shrink-0 items-center space-x-4 text-dark">
         <div class="flex flex-col items-end ">
             <div class="text-md font-medium ">
-                {{ Auth::guard('admin')->user()->username}}
+                {{ Auth::guard('mahasiswa')->user()->username}}
             </div>
             <div class="text-sm font-regular">
-                {{ Auth::guard('admin')->user()->status}}
+                {{ Auth::guard('mahasiswa')->user()->status}}
             </div>
         </div>
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>

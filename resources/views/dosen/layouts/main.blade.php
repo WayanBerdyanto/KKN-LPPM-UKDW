@@ -23,18 +23,12 @@
     </button>
 
     @include('dosen.layouts.header')
-
-    @include('dosen.layouts.sidebar')
-
-    <div class="md:ml-64">
-        <div class="p-4 ">
-            @yield('content')
-        </div>
-    </div>
-
-
+    <main>
+        @yield('content')
+    </main>
     <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/dropdown.js') }}"></script>
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 </body>
 
 </html>
