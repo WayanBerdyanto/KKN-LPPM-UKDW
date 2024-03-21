@@ -40,6 +40,11 @@
 
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
+    {{-- Larapex Chart --}}
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
+
 </body>
 
 </html>
