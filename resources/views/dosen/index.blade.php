@@ -1,5 +1,163 @@
 @section('title', 'Dashboard Dosen')
 @extends('dosen.layouts.main')
 @section('content')
-<h1>Hello</h1>
+    <div class="flex justify-end">
+        <div class="w-full mx-auto mt-8 mb-10">
+            <div class="grid grid-cols-1 gap-10 sm:grid-cols-3 lg:grid-cols-3 mt-4">
+                <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <dl>
+                            <dt class="text-sm leading-5 font-medium text-gray-500 truncate">Loogbok Masuk</dt>
+                            <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">30</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <dl>
+                            <dt class="text-sm leading-5 font-medium text-gray-500 truncate">Laporan Kegiatan Kelompok</dt>
+                            <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">20</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <dl>
+                            <dt class="text-sm leading-5 font-medium text-gray-500 truncate">Laporan Rencana Kelompok</dt>
+                            <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">12</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute text-end">
+            <button id=""
+                class="relative bg-blue-700 hover:bg-blue-800 duration-300 py-2 px-4 text-blue-100 rounded">
+                <i class="fa-solid fa-book"></i>
+                <span
+                    class="absolute bg-blue-500 text-blue-100 px-2 py-1 text-xs font-bold rounded-full -top-3 -right-3">99+</span>
+            </button>
+
+            <button id="btn-show-kegiatan"
+                class="relative bg-blue-700 hover:bg-blue-800 duration-300 py-2 px-4 text-blue-100 mx-5 rounded">
+                <i class="fa-solid fa-chart-line"></i>
+                <span
+                    class="absolute bg-blue-500 text-blue-100 px-2 py-1 text-xs font-bold rounded-full -top-3 -right-3">7+</span>
+            </button>
+
+            <button id="btn-show-notification"
+                class="relative bg-blue-700 hover:bg-blue-800 duration-300 py-2 px-4 text-blue-100 rounded">
+                <i class="fa-solid fa-bell"></i>
+                <span
+                    class="absolute bg-blue-500 text-blue-100 px-2 py-1 text-xs font-bold rounded-full -top-3 -right-3">3+</span>
+            </button>
+            {{-- Start Laporan Logbook Dropdown --}}
+            <div id="dropdown-notification"
+                class="absolute hidden right-0 flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border">
+                <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
+                    <div class="flex justify-between items-center px-3">
+                        <span class="text-center font-semibold text-2xl">Logbook</span>
+                        <span id="closeNotification" class="close cursor-pointer text-4xl text-right">&times;</span>
+                    </div>
+                    <div role="button"
+                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
+                        <div class="grid mr-4 place-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
+                                viewBox="0 0 512 512" fill="currentColor">
+                                <path
+                                    d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h6
+                                class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                                Tania Andrew
+                            </h6>
+                            <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700">
+                                Software Engineer @ Material Tailwind
+                            </p>
+                        </div>
+                    </div>
+                    <div role="button"
+                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
+                        <div class="grid mr-4 place-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
+                                viewBox="0 0 512 512" fill="currentColor">
+                                <path
+                                    d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h6
+                                class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                                Alexander
+                            </h6>
+                            <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700">
+                                Backend Developer @ Material Tailwind
+                            </p>
+                        </div>
+                    </div>
+                    <div role="button"
+                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
+                        <div class="grid mr-4 place-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
+                                viewBox="0 0 512 512" fill="currentColor">
+                                <path
+                                    d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h6
+                                class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                                Emma Willever
+                            </h6>
+                            <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700">
+                                UI/UX Designer @ Material Tailwind
+                            </p>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            {{-- End Laporan Logbook Dropdown --}}
+
+            {{-- Start laporan Kegiatan Kelompok Dropdown --}}
+            <div id="dropdown-kegiatan"
+                class="relative hidden flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border mr-16">
+                <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
+                    <div class="flex justify-between items-center px-3">
+                        <span class="text-center font-semibold text-2xl">Kegiatan Kelompok</span>
+                        <span class="closeKegiatan cursor-pointer text-4xl text-right">&times;</span>
+                    </div>
+                    <div role="button"
+                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
+                        <div class="grid mr-4 place-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
+                                viewBox="0 0 512 512" fill="currentColor">
+                                <path
+                                    d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
+                            </svg>
+                        </div>
+                        <div class="overflow-hidden">
+                            <h6
+                                class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                                Kelompok 1
+                            </h6>
+                            <p
+                                class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 truncate">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt at ut corrupti dolorum
+                                error!
+                            </p>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            {{-- End laporan Kegiatan Kelompok Dropdown --}}
+
+        </div>
+    </div>
 @endsection
