@@ -29,7 +29,7 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 Route::post('/postLogin', [AuthController::class, 'postLogin']);
 
-Route::middleware('cekstatus:dosen')->group(function () {
+Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
     Route::get('/dosen/detail', [DosenController::class, 'detailKelompok'])->name('dosen');
 });
