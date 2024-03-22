@@ -42,6 +42,6 @@ Route::middleware('cekstatus:admin')->group(function () {
 
 Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa', [MahasiswaController::class, 'dashboard'])->name('mahasiswa');
+    Route::get('/mahasiswa/logbook', [MahasiswaController::class, 'logbook'])->name('mahasiswa');
+    Route::get('/mahasiswa/logbook/tambah', [MahasiswaController::class, 'tambah'])->name('mahasiswa');
 });
-
-

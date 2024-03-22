@@ -36,7 +36,7 @@ class AuthController extends Controller
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/dosen');
                     break;
-                case $mahasiswaAuthAttempt && (Auth::guard('mahasiswa')->user()->role):
+                case $mahasiswaAuthAttempt && (Auth::guard('mahasiswa')->user()->role == 'mahasiswa'):
                     $user = Auth::guard('mahasiswa')->user()->nama;
                     alert()->success('Login Berhasil', 'Selamat datang, ' . $user . ' 😃');
                     return redirect('/mahasiswa');

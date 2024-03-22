@@ -11,4 +11,12 @@ class MahasiswaController extends Controller
     {
         return view('mahasiswa.dashboard');
     }
+    public function logbook()
+    {
+        return view('mahasiswa.logbook');
+    }
+    public function tambah()
+    {
+        return view('mahasiswa.logbook');
+    }
 }

@@ -17,10 +17,10 @@
                 </a>
             </li>
             <li class="pt-5">
-                <a href="#"
+                <a href="/mahasiswa/logbook"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
+                    <i class="fa-solid fa-book"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Logbook</span>
                 </a>
             </li>
         </ul>
