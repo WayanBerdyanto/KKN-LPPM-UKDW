@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\LandingPage\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('landing.index');
-});
+Route::get('/', [LandingPageController::class, 'content'])->name('content');
 
 Route::get('/test', function () {
     return view('dosen.test');

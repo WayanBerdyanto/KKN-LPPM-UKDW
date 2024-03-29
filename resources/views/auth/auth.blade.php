@@ -41,7 +41,7 @@
                             class="ml-2 bg-transparent outline-none">
                     </div>
                     <div class="mt-5 text-secondary font-medium">
-                        <button class="bg-primary w-full rounded-lg py-1 hover:bg-blue-500">Login</button>
+                        <button class="bg-primary w-full rounded-lg py-1 hover:bg-opacity-90">Login</button>
                     </div>
                     <div class="mt-3">
                         <a href="/" class="text-primary font-normal hover:text-blue-500">Kembali</a>

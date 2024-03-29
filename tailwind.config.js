@@ -8,9 +8,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#366ED8",
+                primary: "#3758F9",
                 dark: "#222831",
-                secondary: "#FAFAFA",
+                secondary: "#F2FFFF",
             },
             backgroundImage: {
                 "hero-pattern": "url('/public/img/hero.jpg')",
