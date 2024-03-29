@@ -1,4 +1,4 @@
-@section('title', 'Logbook Mahasiswa')
+@section('title', 'Logbook | Mahasiswa')
 @extends('mahasiswa.layouts.main')
 @section('content')
     <div class="relative flex flex-wrap justify-between items-center w-full p-2.5">

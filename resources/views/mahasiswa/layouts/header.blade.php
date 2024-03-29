@@ -15,8 +15,8 @@
     class="absolute hidden top-[3.9rem] right-8 z-10 bg-dark divide-y divide-gray-100  shadow w-44 rounded-xl px-2">
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown">
         <li>
-            <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Settings</a>
+            <a href="/mahasiswa/profile"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Profile</a>
         </li>
         <li>
             <a href="#"

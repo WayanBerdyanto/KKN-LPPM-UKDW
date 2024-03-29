@@ -1,4 +1,4 @@
-@section('title', 'Dashboard Dosen')
+@section('title', 'Home | Mahasiswa')
 @extends('mahasiswa.layouts.main')
 @section('content')
     <div class="container mx-auto mt-4">
