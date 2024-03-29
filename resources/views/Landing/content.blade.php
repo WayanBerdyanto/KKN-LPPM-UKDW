@@ -10,7 +10,7 @@
                             Dan
                             Pengabdian
                             Pada Masyarakat</h1>
-                        <p class="mt-6 text-lg leading-8 text-gray-300">
+                        <p class="mt-6 text-xl leading-8 text-gray-300">
                             Mengembangkan motivasi dan kemampuan sumber daya manusia dalam melakukan penelitian dan
                             pengabdian
                             masyarakat secara profesional, inovatif dan bermutu berdasarkan kasih, kebenaran dan
@@ -18,7 +18,7 @@
                         </p>
                         <div class="mt-10 flex items-start justify-start gap-x-6">
                             <a href="https://www.instagram.com/lppm.ukdw/" target="blank"
-                                class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-secondary shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tentang
+                                class="rounded-md bg-primary px-3.5 py-2.5 text-sm md:text-xl font-semibold text-secondary shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tentang
                                 Kami</a>
                         </div>
                     </div>
@@ -228,7 +228,7 @@
                 </div>
                 <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
                     <div class="mt-10 lg:mt-0">
-                        <span class="mb-4 block text-lg font-semibold text-primary">
+                        <span class="mb-4 block text-xl font-semibold text-primary">
                             Why Choose Us
                         </span>
                         <h2 class="mb-5 text-3xl font-bold text-dark  sm:text-[40px]/[48px]">
@@ -270,7 +270,7 @@
                         <span class="mb-10 block text-4xl font-bold text-primary">
                             Layanan Kami
                         </span>
-                        <h2 class="mb-4 text-lg font-semibold text-secondary sm:text-4xl md:text-[40px]">
+                        <h2 class="mb-4 text-xl font-semibold text-secondary sm:text-4xl md:text-[40px]">
                             Our Recent News
                         </h2>
                         <p class="text-base text-body-color text-secondary ">
@@ -285,7 +285,7 @@
                 <div class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="mb-10 w-full">
                         <div class="mb-8 overflow-hidden rounded">
-                            <img src="assets/images/blogs/blog-01/image-01.jpg" alt="image" class="w-full" />
+                            <img src="{{ asset('img/layanan/example1.jpg') }}" alt="image" class="w-full" />
                         </div>
                         <div>
                             <span
@@ -308,7 +308,7 @@
                 <div class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="mb-10 w-full">
                         <div class="mb-8 overflow-hidden rounded">
-                            <img src="assets/images/blogs/blog-01/image-02.jpg" alt="image" class="w-full" />
+                            <img src="{{ asset('img/layanan/example2.jpg') }}" alt="image" class="w-full" />
                         </div>
                         <div>
                             <span
@@ -331,7 +331,7 @@
                 <div class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="mb-10 w-full">
                         <div class="mb-8 overflow-hidden rounded">
-                            <img src="assets/images/blogs/blog-01/image-03.jpg" alt="image" class="w-full" />
+                            <img src="{{ asset('img/layanan/example3.jpg') }}" alt="image" class="w-full" />
                         </div>
                         <div>
                             <span
