@@ -12,23 +12,23 @@
     </button>
 </header>
 <div id="dropdown-menu"
-    class="absolute hidden top-[3.9rem] right-0 z-10 bg-secondary divide-y divide-gray-100  shadow w-44 dark:bg-gray-700">
+    class="absolute hidden top-[3.9rem] right-8 z-10 bg-dark divide-y divide-gray-100  shadow w-44 rounded-xl px-2">
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown">
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary">Dashboard</a>
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Dashboard</a>
         </li>
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary">Settings</a>
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Settings</a>
         </li>
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary">Earnings</a>
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Earnings</a>
         </li>
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary">Sign out</a>
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Sign out</a>
         </li>
     </ul>
 </div>

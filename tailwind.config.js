@@ -10,7 +10,7 @@ export default {
             colors: {
                 primary: "#3758F9",
                 dark: "#222831",
-                secondary: "#F2FFFF",
+                secondary: "#FEFEFE",
             },
             backgroundImage: {
                 "hero-pattern": "url('/public/img/hero.jpg')",

@@ -9,11 +9,11 @@ class MahasiswaController extends Controller
 {
     public function dashboard()
     {
-        return view('mahasiswa.dashboard');
+        return view('mahasiswa.dashboard', ['key'=>'dashboard']);
     }
     public function logbook()
     {
-        return view('mahasiswa.logbook');
+        return view('mahasiswa.logbook', ['key'=>'logbook']);
     }
     public function tambah()
     {
