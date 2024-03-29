@@ -107,6 +107,6 @@
     <!--Copyright section-->
     <div class="bg-black/5 p-6 text-center bg-gray-200">
         <span>© 2023 Copyright:</span>
-        <a class="font-semibold" href="https://tw-elements.com/">BNN Pride</a>
+        <a class="font-semibold" href="/">BNN Pride</a>
     </div>
 </footer>
