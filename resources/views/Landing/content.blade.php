@@ -261,7 +261,9 @@
     </section>
     <!-- ====== tentang Section End -->
     <!-- ====== layanan Section Start -->
-    <section class="relative px-6 pt-16 lg:px-8 bg-slate-700" id="layanan">
+    <section
+        class="relative px-6 pt-16 lg:px-8 bg-slate-700 opacity-0 transform -translate-x-full transition duration-1000 ease-in-out"
+        id="layanan">
         <div class="container mx-auto py-10">
             <div class="-mx-4 flex flex-wrap justify-center">
                 <div class="w-full px-4">

@@ -28,6 +28,18 @@ body {
 .hamburger-active > span:nth-child(3) {
     @apply -rotate-45;
 }
+/* Animated Scroll */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+#layanan {
+    animation: fadeIn 1s forwards;
+}
 /* Spinner */
 .spinner-container {
     position: absolute;
