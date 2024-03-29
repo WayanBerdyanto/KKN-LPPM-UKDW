@@ -1,14 +1,12 @@
 <aside id="nav-menu"
     class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
     aria-label="Sidebar">
-    <div class="h-full px-2 py-4 overflow-y-auto bg-dark border-r-2 border-gray-800" x-data="{ dropdownOpen: false }"
-        @click.outside="dropdownOpen = false">
+    <div class="h-full px-2 py-4 overflow-y-auto bg-dark border-r-2 border-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="/anggota" class="flex items-center px-4 text-secondary rounded-lg">
                     <img class="w-auto h-auto transition duration-75 group-hover:text-gray-900"
-                        src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png"
-                        alt="">
+                        src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png" alt="">
                 </a>
             </li>
             <li class="pt-12">
@@ -22,9 +20,9 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
                 </a>
             </li>
-            <li class="pt-5">
+            <li class="pt-5" x-data="{ dropdownOpen: false }">
                 <a @click="dropdownOpen = !dropdownOpen"
-                    class="flex items-center p-2 text-secondary rounded-lg  group hover:bg-gray-600 cursor-pointer">
+                    class="flex items-center p-2 text-secondary rounded-lg  group hover:bg-gray-600 cursor-pointer" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-activity" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -33,15 +31,15 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Kegiatan</span>
                 </a>
                 <!-- Dropdown Menu Start -->
-                <div class="translate transform overflow-hidden" :class="dropdownOpen ? 'block' : 'hidden'">
+                <div class="translate transform overflow-hidden" :class="{ 'block': dropdownOpen, 'hidden': !dropdownOpen }">
                     <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                         <li>
                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-secondary font-medium text-bodydark2 duration-300 ease-in-out hover:bg-gray-600 p-2"
-                                href="#">Rencana Kegiatan</a>
+                                href="#" @click="dropdownOpen = false">Rencana Kegiatan</a>
                         </li>
                         <li>
                             <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-secondary  font-medium text-bodydark2 duration-300 ease-in-out hover:bg-gray-600 p-2"
-                                href="#">Laporan Kegiatan</a>
+                                href="#" @click="dropdownOpen = false">Laporan Kegiatan</a>
                         </li>
                     </ul>
                 </div>
