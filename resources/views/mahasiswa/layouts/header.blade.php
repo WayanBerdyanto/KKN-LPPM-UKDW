@@ -2,10 +2,10 @@
     <button id="dropdown" type="button" class="flex flex-shrink-0 items-center space-x-4 text-dark">
         <div class="flex flex-col items-end ">
             <div class="text-md font-medium ">
-                {{ Auth::guard('mahasiswa')->user()->username}}
+                {{ Auth::guard('mahasiswa')->user()->username }}
             </div>
             <div class="text-sm font-regular">
-                {{ Auth::guard('mahasiswa')->user()->status}}
+                {{ Auth::guard('mahasiswa')->user()->status }}
             </div>
         </div>
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
@@ -16,19 +16,17 @@
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown">
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Dashboard</a>
-        </li>
-        <li>
-            <a href="#"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Settings</a>
         </li>
         <li>
             <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Earnings</a>
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Ubah
+                Password</a>
         </li>
         <li>
-            <a href="#"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Sign out</a>
+            <button @click="modalOpen = true"
+                class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-secondary rounded-xl">Logout</button>
         </li>
     </ul>
 </div>
+
