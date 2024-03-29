@@ -4,5 +4,5 @@ document.addEventListener("DOMContentLoaded", function() {
         spinner.style.display = 'none';
         var overlay = document.querySelector('.bg-overlay');
         overlay.remove();
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 500); // 3000 milliseconds = 3 seconds
 });
