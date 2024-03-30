@@ -51,7 +51,7 @@
                         </tr>
                         <tr class="border-b">
                             <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                                <span class="font-normal">Status</span>
+                                <span class="font-normal">Status Kelompok</span>
                             </td>
                             <td class="px-6 py-4">
                                 <span
