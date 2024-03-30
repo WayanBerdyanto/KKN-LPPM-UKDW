@@ -5,13 +5,13 @@
                 <img src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png" alt="">
             </div>
             <div class="flex items-center px-2">
-                <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
+                <button id="hamburger" name="hamburger" type="button" class="block absolute right-0 lg:hidden">
                     <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
                     <span class="hamburger-line transition duration-300 ease-in-out"></span>
                     <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
                 </button>
                 <nav id="nav-menu"
-                    class="hidden absolute py-3 bg-secondary rounded-lg shadow-lg max-w[250px] w-1/2 right-4 top-full lg:block lg:static lg:bg-transparent lg:w-full lg:shadow-none lg:rounded-none">
+                    class="hidden absolute py-3 bg-secondary rounded-lg shadow-lg max-w[250px] w-1/2 right-0 top-full lg:block lg:static lg:bg-transparent lg:w-full lg:shadow-none lg:rounded-none">
                     <ul class="block lg:flex">
                         <li class="group">
                             <a href="#home"

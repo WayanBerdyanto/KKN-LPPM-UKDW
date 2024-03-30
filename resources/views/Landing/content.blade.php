@@ -18,7 +18,7 @@
                         </p>
                         <div class="mt-10 flex items-start justify-start gap-x-6">
                             <a href="https://www.instagram.com/lppm.ukdw/" target="blank"
-                                class="rounded-md bg-primary px-3.5 py-2.5 text-sm md:text-xl font-semibold text-secondary shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tentang
+                                class="rounded-md bg-primary px-3.5 py-2.5 text-sm md:text-xl font-semibold text-secondary shadow-sm hover:bg-opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Follow
                                 Kami</a>
                         </div>
                     </div>
