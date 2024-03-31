@@ -10,7 +10,7 @@
                             Dan
                             Pengabdian
                             Pada Masyarakat</h1>
-                        <p class="mt-6 text-xl leading-8 text-gray-300">
+                        <p class="mt-6 text-xl leading-8 text-gray-300 text-secondary">
                             Mengembangkan motivasi dan kemampuan sumber daya manusia dalam melakukan penelitian dan
                             pengabdian
                             masyarakat secara profesional, inovatif dan bermutu berdasarkan kasih, kebenaran dan
