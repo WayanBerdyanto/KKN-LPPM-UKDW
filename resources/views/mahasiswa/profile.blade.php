@@ -1,152 +1,127 @@
 @section('title', 'Profile | Mahasiswa')
 @extends('mahasiswa.layouts.main')
 @section('content')
-    <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-        <div class="mx-auto max-w-242.5">
-            <!-- Breadcrumb Start -->
-            <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <nav>
-                    <ol class="flex items-center gap-2">
-                        <li>
-                            <a class="font-medium" href="/mahasiswa">Home /</a>
-                        </li>
-                        <li class="text-primary">Profile</li>
-                    </ol>
-                </nav>
+    <div class="container mx-auto mt-4">
+        <div class="relative flex flex-wrap justify-between items-center w-full p-2.5">
+            <div class="w-full h-full mb-5 lg:w-2/6">
+                <img src="{{ asset('img/layanan/example1.jpg') }}" alt=""
+                    class="object-contain w-90 h-90 rounded-full border border-primary m-auto">
             </div>
-            <!-- Breadcrumb End -->
-
-            <!-- ====== Profile Section Start -->
-            <div
-                class="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                <div class="relative z-20 h-35 md:h-65">
-                    <img src="{{ asset('img/layanan/example1.jpg') }}" alt="profile cover"
-                        class="h-40 w-full rounded-tl-sm rounded-tr-sm object-cover object-center" />
-                    <div class="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4">
-                        <label for="cover"
-                            class="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary px-2 py-1 text-sm font-medium text-white hover:bg-opacity-80 xsm:px-4">
-                            <input type="file" name="cover" id="cover" class="sr-only" />
-                            <span>
-                                <svg class="fill-current" width="30" height="30" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M4.76464 1.42638C4.87283 1.2641 5.05496 1.16663 5.25 1.16663H8.75C8.94504 1.16663 9.12717 1.2641 9.23536 1.42638L10.2289 2.91663H12.25C12.7141 2.91663 13.1592 3.101 13.4874 3.42919C13.8156 3.75738 14 4.2025 14 4.66663V11.0833C14 11.5474 13.8156 11.9925 13.4874 12.3207C13.1592 12.6489 12.7141 12.8333 12.25 12.8333H1.75C1.28587 12.8333 0.840752 12.6489 0.512563 12.3207C0.184375 11.9925 0 11.5474 0 11.0833V4.66663C0 4.2025 0.184374 3.75738 0.512563 3.42919C0.840752 3.101 1.28587 2.91663 1.75 2.91663H3.77114L4.76464 1.42638ZM5.56219 2.33329L4.5687 3.82353C4.46051 3.98582 4.27837 4.08329 4.08333 4.08329H1.75C1.59529 4.08329 1.44692 4.14475 1.33752 4.25415C1.22812 4.36354 1.16667 4.51192 1.16667 4.66663V11.0833C1.16667 11.238 1.22812 11.3864 1.33752 11.4958C1.44692 11.6052 1.59529 11.6666 1.75 11.6666H12.25C12.4047 11.6666 12.5531 11.6052 12.6625 11.4958C12.7719 11.3864 12.8333 11.238 12.8333 11.0833V4.66663C12.8333 4.51192 12.7719 4.36354 12.6625 4.25415C12.5531 4.14475 12.4047 4.08329 12.25 4.08329H9.91667C9.72163 4.08329 9.53949 3.98582 9.4313 3.82353L8.43781 2.33329H5.56219Z"
-                                        fill="white" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.99992 5.83329C6.03342 5.83329 5.24992 6.61679 5.24992 7.58329C5.24992 8.54979 6.03342 9.33329 6.99992 9.33329C7.96642 9.33329 8.74992 8.54979 8.74992 7.58329C8.74992 6.61679 7.96642 5.83329 6.99992 5.83329ZM4.08325 7.58329C4.08325 5.97246 5.38909 4.66663 6.99992 4.66663C8.61075 4.66663 9.91659 5.97246 9.91659 7.58329C9.91659 9.19412 8.61075 10.5 6.99992 10.5C5.38909 10.5 4.08325 9.19412 4.08325 7.58329Z"
-                                        fill="white" />
-                                </svg>
-                            </span>
-                            <span>Edit</span>
-                        </label>
+            <div class="w-full  lg:w-4/6 py-2">
+                <div class="flex justify-between border-b-2 border-gray-300 py-2">
+                    <div>
+                        <h1 class="text-dark dark:text-secondary text-md font-bold">
+                            {{ Auth::guard('mahasiswa')->user()->nama }}
+                        </h1>
+                        <h2 class="text-dark dark:text-secondary mt-1 text-sm font-normal block">
+                            <i class="fa-solid fa-location-dot mr-1"></i>
+                            Beji, Ngawen, Gunung Kidul, DIY
+                        </h2>
                     </div>
                 </div>
-                <div class="px-4 pb-6 text-center lg:pb-8 xl:pb-11.5">
-                    <div
-                        class="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3">
-                        <div class="relative drop-shadow-2">
-                            <img src="{{ asset('img/layanan/example3.jpg') }}" alt="profile"
-                                class="rounded-full h-40 w-56" />
-                            <label for="profile"
-                                class="absolute bottom-0 right-0 flex h-8.5 w-8.5 cursor-pointer items-center justify-center rounded-full bg-primary text-white hover:bg-opacity-90 sm:bottom-2 sm:right-2">
-                                <svg class="fill-current" width="30" height="30" viewBox="0 0 14 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M4.76464 1.42638C4.87283 1.2641 5.05496 1.16663 5.25 1.16663H8.75C8.94504 1.16663 9.12717 1.2641 9.23536 1.42638L10.2289 2.91663H12.25C12.7141 2.91663 13.1592 3.101 13.4874 3.42919C13.8156 3.75738 14 4.2025 14 4.66663V11.0833C14 11.5474 13.8156 11.9925 13.4874 12.3207C13.1592 12.6489 12.7141 12.8333 12.25 12.8333H1.75C1.28587 12.8333 0.840752 12.6489 0.512563 12.3207C0.184375 11.9925 0 11.5474 0 11.0833V4.66663C0 4.2025 0.184374 3.75738 0.512563 3.42919C0.840752 3.101 1.28587 2.91663 1.75 2.91663H3.77114L4.76464 1.42638ZM5.56219 2.33329L4.5687 3.82353C4.46051 3.98582 4.27837 4.08329 4.08333 4.08329H1.75C1.59529 4.08329 1.44692 4.14475 1.33752 4.25415C1.22812 4.36354 1.16667 4.51192 1.16667 4.66663V11.0833C1.16667 11.238 1.22812 11.3864 1.33752 11.4958C1.44692 11.6052 1.59529 11.6666 1.75 11.6666H12.25C12.4047 11.6666 12.5531 11.6052 12.6625 11.4958C12.7719 11.3864 12.8333 11.238 12.8333 11.0833V4.66663C12.8333 4.51192 12.7719 4.36354 12.6625 4.25415C12.5531 4.14475 12.4047 4.08329 12.25 4.08329H9.91667C9.72163 4.08329 9.53949 3.98582 9.4313 3.82353L8.43781 2.33329H5.56219Z"
-                                        fill="" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M7.00004 5.83329C6.03354 5.83329 5.25004 6.61679 5.25004 7.58329C5.25004 8.54979 6.03354 9.33329 7.00004 9.33329C7.96654 9.33329 8.75004 8.54979 8.75004 7.58329C8.75004 6.61679 7.96654 5.83329 7.00004 5.83329ZM4.08337 7.58329C4.08337 5.97246 5.38921 4.66663 7.00004 4.66663C8.61087 4.66663 9.91671 5.97246 9.91671 7.58329C9.91671 9.19412 8.61087 10.5 7.00004 10.5C5.38921 10.5 4.08337 9.19412 4.08337 7.58329Z"
-                                        fill="" />
-                                </svg>
-                                <input type="file" name="profile" id="profile" class="sr-only" />
-                            </label>
-                        </div>
-                    </div>
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left rtl:text-right">
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span>Nim</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">{{ Auth::guard('mahasiswa')->user()->nim }}</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Prodi</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    Sistem Informasi
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Angkatan</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    2021
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Gender</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    Laki-Laki
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Status</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    {{ Auth::guard('mahasiswa')->user()->status }}
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Alamat</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    Klitren, Gondokusuman, Kota Yogyakarta, DIY
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Email</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    wayan.berdyanto@si.ukdw.ac.id
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                                <span class="font-normal">Email</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">
+                                    0821218297
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div class="mx-auto max-w-screen-2xl mt-10">
-                <div class="mx-auto max-w-270">
-                    <!-- ====== Settings Section Start -->
-                    <div class="grid grid-cols-2 gap-5">
-                        <div class="col-span-5 xl:col-span-3">
-                            <div
-                                class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-                                <div class="border-b border-stroke px-7 py-4 dark:border-strokedark">
-                                    <h3 class="font-medium text-dark text-xl">
-                                        Data Diri
-                                    </h3>
-                                </div>
-                                <div class="p-7">
-                                    <form action="#">
-                                        <div class="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
-                                            <div class="w-full sm:w-1/2">
-                                                <label class="mb-3 block text-sm font-medium text-dark "
-                                                    for="fullName">Full Name</label>
-                                                <div class="relative">
-                                                    <span class="absolute left-4.5 top-4 ml-4">
-                                                        <i class="fa-regular fa-user"></i>
-                                                    </span>
-                                                    <input
-                                                        class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-dark focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4  dark:focus:border-primary pl-10 mb-3"
-                                                        type="text" name="fullName" id="fullName"
-                                                        placeholder="Devid Jhon" value="Devid Jhon" />
-                                                </div>
-                                            </div>
-
-                                            <div class="w-full sm:w-1/2">
-                                                <label class="mb-3 block text-sm font-medium text-dark "
-                                                    for="phoneNumber">Phone Number</label>
-                                                <input
-                                                    class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-dark focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4  dark:focus:border-primary pl-4"
-                                                    type="text" name="phoneNumber" id="phoneNumber"
-                                                    placeholder="+990 3343 7865" value="+990 3343 7865" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-5.5">
-                                            <label class="mb-3 block text-sm font-medium text-dark "
-                                                for="emailAddress">Email Address</label>
-                                            <div class="relative">
-                                                <span class="absolute left-4.5 top-4">
-                                                    <i class="fa-regular fa-envelope ml-4"></i>
-                                                </span>
-                                                <input
-                                                    class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-dark focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4  dark:focus:border-primary pl-10 mb-3"
-                                                    type="email" name="emailAddress" id="emailAddress"
-                                                    placeholder="devidjond45@gmail.com" value="devidjond45@gmail.com" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-5.5">
-                                            <label class="mb-3 block text-sm font-medium text-dark "
-                                                for="Username">Username</label>
-                                            <input
-                                                class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-dark focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4  dark:focus:border-primary pl-4"
-                                                type="text" name="Username" id="Username" placeholder="devidjhon24"
-                                                value="devidjhon24" />
-                                        </div>
-
-                                        <div class="flex justify-end gap-10 mt-5">
-                                            <button
-                                                class="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-dark hover:shadow-1 dark:border-strokedark "
-                                                type="reset">
-                                                Cancel
-                                            </button>
-                                            <button
-                                                class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90 text-secondary"
-                                                type="submit">
-                                                Save
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ====== Settings Section End -->
-                </div>
-            </div>
-            <!-- ====== Profile Section End -->
+        </div>
+        <div class="flex justify-end">
+            <a href="/mahasiswa/settings" class="flex px-3 py-2 rounded-lg bg-primary hover:bg-opacity-90 text-secondary">
+                <svg class="fill-current mr-3 animate-spin" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20.8656 8.86874C20.5219 8.49062 20.0406 8.28437 19.525 8.28437H19.4219C19.25 8.28437 19.1125 8.18124 19.0781 8.04374C19.0437 7.90624 18.975 7.80312 18.9406 7.66562C18.8719 7.52812 18.9406 7.39062 19.0437 7.28749L19.1125 7.21874C19.4906 6.87499 19.6969 6.39374 19.6969 5.87812C19.6969 5.36249 19.525 4.88124 19.1469 4.50312L17.8062 3.12812C17.0844 2.37187 15.8469 2.33749 15.0906 3.09374L14.9875 3.16249C14.8844 3.26562 14.7125 3.29999 14.5406 3.23124C14.4031 3.16249 14.2656 3.09374 14.0937 3.05937C13.9219 2.99062 13.8187 2.85312 13.8187 2.71562V2.54374C13.8187 1.47812 12.9594 0.618744 11.8937 0.618744H9.96875C9.45312 0.618744 8.97187 0.824994 8.62812 1.16874C8.25 1.54687 8.07812 2.02812 8.07812 2.50937V2.64687C8.07812 2.78437 7.975 2.92187 7.8375 2.99062C7.76875 3.02499 7.73437 3.02499 7.66562 3.05937C7.52812 3.12812 7.35625 3.09374 7.25312 2.99062L7.18437 2.88749C6.84062 2.50937 6.35937 2.30312 5.84375 2.30312C5.32812 2.30312 4.84687 2.47499 4.46875 2.85312L3.09375 4.19374C2.3375 4.91562 2.30312 6.15312 3.05937 6.90937L3.12812 7.01249C3.23125 7.11562 3.26562 7.28749 3.19687 7.39062C3.12812 7.52812 3.09375 7.63124 3.025 7.76874C2.95625 7.90624 2.85312 7.97499 2.68125 7.97499H2.57812C2.0625 7.97499 1.58125 8.14687 1.20312 8.52499C0.824996 8.86874 0.618746 9.34999 0.618746 9.86562L0.584371 11.7906C0.549996 12.8562 1.40937 13.7156 2.475 13.75H2.57812C2.75 13.75 2.8875 13.8531 2.92187 13.9906C2.99062 14.0937 3.05937 14.1969 3.09375 14.3344C3.12812 14.4719 3.09375 14.6094 2.99062 14.7125L2.92187 14.7812C2.54375 15.125 2.3375 15.6062 2.3375 16.1219C2.3375 16.6375 2.50937 17.1187 2.8875 17.4969L4.22812 18.8719C4.95 19.6281 6.1875 19.6625 6.94375 18.9062L7.04687 18.8375C7.15 18.7344 7.32187 18.7 7.49375 18.7687C7.63125 18.8375 7.76875 18.9062 7.94062 18.9406C8.1125 19.0094 8.21562 19.1469 8.21562 19.2844V19.4219C8.21562 20.4875 9.075 21.3469 10.1406 21.3469H12.0656C13.1312 21.3469 13.9906 20.4875 13.9906 19.4219V19.2844C13.9906 19.1469 14.0937 19.0094 14.2312 18.9406C14.3 18.9062 14.3344 18.9062 14.4031 18.8719C14.575 18.8031 14.7125 18.8375 14.8156 18.9406L14.8844 19.0437C15.2281 19.4219 15.7094 19.6281 16.225 19.6281C16.7406 19.6281 17.2219 19.4562 17.6 19.0781L18.975 17.7375C19.7312 17.0156 19.7656 15.7781 19.0094 15.0219L18.9406 14.9187C18.8375 14.8156 18.8031 14.6437 18.8719 14.5406C18.9406 14.4031 18.975 14.3 19.0437 14.1625C19.1125 14.025 19.25 13.9562 19.3875 13.9562H19.4906H19.525C20.5562 13.9562 21.4156 13.1312 21.45 12.0656L21.4844 10.1406C21.4156 9.72812 21.2094 9.21249 20.8656 8.86874ZM19.8344 12.1C19.8344 12.3062 19.6625 12.4781 19.4562 12.4781H19.3531H19.3187C18.5281 12.4781 17.8062 12.9594 17.5312 13.6469C17.4969 13.75 17.4281 13.8531 17.3937 13.9562C17.0844 14.6437 17.2219 15.5031 17.7719 16.0531L17.8406 16.1562C17.9781 16.2937 17.9781 16.5344 17.8406 16.6719L16.4656 18.0125C16.3625 18.1156 16.2594 18.1156 16.1906 18.1156C16.1219 18.1156 16.0187 18.1156 15.9156 18.0125L15.8469 17.9094C15.2969 17.325 14.4719 17.1531 13.7156 17.4969L13.5781 17.5656C12.8219 17.875 12.3406 18.5625 12.3406 19.3531V19.4906C12.3406 19.6969 12.1687 19.8687 11.9625 19.8687H10.0375C9.83125 19.8687 9.65937 19.6969 9.65937 19.4906V19.3531C9.65937 18.5625 9.17812 17.8406 8.42187 17.5656C8.31875 17.5312 8.18125 17.4625 8.07812 17.4281C7.80312 17.2906 7.52812 17.2562 7.25312 17.2562C6.77187 17.2562 6.29062 17.4281 5.9125 17.8062L5.84375 17.8406C5.70625 17.9781 5.46562 17.9781 5.32812 17.8406L3.9875 16.4656C3.88437 16.3625 3.88437 16.2594 3.88437 16.1906C3.88437 16.1219 3.88437 16.0187 3.9875 15.9156L4.05625 15.8469C4.64062 15.2969 4.8125 14.4375 4.50312 13.75C4.46875 13.6469 4.43437 13.5437 4.36562 13.4406C4.09062 12.7187 3.40312 12.2031 2.6125 12.2031H2.50937C2.30312 12.2031 2.13125 12.0312 2.13125 11.825L2.16562 9.89999C2.16562 9.76249 2.23437 9.69374 2.26875 9.62499C2.30312 9.59062 2.40625 9.52187 2.54375 9.52187H2.64687C3.4375 9.55624 4.15937 9.07499 4.46875 8.35312C4.50312 8.24999 4.57187 8.14687 4.60625 8.04374C4.91562 7.35624 4.77812 6.49687 4.22812 5.94687L4.15937 5.84374C4.02187 5.70624 4.02187 5.46562 4.15937 5.32812L5.53437 3.98749C5.6375 3.88437 5.74062 3.88437 5.80937 3.88437C5.87812 3.88437 5.98125 3.88437 6.08437 3.98749L6.15312 4.09062C6.70312 4.67499 7.52812 4.84687 8.28437 4.53749L8.42187 4.46874C9.17812 4.15937 9.65937 3.47187 9.65937 2.68124V2.54374C9.65937 2.40624 9.72812 2.33749 9.7625 2.26874C9.79687 2.19999 9.9 2.16562 10.0375 2.16562H11.9625C12.1687 2.16562 12.3406 2.33749 12.3406 2.54374V2.68124C12.3406 3.47187 12.8219 4.19374 13.5781 4.46874C13.6812 4.50312 13.8187 4.57187 13.9219 4.60624C14.6437 4.94999 15.5031 4.81249 16.0875 4.26249L16.1906 4.19374C16.3281 4.05624 16.5687 4.05624 16.7062 4.19374L18.0469 5.56874C18.15 5.67187 18.15 5.77499 18.15 5.84374C18.15 5.91249 18.1156 6.01562 18.0469 6.11874L17.9781 6.18749C17.3594 6.70312 17.1875 7.56249 17.4625 8.24999C17.4969 8.35312 17.5312 8.45624 17.6 8.55937C17.875 9.28124 18.5625 9.79687 19.3531 9.79687H19.4562C19.5937 9.79687 19.6625 9.86562 19.7312 9.89999C19.8 9.93437 19.8344 10.0375 19.8344 10.175V12.1Z"
+                        fill="" />
+                    <path
+                        d="M11 6.32498C8.42189 6.32498 6.32501 8.42186 6.32501 11C6.32501 13.5781 8.42189 15.675 11 15.675C13.5781 15.675 15.675 13.5781 15.675 11C15.675 8.42186 13.5781 6.32498 11 6.32498ZM11 14.1281C9.28126 14.1281 7.87189 12.7187 7.87189 11C7.87189 9.28123 9.28126 7.87186 11 7.87186C12.7188 7.87186 14.1281 9.28123 14.1281 11C14.1281 12.7187 12.7188 14.1281 11 14.1281Z"
+                        fill="" />
+                </svg>
+                Settings
+            </a>
         </div>
     </div>
+
 @endsection

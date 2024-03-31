@@ -44,6 +44,7 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa/logbook', [MahasiswaController::class, 'logbook'])->name('mahasiswa');
     Route::get('/mahasiswa/logbook/tambah', [MahasiswaController::class, 'tambah'])->name('mahasiswa');
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'profile'])->name('profile');
+    Route::get('/mahasiswa/settings', [MahasiswaController::class, 'settings'])->name('settings');
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 
 });
