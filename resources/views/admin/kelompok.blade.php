@@ -5,7 +5,7 @@
 
     <div class="my-5 py-2 border-b-2 flex justify-between items-center px-3">
         <form action="">
-            <div class="border rounded-lg focus-within:ring focus-within:ring-blue-400 duration-700">
+            <div class= rounded-lg focus-within:ring focus-within:ring-blue-400 duration-700">
                 <input type="text" class="outline-none px-4 placeholder:italic text-left" placeholder="Cari">
                 <button type="submit" class="bg-primary text-secondary py-1.5 px-3 rounded-r-lg hover:bg-blue-500">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -19,7 +19,7 @@
         </a>
     </div>
     <a href="/admin/kelompok/detail"
-        class="w-full bg-white py-3 px-2 flex justify-between items-center border hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
+        class="w-full bg-white py-3 px-2 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
         <div class="py-1 px-3">
             <h1 class="text-dark text-md font-bold">Kelompok 01</h1>
             <h2 class="text-dark mt-2 text-sm font-medium">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</h2>
@@ -35,7 +35,7 @@
         <i class="fa-solid fa-forward px-4 text-xl"></i>
     </a>
     <a href="/admin/kelompok/detail"
-        class="w-full bg-white py-3 px-2 flex justify-between items-center border hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
+        class="w-full bg-white py-3 px-2 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
         <div class="py-1 px-3">
             <h1 class="text-dark text-md font-bold">Kelompok 02</h1>
             <h2 class="text-dark mt-2 text-sm font-medium">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</h2>
@@ -51,7 +51,7 @@
         <i class="fa-solid fa-forward px-4 text-xl"></i>
     </a>
     <a href="/admin/kelompok/detail"
-        class="w-full bg-white py-3 px-2 flex justify-between items-center border hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
+        class="w-full bg-white py-3 px-2 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
         <div class="py-1 px-3">
             <h1 class="text-dark text-md font-bold">Kelompok 03</h1>
             <h2 class="text-dark mt-2 text-sm font-medium">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</h2>
@@ -67,7 +67,7 @@
         <i class="fa-solid fa-forward px-4 text-xl"></i>
     </a>
     <a href="/admin/kelompok/detail"
-        class="w-full bg-white py-3 px-2 flex justify-between items-center border hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
+        class="w-full bg-white py-3 px-2 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5">
         <div class="py-1 px-3">
             <h1 class="text-dark text-md font-bold">Kelompok 04</h1>
             <h2 class="text-dark mt-2 text-sm font-medium">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</h2>

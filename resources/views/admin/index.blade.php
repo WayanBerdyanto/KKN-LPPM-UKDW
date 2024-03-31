@@ -2,8 +2,12 @@
 @extends('admin.layouts.main')
 @section('content')
     {{-- <h1 class="font-normal text-xl">Selamat Datang <strong>{{ Auth::guard('admin')->user()->username }}</strong> ....</h1> --}}
-    <h2 class="text-2xl font-semibold text-gray-700 sm:text-2xl">
-        <i class="fa-solid fa-chart-simple mr-2"></i>
+    <h2 class="flex items-center text-2xl font-medium text-gray-700 sm:text-2xl text-boxdark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-1x2 mr-2 font-semibold"
+            viewBox="0 0 16 16">
+            <path
+                d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+        </svg>
         Dashboard
     </h2>
     <div class="max-w-7xl mx-auto mt-5 mb-10">
@@ -27,7 +31,8 @@
             <div class="bg-white overflow-hidden shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INCLUSIVE AND WASTE MANAGEMENT</dt>
+                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INCLUSIVE AND WASTE
+                            MANAGEMENT</dt>
                         <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">19</dd>
                     </dl>
                 </div>
@@ -43,7 +48,8 @@
             <div class="bg-white overflow-hidden shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:p-6">
                     <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INKLUSIF #3 SLB N 1 YOGYAKARTA</dt>
+                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INKLUSIF #3 SLB N 1
+                            YOGYAKARTA</dt>
                         <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">12</dd>
                     </dl>
                 </div>
@@ -163,10 +169,10 @@
                         </svg>
                     </div>
                     <input type="search" id="default-search"
-                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  duration-1000 focus-within:ring focus-within:ring-blue-400 outline-none"
+                        class="block w-full p-4 ps-10 bg-transparent pl-9 pr-4 focus:outline-none xl:w-125"
                         placeholder="Cari....." required />
                     <button type="submit"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-opacity-90 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-opacity-90">
                         Cari
                     </button>
                 </div>
