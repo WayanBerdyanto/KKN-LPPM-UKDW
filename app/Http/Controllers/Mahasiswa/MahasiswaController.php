@@ -63,6 +63,10 @@ class MahasiswaController extends Controller
         return view('mahasiswa.profile', ['key' => '']);
     }
 
+    public function settings(){
+        return view('mahasiswa.settings', ['key' => '']);
+    }
+
     public function logout()
     {
         Auth::guard('mahasiswa')->logout();
