@@ -15,13 +15,16 @@ class Mahasiswas extends Authenticatable
 
     protected $fillable = [
         'nim',
-        'username',
         'nama',
         'password',
         'prodi',
+        'angkatan',
         'gender',
-        'role',
         'status',
+        'alamat',
+        'email',
+        'no_telp',
+        'role',
     ];
 
     protected $guard = 'mahasiswa';

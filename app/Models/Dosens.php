@@ -13,10 +13,14 @@ class Dosens extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'kode_dosen',
+        'nip',
         'username',
-        'nama',
         'password',
+        'nama',
+        'gender',
+        'alamat',
+        'email',
+        'no_telp',
         'status',
     ];
 
