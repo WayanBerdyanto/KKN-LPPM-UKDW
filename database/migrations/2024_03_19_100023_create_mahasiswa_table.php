@@ -13,13 +13,16 @@ return new class extends Migration {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('nim', 8)->unique();
-            $table->string('username', 15)->unique();
             $table->string('nama', 200);
             $table->string('password', 100);
             $table->string('prodi', 50);
+            $table->year('angkatan');
             $table->string('gender', 15);
-            $table->string('role',100)->default('mahasiswa');
             $table->enum('status', ['ketua', 'anggota'])->default('anggota');
+            $table->longText('alamat');
+            $table->string('email', 50)->unique();
+            $table->string('no_telp', 50);
+            $table->string('role',100)->default('mahasiswa');
             $table->timestamps();
         });
     }

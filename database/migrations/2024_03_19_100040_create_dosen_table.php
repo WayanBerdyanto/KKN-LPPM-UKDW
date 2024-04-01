@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('dosens', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('kode_dosen',8)->unique();
+            $table->char('nip',8)->unique();
             $table->string('username',20)->unique();
             $table->string('password',100);
             $table->string('nama',100);
+            $table->string('gender',15);
+            $table->longText('alamat');
+            $table->string('email', 50)->unique();
+            $table->string('no_telp', 50);
             $table->string('status',100)->default('dosen');
             $table->timestamps();
         });
