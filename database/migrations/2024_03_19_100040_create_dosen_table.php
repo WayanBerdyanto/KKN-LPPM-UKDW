@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('username',20)->unique();
             $table->string('password',100);
             $table->string('nama',100);
-            $table->string('gender',15);
-            $table->longText('alamat');
+            $table->string('gender',15)->nullable();
+            $table->longText('alamat')->nullable();
             $table->string('email', 50)->unique();
-            $table->string('no_telp', 50);
+            $table->string('no_telp', 50)->nullable();
             $table->string('status',100)->default('dosen');
             $table->timestamps();
         });

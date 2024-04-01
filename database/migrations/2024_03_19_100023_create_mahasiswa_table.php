@@ -16,12 +16,12 @@ return new class extends Migration {
             $table->string('nama', 200);
             $table->string('password', 100);
             $table->string('prodi', 50);
-            $table->year('angkatan');
+            $table->year('angkatan')->nullable();
             $table->string('gender', 15);
             $table->enum('status', ['ketua', 'anggota'])->default('anggota');
-            $table->longText('alamat');
+            $table->longText('alamat')->nullable();
             $table->string('email', 50)->unique();
-            $table->string('no_telp', 50);
+            $table->string('no_telp', 50)->nullable();
             $table->string('role',100)->default('mahasiswa');
             $table->timestamps();
         });
