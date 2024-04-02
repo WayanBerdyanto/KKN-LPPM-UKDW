@@ -14,46 +14,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="px-1 relative lg:h-screen lg:px-4 lg:py-4 lg:rounded-lg">
-        <div class="flex flex-wrap lg:shadow-2xl px-2">
-            <div class="w-full lg:w-1/2">
-                <div class="my-4 md:h-3/5 lg:my-0 lg:h-screen">
-                    <img src="{{ asset('img/content-login.png') }}" class="w-[100%] lg:h-[98%] lg:object-cover">
-                </div>
-            </div>
-            <div class="w-full lg:w-1/2 flex flex-col justify-center">
-                <form class="lg:mx-auto md:max-w-full md:px-14 lg:w-3/4 px-2 lg:border lg:py-3">
-                    <h1 class="text-center font-semibold text-gray-900 text-2xl lg:text-4xl">Sign In</h1>
-                    <div class="mb-5">
-                        <label for="nim"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark lg:text-lg">NIM</label>
-                        <input type="text" id="nim"
-                            class="lg:py-2 lg:text-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:ring focus:ring-blue-500 focus:outline-none duration-500"
-                            placeholder="NIM" required />
+
+    <div class="relative flex flex-wrap h-full mx-auto">
+        <div class="w-full flex justify-center mt-24 md:32">
+            <img src="{{ asset('img/logo-ukdw.png') }}" alt="" class="h-28 object-cover">
+        </div>
+        <div class="w-full flex justify-center p-4">
+            <div class="p-4 text-center">
+                <form action="/postLogin" method="POST">
+                    @csrf
+                    <h2 class="font-normal text-2xl">Selamat Datang!</h2>
+                    <span class="font-normal text-md">Login KKN</span>
+                    <div
+                        class="mt-5 border shadow-xl shadow-blue-200/30  rounded-lg px-3 py-2 text-dark duration-1000 focus-within:ring focus-within:ring-blue-400">
+                        <i class="fa-solid fa-user text-slate-600"></i>
+                        <input type="text" name="username" placeholder="ID" class="ml-2 bg-transparent outline-none">
                     </div>
-                    <div class="mb-5">
-                        <label for="password"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-dark lg:text-lg">
-                            Password</label>
-                        <div
-                            class="bg-gray-50 border border-gray-300  w-full rounded-lg flex items-center duration-500 focus-within:ring focus-within:ring-blue-500">
-                            <input type="password" id="password"
-                                class="lg:text-lg lg:py-2 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none border-none bg-gray-50"
-                                placeholder="**********" required />
-                            <i id="iconsPassword" class="fa-regular fa-eye mx-2"></i>
-                        </div>
+                    <div
+                        class="mt-5 border shadow-xl shadow-blue-200/30  rounded-lg px-3 py-2 text-dark duration-1000 focus-within:ring focus-within:ring-blue-400">
+                        <i class="fa-solid fa-lock text-slate-600"></i>
+                        <input type="password" name="password" placeholder="Password"
+                            class="ml-2 bg-transparent outline-none">
                     </div>
-                    <button type="submit"
-                        class="lg:py-2 md:w-full lg:text-lg text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
-                    <a href="/" class="lg:text-xl  block text-center my-4 text-blue-500">Back to Home</a>
+                    <div class="mt-5 text-secondary font-medium">
+                        <button class="bg-primary w-full rounded-lg py-1 hover:bg-opacity-90">Login</button>
+                    </div>
+                    <div class="mt-3">
+                        <a href="/" class="text-primary font-normal hover:text-blue-500">Kembali</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <div class="custom-shape-divider-bottom-1709427909">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <div class="custom-shape-divider-top-1709427909">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                class="shape-fill"></path>
+        </svg>
+    </div>
+
     <script src="{{ asset('js/password.js') }}"></script>
+
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
+
 </body>
 
 </html>
