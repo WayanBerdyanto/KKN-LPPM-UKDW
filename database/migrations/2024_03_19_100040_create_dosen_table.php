@@ -15,11 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->char('nip',8)->unique();
             $table->string('username',20)->unique();
-            $table->string('password',100);
+            $table->string('password',100)->default('12345678');
             $table->string('nama',100);
             $table->string('gender',15)->nullable();
             $table->longText('alamat')->nullable();
-            $table->string('email', 50)->unique();
+            $table->string('email', 50)->unique()->nullable();
             $table->string('no_telp', 50)->nullable();
             $table->string('status',100)->default('dosen');
             $table->timestamps();

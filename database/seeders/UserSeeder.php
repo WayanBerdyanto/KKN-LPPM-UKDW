@@ -44,22 +44,24 @@ class UserSeeder extends Seeder
         ]);
         DB::table("mahasiswas")->insert([
             [
-                'nim' => '72210481',
+                'username' => '72210481',
                 'nama' => 'Wayan Berdyanto',
                 'password' => bcrypt('12345678'),
                 'prodi' => 'Sistem Informasi',
+                'angkatan' => '2021',
                 'gender' => 'Laki-laki',
-                'role' => 'mahasiswa',
                 'status' => 'ketua',
+                'role' => 'mahasiswa',
             ],
             [
-                'nim' => '72210487',
+                'username' => '72210487',
                 'nama' => 'Kalistus Alvino',
                 'password' => bcrypt('12345678'),
                 'prodi' => 'Sistem Informasi',
+                'angkatan' => '2021',
                 'gender' => 'Laki-laki',
-                'role' => 'mahasiswa',
                 'status' => 'anggota',
+                'role' => 'mahasiswa',
             ]
         ]);
 

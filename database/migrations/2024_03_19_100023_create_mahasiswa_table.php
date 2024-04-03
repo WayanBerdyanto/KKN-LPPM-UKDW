@@ -12,15 +12,15 @@ return new class extends Migration {
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('nim', 8)->unique();
+            $table->char('username', 8)->unique();
             $table->string('nama', 200);
-            $table->string('password', 100);
+            $table->string('password', 100)->default('12345678');
             $table->string('prodi', 50);
             $table->year('angkatan')->nullable();
             $table->string('gender', 15);
             $table->enum('status', ['ketua', 'anggota'])->default('anggota');
             $table->longText('alamat')->nullable();
-            $table->string('email', 50)->unique();
+            $table->string('email', 50)->unique()->nullable();
             $table->string('no_telp', 50)->nullable();
             $table->string('role',100)->default('mahasiswa');
             $table->timestamps();
