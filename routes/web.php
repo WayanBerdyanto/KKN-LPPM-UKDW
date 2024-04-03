@@ -31,12 +31,14 @@ Route::post('/postLogin', [AuthController::class, 'postLogin']);
 Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
     Route::get('/dosen/detail', [DosenController::class, 'detailKelompok'])->name('dosen');
+    Route::get('/dosen/logout', [DosenController::class, 'logout'])->name('dosen');
 });
 
 Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
     Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 
 Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
@@ -46,5 +48,4 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'profile'])->name('profile');
     Route::get('/mahasiswa/settings', [MahasiswaController::class, 'settings'])->name('settings');
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
-
 });

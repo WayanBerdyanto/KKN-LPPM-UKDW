@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -18,5 +19,10 @@ class AdminController extends Controller
     public function detailKelompok()
     {
         return view('admin.detailkelompok', ['key'=>'kelompok','active'=> 'rencana']);
+    }
+
+    public function logout() {
+        Auth::guard('admin')->logout();
+        return redirect('/login');
     }
 }

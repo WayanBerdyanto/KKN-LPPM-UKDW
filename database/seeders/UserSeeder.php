@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = Faker::create('id_ID');
         DB::table("admins")->insert([
             [
                 'username' => 'vino',
@@ -42,6 +44,20 @@ class UserSeeder extends Seeder
                 'status' => 'dosen',
             ]
         ]);
+        for ($i = 1; $i <= 30; $i++) {
+            DB::table("mahasiswas")->insert([
+                [
+                    'username' => $faker->randomNumber(8, true),
+                    'nama' => $faker->name,
+                    'password' => bcrypt('12345678'),
+                    'prodi' => $faker->city,
+                    'angkatan' => '2021',
+                    'gender' => 'Laki-laki',
+                    'status' => 'ketua',
+                    'role' => 'mahasiswa',
+                ]
+            ]);
+        }
         DB::table("mahasiswas")->insert([
             [
                 'username' => '72210481',
@@ -64,7 +80,5 @@ class UserSeeder extends Seeder
                 'role' => 'mahasiswa',
             ]
         ]);
-
-
     }
 }
