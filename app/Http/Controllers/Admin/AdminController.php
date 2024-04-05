@@ -19,7 +19,7 @@ class AdminController extends Controller
     }
     public function daftarmahasiswa()
     {
-        $result = Mahasiswas::All();
+        $result = Mahasiswas::orderBy('id', 'desc')->paginate(5);
         return view('admin.daftarmahasiswa', ['key'=> 'daftarmahasiswa', 'result'=> $result]);
     }
     public function detailKelompok()

@@ -2,7 +2,7 @@
 @extends('admin.layouts.main')
 @section('content')
     <div class="container w-full ">
-        <h1 class="text-2xl text-center my-5 font-semibold">Daftar Mahasiswa</h1>
+        <h1 class="text-2xl text-center my-5 font-semibold uppercase ">Daftar Mahasiswa</h1>
         <div
             class="flex justify-center items-center rounded-sm  bg-secondary ml-14 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark">
             <div class="w-full overflow-x-auto">
@@ -33,11 +33,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($result as $item)
-                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray even:dark:bg-gray-800 border-b border-dark">
+                        @foreach ($result as $idx => $item)
+                            <tr
+                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray even:dark:bg-gray-800 border-b border-dark">
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary">
-                                        {{ $loop->index + 1 }}
+                                        {{ $result->firstItem() + $idx }}
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
@@ -67,13 +68,16 @@
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <div class="flex items-center space-x-4">
-                                        <a href="/admin/daftarmahasiswa/detail/{{ $item->username }}" class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                        <a href="/admin/daftarmahasiswa/detail/{{ $item->username }}"
+                                            class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-info text-lg text-secondary"></i>
                                         </a>
-                                        <a href="/admin/daftarmahasiswa/update/{{ $item->username }}" class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                        <a href="/admin/daftarmahasiswa/update/{{ $item->username }}"
+                                            class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
                                         </a>
-                                        <a href="/admin/daftarmahasiswa/delete/{{ $item->username }}" class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90">
+                                        <a href="/admin/daftarmahasiswa/delete/{{ $item->username }}"
+                                            class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-trash text-lg text-secondary"></i>
                                         </a>
                                     </div>
@@ -84,5 +88,9 @@
                 </table>
             </div>
         </div>
+        <div class="flex justify-end mt-4 pagination">
+            {{ $result->withQueryString()->links() }}
+        </div>
+
     </div>
 @endsection

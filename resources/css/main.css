@@ -6,3 +6,8 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
+.pagination a {
+    @apply bg-primary text-secondary hover:bg-opacity-90;
+}
+
+
