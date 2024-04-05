@@ -38,6 +38,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
     Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/daftarmahasiswa', [AdminController::class, 'daftarmahasiswa'])->name('daftarmahasiswa');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 

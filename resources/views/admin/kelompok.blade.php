@@ -1,4 +1,4 @@
-@section('title', 'Kelompok')
+@section('title', 'Admin | Kelompok')
 @extends('admin.layouts.main')
 @section('content')
     <h2 class="ml-3 font-semibold text-2xl">DAFTAR KELOMPOK KKN UKDW 2024</h2>

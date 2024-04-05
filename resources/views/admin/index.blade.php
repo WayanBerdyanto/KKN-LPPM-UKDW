@@ -1,4 +1,4 @@
-@section('title', 'Admin')
+@section('title', 'Admin | Dashboard')
 @extends('admin.layouts.main')
 @section('content')
     {{-- <h1 class="font-normal text-xl">Selamat Datang <strong>{{ Auth::guard('admin')->user()->username }}</strong> ....</h1> --}}
