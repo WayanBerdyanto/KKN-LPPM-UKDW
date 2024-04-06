@@ -63,7 +63,11 @@ class DaftarMahasiswaController extends Controller
                 'gender' => $request->gender,
                 'angkatan' => $request->angkatan,
             ]);
-            return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil Di Tambahkan');
+            return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil Ditambahkan');
         }
+        if ($validate->fails()) {
+            return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Username / Email Telah digunakan')->withInput();;
+        }
+        return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Inputkan Data Dengan Benar')->withInput();;
     }
 }
