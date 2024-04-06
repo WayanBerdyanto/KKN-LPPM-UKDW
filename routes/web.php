@@ -43,6 +43,8 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/daftarmahasiswa/search', [DaftarMahasiswaController::class, 'search'])->name('search');
     Route::get('/admin/daftarmahasiswa/insert', [DaftarMahasiswaController::class, 'insertMhs'])->name('insert mahasiswa');
     Route::post('/admin/daftarmahasiswa/postinsert', [DaftarMahasiswaController::class, 'PostInsertMhs'])->name('insert mahasiswa');
+    Route::get('/admin/daftarmahasiswa/update/{id}', [DaftarMahasiswaController::class, 'updateMhs'])->name('Update mahasiswa');
+    Route::put('/admin/daftarmahasiswa/postupdate/{id}', [DaftarMahasiswaController::class, 'PostUpdateMhs'])->name('Update mahasiswa');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 

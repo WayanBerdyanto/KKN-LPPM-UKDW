@@ -66,8 +66,63 @@ class DaftarMahasiswaController extends Controller
             return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil Ditambahkan');
         }
         if ($validate->fails()) {
-            return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Username / Email Telah digunakan')->withInput();;
+            return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Username / Email Telah digunakan')->withInput();
         }
-        return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Inputkan Data Dengan Benar')->withInput();;
+        return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Inputkan Data Dengan Benar')->withInput();
+    }
+
+    public function updateMhs($id){
+        $prodi = array(
+            'Filsafat Keahlian',
+            'Arsitektur',
+            'Desain Produk',
+            'Biologi',
+            'Manajemen',
+            'Akuntansi',
+            'Informatika',
+            'Sistem Informasi',
+            'Kedokteran',
+            'Pendidikan Bahasa Inggris',
+            'Studi Humanitas',
+        );
+        $angkatan = array(
+            '2022',
+            '2021',
+            '2020',
+            '2019',
+            '2018',
+            '2017',
+            '2016',
+        );
+        $result = Mahasiswas::where('id', $id)->first();
+        return view('admin.forms.FormUpdateMhs', ['key' => 'daftarmahasiswa', 'prodi' => $prodi, 'angkatan' => $angkatan, 'result'=>$result]);
+    }
+
+    public function PostUpdateMhs($id, Request $request)
+    {
+
+        $validate = $request->validate([
+            'username' => 'required',
+            'nama' => 'required',
+            'email' => 'required',
+            'prodi' => 'required',
+            'gender' => 'required',
+            'angkatan' => 'required',
+        ]);
+        if (!empty($validate)) {
+            Mahasiswas::where('id', $id)->update([
+                'username' => $request->username,
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'prodi' => $request->prodi,
+                'gender' => $request->gender,
+                'angkatan' => $request->angkatan,
+            ]);
+            return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil DiUpdate');
+        }
+        if ($validate->fails()) {
+            return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Update Gagal')->withInput();
+        }
+        return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Update Gagal')->withInput();
     }
 }

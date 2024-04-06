@@ -46,6 +46,9 @@
                             <th class="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Prodi
                             </th>
+                            <th class="min-w-[80px] px-4 py-4 font-medium text-dark dark:text-secondary">
+                                Gender
+                            </th>
                             <th class="min-w-[180px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Alamat
                             </th>
@@ -82,6 +85,11 @@
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                                    <p class="text-dark dark:text-secondary capitalize ">
+                                        {{ $item->gender }}
+                                    </p>
+                                </td>
+                                <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary"">
                                         {{ $item->alamat }}
                                     </p>
@@ -93,15 +101,15 @@
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <div class="flex items-center space-x-4">
-                                        <a href="/admin/daftarmahasiswa/detail/{{ $item->username }}"
+                                        <a href="/admin/daftarmahasiswa/detail/{{ $item->id }}"
                                             class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-info text-lg text-secondary"></i>
                                         </a>
-                                        <a href="/admin/daftarmahasiswa/update/{{ $item->username }}"
+                                        <a href="/admin/daftarmahasiswa/update/{{ $item->id }}"
                                             class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
                                         </a>
-                                        <a href="/admin/daftarmahasiswa/delete/{{ $item->username }}"
+                                        <a href="/admin/daftarmahasiswa/delete/{{ $item->id }}"
                                             class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-trash text-lg text-secondary"></i>
                                         </a>
