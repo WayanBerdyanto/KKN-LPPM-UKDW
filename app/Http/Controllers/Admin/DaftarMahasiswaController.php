@@ -133,4 +133,13 @@ class DaftarMahasiswaController extends Controller
         ]);
         return redirect('/admin/daftarmahasiswa')->with('toast_success', 'Password Berhasil di Reset');
     }
+
+    public function DeleteMahasiswa($id)
+    {
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        Mahasiswas::where('id', $id)->delete();
+        return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil Dihapus');
+    }
 }

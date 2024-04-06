@@ -109,8 +109,9 @@
                                             class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                             <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
                                         </a>
-                                        <a href="/admin/daftarmahasiswa/delete/{{ $item->id }}"
-                                            class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90">
+                                        <a href="#" onclick="confirmDelete('/admin/daftarmahasiswa/delete/{{ $item->id }}')"
+                                            class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90"
+                                            data-confirm-delete="true">
                                             <i class="fa-solid fa-trash text-lg text-secondary"></i>
                                         </a>
                                     </div>
@@ -121,9 +122,27 @@
                 </table>
             </div>
         </div>
+        <script>
+            function confirmDelete(url) {
+                Swal.fire({
+                    title: 'Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to the delete URL
+                        window.location.href = url;
+                    }
+                });
+            }
+        </script>
+
         <div class="flex justify-end mt-4 pagination">
             {{ $result->links() }}
         </div>
-
     </div>
 @endsection
