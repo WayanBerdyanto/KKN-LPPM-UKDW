@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -14,17 +15,22 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $now = Carbon::now();
         $faker = Faker::create('id_ID');
         DB::table("admins")->insert([
             [
                 'username' => 'vino',
                 'password' => bcrypt('12345678'),
                 'status' => 'admin',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'username' => 'wayan',
                 'password' => bcrypt('12345678'),
                 'status' => 'admin',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
         ]);
 
@@ -35,6 +41,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'nama' => 'Wayan Berdyanto',
                 'status' => 'dosen',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'nip' => 'KD654321',
@@ -42,6 +50,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'nama' => 'Vino Eko',
                 'status' => 'dosen',
+                'created_at' => $now,
+                'updated_at' => $now,
             ]
         ]);
         for ($i = 1; $i <= 30; $i++) {
@@ -53,8 +63,10 @@ class UserSeeder extends Seeder
                     'prodi' => $faker->city,
                     'angkatan' => '2021',
                     'gender' => 'Laki-laki',
-                    'status' => 'ketua',
+                    'status' => 'anggota',
                     'role' => 'mahasiswa',
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ]
             ]);
         }
@@ -68,6 +80,8 @@ class UserSeeder extends Seeder
                 'gender' => 'Laki-laki',
                 'status' => 'ketua',
                 'role' => 'mahasiswa',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'username' => '72210487',
@@ -78,6 +92,8 @@ class UserSeeder extends Seeder
                 'gender' => 'Laki-laki',
                 'status' => 'anggota',
                 'role' => 'mahasiswa',
+                'created_at' => $now,
+                'updated_at' => $now,
             ]
         ]);
     }

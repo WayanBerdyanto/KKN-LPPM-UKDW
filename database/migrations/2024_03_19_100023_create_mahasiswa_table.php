@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->char('username', 8)->unique();
             $table->string('nama', 200);
-            $table->string('password', 100)->default('12345678');
+            $table->string('password', 100)->default(bcrypt('12345678'));
             $table->string('prodi', 50);
             $table->year('angkatan')->nullable();
             $table->string('gender', 15);

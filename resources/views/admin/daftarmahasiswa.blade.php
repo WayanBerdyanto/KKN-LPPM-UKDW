@@ -4,7 +4,7 @@
     <div class="w-full px-5">
         <h1 class="text-2xl text-center my-5 font-semibold uppercase ">Daftar Mahasiswa</h1>
         <div class="w-full block lg:flex lg:justify-between lg:items-center">
-            <form class="w-full lg:w-1/3" method="GET" action="/admin/daftarmahasiswa/">
+            <form class="w-full lg:w-1/3" method="GET" action="/admin/daftarmahasiswa/search">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-secondary">Search</label>
                 <div class="relative">
@@ -114,7 +114,7 @@
             </div>
         </div>
         <div class="flex justify-end mt-4 pagination">
-            {{ $result->withQueryString()->links() }}
+            {{ $result->links() }}
         </div>
 
     </div>

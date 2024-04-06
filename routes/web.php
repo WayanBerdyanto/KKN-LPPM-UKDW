@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DaftarMahasiswaController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\LandingPage\LandingPageController;
+use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,9 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
     Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
     Route::get('/admin/daftarmahasiswa', [AdminController::class, 'daftarmahasiswa'])->name('daftarmahasiswa');
-    Route::get('/admin/daftarmahasiswa/', [AdminController::class, 'search'])->name('search');
+    Route::get('/admin/daftarmahasiswa/search', [DaftarMahasiswaController::class, 'search'])->name('search');
+    Route::get('/admin/daftarmahasiswa/insert', [DaftarMahasiswaController::class, 'insertMhs'])->name('insert mahasiswa');
+    Route::post('/admin/daftarmahasiswa/postinsert', [DaftarMahasiswaController::class, 'PostInsertMhs'])->name('insert mahasiswa');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 
