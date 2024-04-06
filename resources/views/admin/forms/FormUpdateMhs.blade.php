@@ -2,13 +2,14 @@
 @extends('admin.layouts.main')
 @section('content')
     <div class="w-full px-5">
-        <nav>
+        <nav class="flex justify-between items-center">
             <ol class="flex items-center gap-2">
                 <li>
                     <a class="font-medium" href="/admin/daftarmahasiswa">Daftar Mahasiswa /</a>
                 </li>
                 <li class="font-medium text-primary">Form Update Mahasiswa</li>
             </ol>
+            <a href="/admin/daftarmahasiswa/resetpassword/{{ $result->id }}" class="inline-flex items-center justify-end gap-2.5 mt-3 lg:mt-0 bg-primary px-4 py-2 text-center rounded-lg font-medium text-secondary hover:bg-opacity-90 lg:px-5">Reset Password</a>
         </nav>
         <div class="rounded-sm border mt-4 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div class="border-b border-stroke px-6.5 py-4 dark:border-strokedark">

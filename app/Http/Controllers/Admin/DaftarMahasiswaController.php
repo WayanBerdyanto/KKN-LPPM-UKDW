@@ -72,7 +72,8 @@ class DaftarMahasiswaController extends Controller
         return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Inputkan Data Dengan Benar')->withInput();
     }
 
-    public function updateMhs($id){
+    public function updateMhs($id)
+    {
         $prodi = array(
             'Filsafat Keahlian',
             'Arsitektur',
@@ -96,7 +97,7 @@ class DaftarMahasiswaController extends Controller
             '2016',
         );
         $result = Mahasiswas::where('id', $id)->first();
-        return view('admin.forms.FormUpdateMhs', ['key' => 'daftarmahasiswa', 'prodi' => $prodi, 'angkatan' => $angkatan, 'result'=>$result]);
+        return view('admin.forms.FormUpdateMhs', ['key' => 'daftarmahasiswa', 'prodi' => $prodi, 'angkatan' => $angkatan, 'result' => $result]);
     }
 
     public function PostUpdateMhs($id, Request $request)
@@ -120,10 +121,16 @@ class DaftarMahasiswaController extends Controller
                 'angkatan' => $request->angkatan,
             ]);
             return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil DiUpdate');
+        } else {
+            return redirect()->back()->withErrors($validate)->withInput();
         }
-        if ($validate->fails()) {
-            return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Update Gagal')->withInput();
-        }
-        return redirect('/admin/forms/FormInsertMhs')->with('toast_error', 'Update Gagal')->withInput();
+    }
+
+    public function ResetPassword($id)
+    {
+        Mahasiswas::where('id', $id)->update([
+            'password' => bcrypt('12345678'),
+        ]);
+        return redirect('/admin/daftarmahasiswa')->with('toast_success', 'Password Berhasil di Reset');
     }
 }
