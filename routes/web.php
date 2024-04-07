@@ -39,6 +39,8 @@ Route::middleware('cekstatus:admin')->group(function () {
     // DASHBOARD PAGE
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::post('/admin/postsemester', [AdminController::class, 'PostSemesterAktif'])->name('postsemester');
+
+    Route::get('/admin/deletesemester/{id}', [AdminController::class, 'DeleteSemester'])->name('Hapus Semester');
     // END DASHBOARD PAGE
 
     // START KELOMPOK PAGE

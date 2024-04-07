@@ -195,6 +195,9 @@
                         NO
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        KODE SEMESTER
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         SEMESTER
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -209,57 +212,46 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Genap
-                    </td>
-                    <td class="px-6 py-4">
-                        2023/2024
-                    </td>
-                    <td class="px-6 py-4 text-primary font-semibold">
-                        Aktif
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                    </td>
-                </tr>
-                <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Genap
-                    </td>
-                    <td class="px-6 py-4">
-                        2023/2024
-                    </td>
-                    <td class="px-6 py-4 text-primary font-semibold">
-                        Aktif
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                    </td>
-                </tr>
-                <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
-                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                        2
-                    </th>
-                    <td class="px-6 py-4">
-                        Ganjil
-                    </td>
-                    <td class="px-6 py-4">
-                        2023/2024
-                    </td>
-                    <td class="px-6 py-4 text-red-500 font-semibold">
-                        Tidak Aktif
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                    </td>
-                </tr>
+                @foreach ($result as $idx => $item)
+                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                            {{ $result->firstItem() + $idx }}
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                            {{ $item->kode_semester }}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ $item->semester }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $item->tahun_ajaran }}
+                        </td>
+                        <td class="px-6 py-4 ">
+                            @if ($item->status == 'Aktif')
+                                <span class="text-green-500 font-semibold">{{ $item->status }}</span>
+                            @else
+                                <span class="text-red-500 font-semibold">{{ $item->status }}</span>
+                            @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center space-x-4">
+                                <a href="/admin/detailsemester/{{ $item->kode_semester }}"
+                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                    <i class="fa-solid fa-info text-lg text-secondary"></i>
+                                </a>
+                                <a href="/admin/updatesemester/{{ $item->kode_semester }}"
+                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                    <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
+                                </a>
+                                <a href="#"
+                                    onclick="confirmDelete('/admin/deletesemester/{{ $item->kode_semester }}')"
+                                    class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90" data-confirm-delete="true">
+                                    <i class="fa-solid fa-trash text-lg text-secondary"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -308,7 +300,7 @@
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Tahun Ajaran
                     </label>
-                    <input name="tahun_ajaran" type="number" maxlength="8" placeholder="Masukan Tahun"
+                    <input name="tahun_ajaran" type="text" placeholder="Masukan Tahun"
                         class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
                 </div>
                 <div class="mb-4.5">
@@ -336,7 +328,7 @@
                 </div>
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-1/2 px-3">
-                        <button @click="modalSemester = false"
+                        <button @click="modalSemester = false" type="reset"
                             class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
                             Cancel
                         </button>
@@ -351,5 +343,23 @@
             </form>
         </div>
     </div>
+    <script>
+        function confirmDelete(url) {
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the delete URL
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 
 @endsection

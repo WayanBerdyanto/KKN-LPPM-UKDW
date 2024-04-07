@@ -12,7 +12,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index', ['key' => 'home']);
+        $result = SemesterAktif::orderBy('kode_semester', 'desc')->paginate(15);
+        return view('admin.index', ['key' => 'home', 'result' => $result]);
     }
 
     public function PostSemesterAktif(Request $request)
@@ -37,6 +38,11 @@ class AdminController extends Controller
             return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
         }
         return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
+    }
+
+    public function DeleteSemester($id){
+        SemesterAktif::where('kode_semester', $id)->delete();
+        return redirect('/admin')->with('success', 'Data berhasil ihapus');
     }
     public function kelompok()
     {

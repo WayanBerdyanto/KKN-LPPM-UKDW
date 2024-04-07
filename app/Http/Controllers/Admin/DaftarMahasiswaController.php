@@ -136,9 +136,6 @@ class DaftarMahasiswaController extends Controller
 
     public function DeleteMahasiswa($id)
     {
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
         Mahasiswas::where('id', $id)->delete();
         return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil Dihapus');
     }
