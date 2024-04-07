@@ -36,9 +36,17 @@ Route::middleware('cekstatusDosen:dosen')->group(function () {
 });
 
 Route::middleware('cekstatus:admin')->group(function () {
+    // DASHBOARD PAGE
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::post('/admin/postsemester', [AdminController::class, 'PostSemesterAktif'])->name('postsemester');
+    // END DASHBOARD PAGE
+
+    // START KELOMPOK PAGE
     Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
     Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
+    // END KELOMPOK PAGE
+
+    // START DaftarMahasiswa
     Route::get('/admin/daftarmahasiswa', [AdminController::class, 'daftarmahasiswa'])->name('daftarmahasiswa');
     Route::get('/admin/daftarmahasiswa/search', [DaftarMahasiswaController::class, 'search'])->name('search');
     Route::get('/admin/daftarmahasiswa/insert', [DaftarMahasiswaController::class, 'insertMhs'])->name('insert mahasiswa');
@@ -47,6 +55,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::put('/admin/daftarmahasiswa/postupdate/{id}', [DaftarMahasiswaController::class, 'PostUpdateMhs'])->name('Update mahasiswa');
     Route::get('/admin/daftarmahasiswa/resetpassword/{id}', [DaftarMahasiswaController::class, 'ResetPassword'])->name('Reset Password');
     Route::get('/admin/daftarmahasiswa/delete/{id}', [DaftarMahasiswaController::class, 'DeleteMahasiswa'])->name('Hapus Mahasiswa');
+    // END Daftar Mahasiswa
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 
