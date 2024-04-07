@@ -34,9 +34,7 @@ class AdminController extends Controller
             ]);
             return redirect('/admin')->with('success', 'Data Berhasil Ditambahkan');
         }
-        if ($validate->fails()) {
-            return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
-        }
+
         return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
     }
 
@@ -62,9 +60,7 @@ class AdminController extends Controller
             ]);
             return redirect('/admin')->with('success', 'Data Berhasil DiUpdate');
         }
-        if ($validate->fails()) {
-            return redirect('/admin')->with('toast_error', 'Gagal Update Data')->withInput();
-        }
+
         return redirect('/admin')->with('toast_error', 'Gagal Update Data')->withInput();
     }
 
@@ -73,15 +69,18 @@ class AdminController extends Controller
         SemesterAktif::where('kode_semester', $id)->delete();
         return redirect('/admin')->with('success', 'Data berhasil ihapus');
     }
+
     public function kelompok()
     {
         return view('admin.kelompok', ['key' => 'kelompok']);
     }
+
     public function daftarmahasiswa()
     {
         $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
         return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
     }
+
     public function detailKelompok()
     {
         return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana']);
