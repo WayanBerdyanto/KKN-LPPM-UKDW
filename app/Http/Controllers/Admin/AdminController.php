@@ -40,7 +40,14 @@ class AdminController extends Controller
         return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
     }
 
-    public function DeleteSemester($id){
+    public function UpdateSemester($id)
+    {
+        $update = SemesterAktif::where('kode_semester', $id)->first();
+        return response()->json(['update' => $update]);
+    }
+
+    public function DeleteSemester($id)
+    {
         SemesterAktif::where('kode_semester', $id)->delete();
         return redirect('/admin')->with('success', 'Data berhasil ihapus');
     }

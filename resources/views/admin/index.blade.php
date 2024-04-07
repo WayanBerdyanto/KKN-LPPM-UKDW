@@ -239,10 +239,11 @@
                                     class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
                                     <i class="fa-solid fa-info text-lg text-secondary"></i>
                                 </a>
-                                <a href="/admin/updatesemester/{{ $item->kode_semester }}"
-                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                <button @click="modalUpdate = true" data-toggle="modal" data-target="#formModal"
+                                    data-id="{{ $item->kode_semester }}"
+                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90 tampilModalUbah">
                                     <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
-                                </a>
+                                </button>
                                 <a href="#"
                                     onclick="confirmDelete('/admin/deletesemester/{{ $item->kode_semester }}')"
                                     class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90" data-confirm-delete="true">
@@ -256,6 +257,135 @@
         </table>
     </div>
 
+    <div x-show="modalUpdate" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel"
+            class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 id="formModalLabel" class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Update Semester Aktif
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+
+            <form action="/admin/updatesemester" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Kode Semester
+                    </label>
+                    <input id="kode_semester" name="kode_semester" type="text" maxlength="5"
+                        placeholder="Masukan Kode"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Semester
+                    </label>
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+                        <select id="semester" name="semester"
+                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+                            <option value="Ganjil" class="text-body">Ganjil</option>
+                            <option value="Genap" class="text-body">Genap</option>
+                        </select>
+                        <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g opacity="0.8">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                        fill=""></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Tahun Ajaran
+                    </label>
+                    <input id="tahun_ajaran" name="tahun_ajaran" type="text" placeholder="Masukan Tahun"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Status
+                    </label>
+                    <div x-data="{ isOptionSelected: false }" class="relative z-20 bg-transparent dark:bg-form-input">
+                        <select id="status" name="status"
+                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                            :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+                            <option value="Aktif" class="text-body">Aktif</option>
+                            <option value="Tidak Aktif" class="text-body">Tidak Aktif</option>
+                        </select>
+                        <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g opacity="0.8">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                        fill=""></path>
+                                </g>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-1/2 px-3">
+                        <button @click="modalUpdate = false" type="reset"
+                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="w-1/2 px-3">
+                        <button href="/admin/logout"
+                            class="block w-full rounded-md border border-primary bg-primary hover:opacity-90 p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- Jquery Update Form --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var kodeSemester;
+
+            $('.tampilModalUbah').click(function() {
+                kodeSemester = $(this).data('id');
+                console.log(kodeSemester);
+
+                $.ajax({
+                    url: "http://kkn-lppm-ukdw.test:8080/admin/updatesemester/" + kodeSemester,
+                    method: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        var kodeSemester = response.update.kode_semester;
+                        var semester = response.update.semester;
+                        var tahunAjaran = response.update.tahun_ajaran;
+                        var status = response.update.status;
+                        $('#kode_semester').val(kodeSemester);
+                        $('#semester').val(semester);
+                        $('#tahun_ajaran').val(tahunAjaran);
+                        $('#status').val(status);
+                        // Now you can use these variables as needed
+                        console.log("Kode Semester: " + kodeSemester);
+                        console.log("Semester: " + semester);
+                        console.log("Tahun Ajaran: " + tahunAjaran);
+                        console.log("Status: " + status);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- END Jquery Update Form --}}
+
+    {{-- Insert Semester Aktif --}}
     <div x-show="modalSemester" x-transition
         class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
         <div class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
@@ -361,5 +491,6 @@
             });
         }
     </script>
+    {{-- END Semester Aktif --}}
 
 @endsection

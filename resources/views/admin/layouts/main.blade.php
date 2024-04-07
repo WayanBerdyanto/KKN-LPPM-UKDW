@@ -16,7 +16,7 @@
         rel="stylesheet">
 </head>
 
-<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalSemester':false }">
+<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalSemester': false, 'modalUpdate': false }">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })"
         class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-dark">
         <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
@@ -47,6 +47,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @include('sweetalert::alert')
+
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     {{-- Larapex Chart --}}
     {{-- <script src="{{ $chart->cdn() }}"></script>
