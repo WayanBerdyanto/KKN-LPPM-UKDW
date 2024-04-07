@@ -14,7 +14,8 @@ class Mahasiswas extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'nim',
+        'id',
+        'username',
         'nama',
         'password',
         'prodi',
@@ -28,5 +29,4 @@ class Mahasiswas extends Authenticatable
     ];
 
     protected $guard = 'mahasiswa';
-
 }

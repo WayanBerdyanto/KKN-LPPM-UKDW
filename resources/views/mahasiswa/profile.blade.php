@@ -26,7 +26,7 @@
                                 <span>Nim</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-semibold">{{ Auth::guard('mahasiswa')->user()->nim }}</span>
+                                <span class="font-semibold">{{ Auth::guard('mahasiswa')->user()->username }}</span>
                             </td>
                         </tr>
                         <tr class="border-b">

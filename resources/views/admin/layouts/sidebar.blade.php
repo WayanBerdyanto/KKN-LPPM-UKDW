@@ -1,6 +1,6 @@
-<aside id="nav-menu"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
-    aria-label="Sidebar">
+<aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
+    class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform  lg:translate-x-0 overflow-y-hidden"
+    @click.outside="sidebarToggle = false">
     <div class="h-full px-2 py-4 overflow-y-auto bg-boxdark border-r-2 border-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
@@ -14,6 +14,13 @@
                     class="flex items-center p-2 text-secondary rounded-lg  group {{ $key == 'home' ? 'bg-primary' : 'hover:bg-gray-600' }}">
                     <i class="fa-solid fa-house"></i>
                     <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+                </a>
+            </li>
+            <li class="pt-5">
+                <a href="/admin/daftarmahasiswa"
+                    class="flex items-center p-2 text-secondary rounded-lg  group {{ $key == 'daftarmahasiswa' ? 'bg-primary' : 'hover:bg-gray-600' }}">
+                    <i class="fa-solid fa-users"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Mahasiswa</span>
                 </a>
             </li>
             <li class="pt-5">

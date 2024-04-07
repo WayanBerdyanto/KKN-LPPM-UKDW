@@ -15,7 +15,7 @@
         rel="stylesheet">
 </head>
 
-<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark text-secondary bg-dark': darkMode === true }">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })"
         class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-dark">
@@ -24,8 +24,8 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     </div>
 
 
-    <button id="hamburger" type="button"
-        class="inline-flex items-center p-2 mt-5 ms-3 text-sm text-boxdark dark:text-secondary rounded-lg md:hidden absolute z-10">
+    <button type="button" @click.stop="sidebarToggle = !sidebarToggle"
+        class="inline-flex items-center p-2 mt-5 ms-3 text-sm text-dark dark:text-secondary rounded-lg lg:hidden absolute z-10">
         <span class="sr-only">Open sidebar</span>
         <i class="fa-solid fa-bars text-3xl -mt-3 font-bold"></i>
     </button>
@@ -66,7 +66,6 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     </div>
     {{-- End Modal --}}
 
-    <script src="{{ asset('js/sidebar.js') }}"></script>
     <script src="{{ asset('js/dropdown.js') }}"></script>
     <script src="{{ asset('js/alpine.min.js') }}"></script>
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
