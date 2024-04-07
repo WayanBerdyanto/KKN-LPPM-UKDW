@@ -1,10 +1,10 @@
-<aside id="nav-menu"
-    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
-    aria-label="Sidebar">
+<aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'"
+    class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform  lg:translate-x-0 overflow-y-hidden"
+    @click.outside="sidebarToggle = false">
     <div class="h-full px-2 py-4 overflow-y-auto bg-boxdark border-r-2 border-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="/anggota" class="flex items-center px-4 text-secondary rounded-lg hover:text-primary">
+                <a href="/mahasiswa" class="flex items-center px-4 text-secondary rounded-lg hover:text-primary">
                     <img class="w-auto h-auto transition duration-75 group-hover:text-gray-900"
                         src="https://lppm.ukdw.ac.id/wp-content/uploads/2023/02/logo-banner-1-300x58.png" alt="">
                 </a>

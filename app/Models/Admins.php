@@ -13,6 +13,7 @@ class Admins extends Authenticatable
 
 
     protected $fillable = [
+        'id',
         'username',
         'password',
         'status',
