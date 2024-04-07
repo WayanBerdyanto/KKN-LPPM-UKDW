@@ -266,14 +266,14 @@
             </h3>
             <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
 
-            <form action="/admin/updatesemester" method="POST">
+            <form action="/admin/postupdate/{kode_semester}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-4.5">
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Kode Semester
                     </label>
-                    <input id="kode_semester" name="kode_semester" type="text" maxlength="5"
+                    <input id="kode_semester" name="kode_semester" type="text" maxlength="5" readonly
                         placeholder="Masukan Kode"
                         class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
                 </div>
@@ -356,9 +356,9 @@
             $('.tampilModalUbah').click(function() {
                 kodeSemester = $(this).data('id');
                 console.log(kodeSemester);
-
+                $('form').attr('action', '/admin/postupdate/' + kodeSemester);
                 $.ajax({
-                    url: "http://kkn-lppm-ukdw.test:8080/admin/updatesemester/" + kodeSemester,
+                    url: "/admin/updatesemester/" + kodeSemester,
                     method: "GET",
                     dataType: "json",
                     success: function(response) {

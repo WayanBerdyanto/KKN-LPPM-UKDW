@@ -46,6 +46,28 @@ class AdminController extends Controller
         return response()->json(['update' => $update]);
     }
 
+    public function PostUpdateSemester($id, Request $request)
+    {
+        $validate = $request->validate([
+            'semester' => 'required',
+            'tahun_ajaran' => 'required',
+            'status' => 'required',
+        ]);
+
+        if (!empty($validate)) {
+            SemesterAktif::where('kode_semester', $id)->update([
+                'semester' => $request->semester,
+                'tahun_ajaran' => $request->tahun_ajaran,
+                'status' => $request->status,
+            ]);
+            return redirect('/admin')->with('success', 'Data Berhasil DiUpdate');
+        }
+        if ($validate->fails()) {
+            return redirect('/admin')->with('toast_error', 'Gagal Update Data')->withInput();
+        }
+        return redirect('/admin')->with('toast_error', 'Gagal Update Data')->withInput();
+    }
+
     public function DeleteSemester($id)
     {
         SemesterAktif::where('kode_semester', $id)->delete();

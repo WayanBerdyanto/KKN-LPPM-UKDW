@@ -40,6 +40,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::post('/admin/postsemester', [AdminController::class, 'PostSemesterAktif'])->name('postsemester');
     Route::get('/admin/updatesemester/{id}', [AdminController::class, 'UpdateSemester'])->name('Update Semester');
+    Route::put('/admin/postupdate/{id}', [AdminController::class, 'PostUpdateSemester'])->name('Post Update Semester');
     Route::get('/admin/deletesemester/{id}', [AdminController::class, 'DeleteSemester'])->name('Hapus Semester');
     // END DASHBOARD PAGE
 
