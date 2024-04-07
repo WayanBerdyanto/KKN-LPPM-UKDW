@@ -42,6 +42,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/updatesemester/{id}', [AdminController::class, 'UpdateSemester'])->name('Update Semester');
     Route::put('/admin/postupdate/{id}', [AdminController::class, 'PostUpdateSemester'])->name('Post Update Semester');
     Route::get('/admin/deletesemester/{id}', [AdminController::class, 'DeleteSemester'])->name('Hapus Semester');
+
     // END DASHBOARD PAGE
 
     // START KELOMPOK PAGE
@@ -58,6 +59,12 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::put('/admin/daftarmahasiswa/postupdate/{id}', [DaftarMahasiswaController::class, 'PostUpdateMhs'])->name('Update mahasiswa');
     Route::get('/admin/daftarmahasiswa/resetpassword/{id}', [DaftarMahasiswaController::class, 'ResetPassword'])->name('Reset Password');
     Route::get('/admin/daftarmahasiswa/delete/{id}', [DaftarMahasiswaController::class, 'DeleteMahasiswa'])->name('Hapus Mahasiswa');
+    Route::get('/admin/detailMahasiswa/{id}', [AdminController::class, 'DetailMahasiswa'])->name('Detail Mahasiswa');
+
+    // START JENISKKN PAGE
+    Route::get('/admin/jeniskkn', [AdminController::class, 'jenisKKN'])->name('jeniskkn');
+    Route::post('/admin/postjenis', [AdminController::class, 'postJenisKKN'])->name('Insert Jenis');
+    // EMD JENISKKN PAGE
     // END Daftar Mahasiswa
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
