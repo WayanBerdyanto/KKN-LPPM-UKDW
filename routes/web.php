@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DaftarMahasiswaController;
+use App\Http\Controllers\Admin\JenisKKNController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
@@ -62,8 +63,8 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/detailMahasiswa/{id}', [DaftarMahasiswaController::class, 'DetailMahasiswa'])->name('Detail Mahasiswa');
 
     // START JENISKKN PAGE
-    Route::get('/admin/jeniskkn', [AdminController::class, 'jenisKKN'])->name('jeniskkn');
-    Route::post('/admin/postjenis', [AdminController::class, 'postJenisKKN'])->name('Insert Jenis');
+    Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
+    Route::post('/admin/postjenis', [JenisKKNController::class, 'postJenisKKN'])->name('Insert Jenis');
     // EMD JENISKKN PAGE
     // END Daftar Mahasiswa
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');

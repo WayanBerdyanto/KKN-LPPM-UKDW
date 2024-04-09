@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('gender', 15);
             $table->enum('status', ['ketua', 'anggota'])->default('anggota');
             $table->longText('alamat')->nullable();
-            $table->string('email', 50)->unique()->nullable();
+            $table->string('email', 50)->nullable();
             $table->string('no_telp', 50)->nullable();
             $table->string('role',100)->default('mahasiswa');
             $table->timestamps();

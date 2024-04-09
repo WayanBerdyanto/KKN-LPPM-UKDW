@@ -128,6 +128,9 @@ class DaftarMahasiswaController extends Controller
                 'angkatan' => $request->angkatan,
             ]);
             return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil DiUpdate');
+        }
+        if ($validate->fails()) {
+            return redirect()->back()->with('toast_error', 'Username / Email Telah digunakan')->withInput();
         } else {
             return redirect()->back()->withErrors($validate)->withInput();
         }
