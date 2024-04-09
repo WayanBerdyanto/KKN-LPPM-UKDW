@@ -87,11 +87,6 @@ class AdminController extends Controller
     {
         return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana']);
     }
-    public function DetailMahasiswa($id)
-    {
-        $detail = Mahasiswas::where('username', $id)->first();
-        return response()->json(['detail' => $detail]);
-    }
     public function jenisKKN()
     {
         $result = JenisKKN::orderBy('kode_jenis', 'desc')->paginate(15);

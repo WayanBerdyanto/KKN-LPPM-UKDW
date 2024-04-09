@@ -19,6 +19,13 @@ class DaftarMahasiswaController extends Controller
     }
     // End Search Mahasiswa
 
+    // Start Detail Mahasiswa
+    public function DetailMahasiswa($id)
+    {
+        $detail = Mahasiswas::where('id', $id)->first();
+        return response()->json(['detail' => $detail]);
+    }
+    // END Detail Mahasiswa
     public function insertMhs()
     {
         $prodi = array(

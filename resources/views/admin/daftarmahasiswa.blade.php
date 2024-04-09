@@ -102,7 +102,7 @@
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <div class="flex items-center space-x-4">
                                         <button @click="modalDetail = true" data-toggle="modal" data-target="#modalDetail"
-                                            data-id="{{ $item->username }}"
+                                            data-id="{{ $item->id }}"
                                             class="bg-primary px-3 py-1 rounded-lg hover:bg-opacity-90 tampilModalDetail">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="fa-solid fa-info text-lg text-secondary "
@@ -155,8 +155,8 @@
     </div>
     <div x-show="modalDetail" x-transition
         class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
-        <div id="modalDetail"
-            class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+        <div id="modalDetail" @click.outside="modalDetail = false"
+            class="w-full h-5/6 overflow-y-auto max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
             <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
                 Detail Mahasiswa
             </h3>
@@ -233,7 +233,7 @@
             </div>
 
             <div class="-mx-3 flex flex-wrap">
-                <div class="w-1/2 px-3">
+                <div class="w-full px-3">
                     <button @click="modalDetail = false"
                         class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
                         Close

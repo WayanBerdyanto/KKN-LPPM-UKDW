@@ -59,7 +59,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::put('/admin/daftarmahasiswa/postupdate/{id}', [DaftarMahasiswaController::class, 'PostUpdateMhs'])->name('Update mahasiswa');
     Route::get('/admin/daftarmahasiswa/resetpassword/{id}', [DaftarMahasiswaController::class, 'ResetPassword'])->name('Reset Password');
     Route::get('/admin/daftarmahasiswa/delete/{id}', [DaftarMahasiswaController::class, 'DeleteMahasiswa'])->name('Hapus Mahasiswa');
-    Route::get('/admin/detailMahasiswa/{id}', [AdminController::class, 'DetailMahasiswa'])->name('Detail Mahasiswa');
+    Route::get('/admin/detailMahasiswa/{id}', [DaftarMahasiswaController::class, 'DetailMahasiswa'])->name('Detail Mahasiswa');
 
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [AdminController::class, 'jenisKKN'])->name('jeniskkn');
