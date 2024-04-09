@@ -17,6 +17,9 @@ return new class extends Migration
             $table->char('kode_jenis', 5);
             $table->foreign('kode_jenis')->references('kode_jenis')->on('jeniskkn');
 
+            $table->char('kode_semester', 5);
+            $table->foreign('kode_semester')->references('kode_semester')->on('semesteraktif');
+            
             $table->unsignedBigInteger('id_dosen');
             $table->foreign('id_dosen')->references('id')->on('dosens');
 

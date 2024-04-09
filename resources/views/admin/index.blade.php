@@ -153,7 +153,7 @@
     <div class="w-full block lg:flex lg:justify-between lg:items-center mt-8">
         <div class="w-full md:w-1/2 text-center md:text-left mb-2 md:mb-0">
             <h1 class="text-2xl font-semibold text-gray-700 sm:text-2xl">
-                Daftar KKN
+                Daftar Semester Aktif
             </h1>
         </div>
         <div class="flex items-center w-full lg:w-1/3">

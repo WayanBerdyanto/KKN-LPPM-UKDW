@@ -20,7 +20,6 @@ class JenisKKNController extends Controller
     {
         $validate = $request->validate([
             'kode_jenis' => 'required | unique:JenisKKN',
-            'kode_semester' => 'required',
             'nama_kkn' => 'required',
             'lokasi_kkn' => 'required',
         ]);
@@ -28,7 +27,6 @@ class JenisKKNController extends Controller
         if (!empty($validate)) {
             JenisKKN::create([
                 'kode_jenis' => $request->kode_jenis,
-                'kode_semester' => $request->kode_semester,
                 'nama_kkn' => $request->nama_kkn,
                 'lokasi' => $request->lokasi_kkn,
             ]);
@@ -50,7 +48,6 @@ class JenisKKNController extends Controller
     {
         $validate = $request->validate([
             'kode_jenis' => 'required',
-            'kode_semester' => 'required',
             'nama_kkn' => 'required',
             'lokasi_kkn' => 'required',
         ]);
@@ -58,7 +55,6 @@ class JenisKKNController extends Controller
         if (!empty($validate)) {
             JenisKKN::where('kode_jenis', $id)->update([
                 'kode_jenis' => $request->kode_jenis,
-                'kode_semester' => $request->kode_semester,
                 'nama_kkn' => $request->nama_kkn,
                 'lokasi' => $request->lokasi_kkn,
             ]);
