@@ -65,6 +65,9 @@ Route::middleware('cekstatus:admin')->group(function () {
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
     Route::post('/admin/postjenis', [JenisKKNController::class, 'postJenisKKN'])->name('Insert Jenis');
+    Route::get('/admin/updatejeniskkn/{id}', [JenisKKNController::class, 'UpdateJenis'])->name('Updatejeniskkn');
+    Route::put('/admin/postUpdatejenis/{id}', [JenisKKNController::class, 'PostUpdateJenisKKN'])->name('Post Update Jenis');
+    Route::get('/admin/deletejeniskkn/{id}', [JenisKKNController::class, 'DeleteJenisKKN'])->name('DeleteJenisKKN');
     // EMD JENISKKN PAGE
     // END Daftar Mahasiswa
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');

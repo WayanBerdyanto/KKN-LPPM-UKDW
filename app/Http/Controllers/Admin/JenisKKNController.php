@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JenisKKN;
-use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class JenisKKNController extends Controller
 {
@@ -40,5 +38,40 @@ class JenisKKNController extends Controller
             return redirect('/admin/jeniskkn')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
         }
         return redirect('/admin/jeniskkn')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
+    }
+
+    public function UpdateJenis($id)
+    {
+        $updateJenis = JenisKKN::where('kode_jenis', $id)->first();
+        return response()->json(['updateJenis' => $updateJenis]);
+    }
+
+    public function PostUpdateJenisKKN(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'kode_jenis' => 'required',
+            'kode_semester' => 'required',
+            'nama_kkn' => 'required',
+            'lokasi_kkn' => 'required',
+        ]);
+
+        if (!empty($validate)) {
+            JenisKKN::where('kode_jenis', $id)->update([
+                'kode_jenis' => $request->kode_jenis,
+                'kode_semester' => $request->kode_semester,
+                'nama_kkn' => $request->nama_kkn,
+                'lokasi' => $request->lokasi_kkn,
+            ]);
+            return redirect('/admin/jeniskkn')->with('success', 'Data Berhasil Diupdate');
+        }
+        if ($validate->fails()) {
+            return redirect('/admin/jeniskkn')->with('toast_error', 'Gagal Mengupdate Data')->withInput();
+        }
+        return redirect('/admin/jeniskkn')->with('toast_error', 'Gagal Mengupdate Data')->withInput();
+    }
+
+    public function DeleteJenisKKN($id) {
+        jenisKKN::where('kode_jenis', $id)->delete();
+        return redirect('/admin/jeniskkn')->with('success', 'Data Berhasil DiHapus');
     }
 }
