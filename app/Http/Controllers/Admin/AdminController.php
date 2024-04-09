@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\JenisKKN;
 use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
@@ -71,8 +70,12 @@ class AdminController extends Controller
 
     public function DeleteSemester($id)
     {
-        SemesterAktif::where('kode_semester', $id)->delete();
-        return redirect('/admin')->with('success', 'Data berhasil Dihapus');
+        try {
+            SemesterAktif::where('kode_semester', $id)->delete();
+            return redirect('/admin')->with('success', 'Data berhasil Dihapus');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('/admin')->with('error', 'Tidak dapat menghapus semester ini karena masih terdapat entri terkait di Jenis KKN');
+        }
     }
     public function kelompok()
     {

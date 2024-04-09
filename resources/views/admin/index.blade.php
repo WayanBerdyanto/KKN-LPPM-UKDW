@@ -235,10 +235,6 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-4">
-                                <a href="/admin/detailsemester/{{ $item->kode_semester }}"
-                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
-                                    <i class="fa-solid fa-info text-lg text-secondary"></i>
-                                </a>
                                 <button @click="modalUpdate = true" data-toggle="modal" data-target="#formModal"
                                     data-id="{{ $item->kode_semester }}"
                                     class="bg-primary px-3 py-1 rounded-lg hover:opacity-90 tampilModalUbah">
