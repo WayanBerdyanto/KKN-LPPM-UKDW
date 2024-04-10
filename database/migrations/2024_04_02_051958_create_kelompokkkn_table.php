@@ -19,9 +19,12 @@ return new class extends Migration
 
             $table->char('kode_semester', 5);
             $table->foreign('kode_semester')->references('kode_semester')->on('semesteraktif');
-            
+
             $table->unsignedBigInteger('id_dosen');
             $table->foreign('id_dosen')->references('id')->on('dosens');
+
+            $table->unsignedBigInteger('id_dosen2')->nullable();
+            $table->foreign('id_dosen2')->references('id')->on('dosens');
 
             $table->string('nama_kelompok', 50);
             $table->string('desa', 50);

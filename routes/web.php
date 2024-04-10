@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DaftarMahasiswaController;
 use App\Http\Controllers\Admin\JenisKKNController;
 use App\Http\Controllers\Admin\SemesterAktifController;
+use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
@@ -43,8 +44,10 @@ Route::middleware('cekstatus:admin')->group(function () {
     // END DASHBOARD PAGE
 
     // START KELOMPOK PAGE
-    Route::get('/admin/kelompok', [AdminController::class, 'kelompok'])->name('admin');
-    Route::get('/admin/kelompok/detail', [AdminController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/kelompok', [KelompokKknController::class, 'kelompok'])->name('admin');
+    Route::get('/admin/kelompok/detail', [KelompokKknController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/kelompok/forminsert', [KelompokKknController::class, 'FormInsertKelompok'])->name('Form Insert');
+    Route::post('/admin/kelompok/postinsertkelompok', [KelompokKknController::class, 'PostInsertKelompok'])->name('Post Insert');
     // END KELOMPOK PAGE
 
     // START DaftarMahasiswa

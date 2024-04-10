@@ -14,18 +14,11 @@ class AdminController extends Controller
     {
         return view('admin.index', ['key' => 'home']);
     }
-    public function kelompok()
-    {
-        return view('admin.kelompok', ['key' => 'kelompok']);
-    }
+    
     public function daftarmahasiswa()
     {
         $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
         return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
-    }
-    public function detailKelompok()
-    {
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana']);
     }
 
     public function logout()

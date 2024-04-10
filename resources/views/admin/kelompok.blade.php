@@ -12,7 +12,7 @@
                 </button>
             </div>
         </form>
-        <a href= ""
+        <a href= "/admin/kelompok/forminsert"
             class="ml-1 flex bg-primary items-center py-2 px-3 shadow-lg text-secondary rounded-3xl text-md font-normal hover:bg-blue-500">
             <i class="fa-solid fa-user-plus"></i>
             Add
