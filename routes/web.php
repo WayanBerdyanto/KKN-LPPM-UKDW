@@ -45,13 +45,14 @@ Route::middleware('cekstatus:admin')->group(function () {
 
     // START KELOMPOK PAGE
     Route::get('/admin/kelompok', [KelompokKknController::class, 'kelompok'])->name('admin');
-    Route::get('/admin/kelompok/detail', [KelompokKknController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/kelompok/detail/{id}', [KelompokKknController::class, 'detailKelompok'])->name('admin');
     Route::get('/admin/kelompok/forminsert', [KelompokKknController::class, 'FormInsertKelompok'])->name('Form Insert');
     Route::post('/admin/kelompok/postinsertkelompok', [KelompokKknController::class, 'PostInsertKelompok'])->name('Post Insert');
+    Route::get('/admin/kelompok/search', [KelompokKknController::class, 'kelompok'])->name('Search Kelompok');
     // END KELOMPOK PAGE
 
     // START DaftarMahasiswa
-    Route::get('/admin/daftarmahasiswa', [AdminController::class, 'daftarmahasiswa'])->name('daftarmahasiswa');
+    Route::get('/admin/daftarmahasiswa', [DaftarMahasiswaController::class, 'daftarmahasiswa'])->name('daftarmahasiswa');
     Route::get('/admin/daftarmahasiswa/search', [DaftarMahasiswaController::class, 'search'])->name('search');
     Route::get('/admin/daftarmahasiswa/insert', [DaftarMahasiswaController::class, 'insertMhs'])->name('insert mahasiswa');
     Route::post('/admin/daftarmahasiswa/postinsert', [DaftarMahasiswaController::class, 'PostInsertMhs'])->name('insert mahasiswa');

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class DaftarMahasiswaController extends Controller
 {
+    public function daftarmahasiswa()
+    {
+        $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
+        return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
+    }
+    
     // Start Search Mahasiswa
     public function search(Request $request)
     {

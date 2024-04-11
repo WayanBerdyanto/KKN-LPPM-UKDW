@@ -14,12 +14,6 @@ class AdminController extends Controller
     {
         return view('admin.index', ['key' => 'home']);
     }
-    
-    public function daftarmahasiswa()
-    {
-        $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
-        return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
-    }
 
     public function logout()
     {

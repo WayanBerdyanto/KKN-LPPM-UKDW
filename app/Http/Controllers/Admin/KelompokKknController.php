@@ -8,17 +8,63 @@ use App\Models\JenisKKN;
 use App\Models\KelompokKKN;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KelompokKknController extends Controller
 {
-    public function kelompok()
+    public function kelompok(Request $request)
     {
-        return view('admin.kelompok', ['key' => 'kelompok']);
+        $value = $request->input('name');
+
+        $result = DB::select('
+            SELECT
+                d1.id AS id_dosen1,
+                d1.nama AS nama_dosen1,
+                d2.id AS id_dosen2,
+                d2.nama AS nama_dosen2,
+                kk.*,
+                j.*,
+                s.*
+            FROM
+                kelompokkkn kk
+            JOIN
+                jeniskkn j ON j.kode_jenis = kk.kode_jenis
+            JOIN
+                semesteraktif s ON s.kode_semester = kk.kode_semester
+            LEFT JOIN
+                dosens d1 ON d1.id = kk.id_dosen
+            LEFT JOIN
+                dosens d2 ON d2.id = kk.id_dosen2
+            WHERE
+                kk.nama_kelompok LIKE :nama_kelompok
+        ', ['nama_kelompok' => '%' . $value . '%']);
+        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result]);
     }
 
-    public function detailKelompok()
+    public function detailKelompok($id)
     {
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana']);
+        $resultmaster = DB::select("
+        SELECT
+            d1.id AS id_dosen1,
+            d1.nama AS nama_dosen1,
+            d2.id AS id_dosen2,
+            d2.nama AS nama_dosen2,
+            kk.*,
+            j.*,
+            s.*
+        FROM
+            kelompokkkn kk
+        JOIN
+            jeniskkn j ON j.kode_jenis = kk.kode_jenis
+        JOIN
+            semesteraktif s ON s.kode_semester = kk.kode_semester
+        LEFT JOIN
+            dosens d1 ON d1.id = kk.id_dosen
+        LEFT JOIN
+            dosens d2 ON d2.id = kk.id_dosen2
+        WHERE
+            kk.kode_kelompok = '$id'");
+        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster]);
     }
 
     public function FormInsertKelompok()
