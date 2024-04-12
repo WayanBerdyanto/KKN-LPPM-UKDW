@@ -88,6 +88,7 @@ class KelompokKknController extends Controller
             'kecamatan' => 'required',
             'kabupaten' => 'required',
             'provinsi' => 'required',
+            'kapasitas' => 'required',
         ]);
 
         if (!empty($validate)) {
@@ -103,6 +104,7 @@ class KelompokKknController extends Controller
                 'kecamatan' => $request->kecamatan,
                 'kabupaten' => $request->kabupaten,
                 'provinsi' => $request->provinsi,
+                'kapasitas' => $request->kapasitas,
             ]);
             return redirect('/admin/kelompok')->with('success', 'Data Berhasil Ditambahkan');
         }

@@ -22,5 +22,6 @@ class KelompokKKN extends Model
         'kecamatan',
         'kabupaten',
         'provinsi',
+        'kapasitas',
     ];
 }

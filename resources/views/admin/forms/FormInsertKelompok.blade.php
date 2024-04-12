@@ -139,6 +139,14 @@
 
                     <div class="mb-4.5">
                         <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                            Kapasitas
+                        </label>
+                        <input name="kapasitas" type="number" placeholder="Kapasitas"
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('kapasitas') }}" />
+                    </div>
+
+                    <div class="mb-4.5">
+                        <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                             Desa
                         </label>
                         <input name="desa" type="text" placeholder="Masukan Nama Desa"

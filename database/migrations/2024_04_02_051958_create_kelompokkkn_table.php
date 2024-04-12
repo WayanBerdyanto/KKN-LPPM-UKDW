@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('kecamatan', 50);
             $table->string('kabupaten', 50);
             $table->string('provinsi', 50);
+            $table->integer('kapasitas');
             $table->timestamps();
         });
     }

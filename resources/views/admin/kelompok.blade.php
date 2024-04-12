@@ -69,8 +69,10 @@
                             {{ $item->status }}
                         </span>
                     @endif
-
                 </div>
+                <span class="text-sm font-normal">
+                    jumlah peserta - {{ $item->kapasitas }}
+                </span>
             </a>
             <div class="px-3 grid lg:gap-6 grid-cols-0 gap-y-2  lg:grid-cols-2 text-2xl">
                 <a href="/admin/kelompok/formedit" class="text-primary hover:opacity-90">

@@ -1,3 +1,4 @@
+@section('title', 'Admin | Detail kelompok')
 @extends('admin.layouts.main')
 @section('content')
     <nav class="flex" aria-label="Breadcrumb">
