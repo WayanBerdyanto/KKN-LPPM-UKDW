@@ -70,8 +70,8 @@
                         </span>
                     @endif
                 </div>
-                <span class="text-sm font-normal">
-                    jumlah peserta - {{ $item->kapasitas }}
+                <span class="text-sm font-semibold">
+                    {{ $item->id_mahasiswa_terdaftar }}- {{ $item->kapasitas }} Peserta
                 </span>
             </a>
             <div class="px-3 grid lg:gap-6 grid-cols-0 gap-y-2  lg:grid-cols-2 text-2xl">

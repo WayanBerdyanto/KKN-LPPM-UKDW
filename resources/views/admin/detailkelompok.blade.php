@@ -76,17 +76,6 @@
                     </tr>
                     <tr class="border-b">
                         <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                            <span class="font-normal">Peserta</span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="font-semibold">
-                                Belum Dibuat <i class="fa-solid fa-user ml-1"></i>
-                            </span>
-
-                        </td>
-                    </tr>
-                    <tr class="border-b">
-                        <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
                             <span class="font-normal">Status</span>
                         </td>
                         <td class="px-6 py-4">
@@ -108,7 +97,7 @@
             <div class="flex justify-between items-center py-2">
                 <h1 class="font-semibold text-lg lg:text-2xl uppercase">Daftar Peserta</h1>
                 <div class="flex items-center text-right py-2">
-                    <a href="/admin/kelompok/modalinsert"
+                    <a href="/admin/kelompok/{{ $resultmaster[0]->kode_kelompok }}/insertdatakelompok"
                         class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                         <i class="fa-solid fa-plus mr-1"></i>
                         Add
@@ -137,28 +126,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                            72210487
-                        </th>
-                        <td class="px-6 py-4">
-                            Kalistus Alvino
-                        </td>
-                        <td class="px-6 py-4">
-                            Sistem Informasi
-                        </td>
-                        <td class="px-6 py-4">
-                            2 Terisi
-                        </td>
-                        <td class="px-4 py-2 grid lg:gap-2 gap-y-2  lg:grid-cols-2 text-center">
-                            <a href="#" class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
-                                <i class="fa-solid fa-info"></i>
-                            </a>
-                            <a href="#" class="bg-red-600 text-secondary py-1.5 rounded-md hover:bg-opacity-90">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($resultDetail as $item)
+                        <tr
+                            class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
+                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                                {{ $item->username }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $item->nama }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->prodi }}
+                            </td>
+                            <td class="px-6 py-4">
+                                2 Terisi
+                            </td>
+                            <td class="px-4 py-2 grid lg:gap-2 gap-y-2  lg:grid-cols-2 text-center">
+                                <a href="#" class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-info"></i>
+                                </a>
+                                <a href="#" class="bg-red-600 text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

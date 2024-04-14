@@ -34,7 +34,7 @@
                 <table class="w-full table-auto">
                     <thead>
                         <tr class="text-left bg-gray dark:bg-meta-4">
-                            <th class="min-w-[50px] px-4 py-4 font-medium text-dark dark:text-secondary">
+                            <th class="min-w-[30px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 NO
                             </th>
                             <th class="min-w-[100px] px-4 py-4 font-medium text-dark dark:text-secondary">
@@ -43,14 +43,17 @@
                             <th class="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Nama
                             </th>
-                            <th class="min-w-[120px] px-4 py-4 font-medium text-dark dark:text-secondary">
+                            <th class="min-w-[80px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Prodi
                             </th>
-                            <th class="min-w-[80px] px-4 py-4 font-medium text-dark dark:text-secondary">
+                            <th class="min-w-[60px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Gender
                             </th>
                             <th class="min-w-[180px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Alamat
+                            </th>
+                            <th class="min-w-[150px] px-4 py-4 font-medium text-dark dark:text-secondary">
+                                Kelompok KKN
                             </th>
                             <th class="min-w-[50px] px-4 py-4 font-medium text-dark dark:text-secondary">
                                 Angkatan
@@ -92,6 +95,11 @@
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary"">
                                         {{ $item->alamat }}
+                                    </p>
+                                </td>
+                                <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+                                    <p class="text-dark dark:text-secondary"">
+                                        BELUM DIBUAT
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
@@ -254,7 +262,7 @@
                         method: "GET",
                         dataType: "json",
                         success: function(response) {
-                            console.log("Response JSON :",response)
+                            console.log("Response JSON :", response)
                             var nim = response.detail.username;
                             var nama = response.detail.nama;
                             var prodi = response.detail.prodi;
