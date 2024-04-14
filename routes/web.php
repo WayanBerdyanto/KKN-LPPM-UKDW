@@ -83,7 +83,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::put('/admin/postupdate/{id}', [SemesterAktifController::class, 'PostUpdateSemester'])->name('Post Update Semester');
     Route::get('/admin/deletesemester/{id}', [SemesterAktifController::class, 'DeleteSemester'])->name('Hapus Semester');
     // END Semester Aktif KKN
-    Route::get('/admin/logout', [SemesterAktifController::class, 'logout'])->name('admin');
+    Route::get('/admin/logout', [AdminController::class,'logout'])->name('admin');
 });
 
 Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
