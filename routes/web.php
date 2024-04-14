@@ -51,6 +51,9 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/kelompok/search', [KelompokKknController::class, 'kelompok'])->name('Search Kelompok');
     Route::get('/admin/kelompok/{id}/insertdatakelompok', [KelompokKknController::class, 'DataInsertKelompok'])->name('Data Insert Mahasiswa');
     Route::post('/admin/kelompok/{id}/postdatakelompok', [KelompokKknController::class, 'PostDataKelompok'])->name('Data Insert Mahasiswa');
+    Route::get('/admin/kelompok/deletemahasiswa/{id}', [KelompokKknController::class, 'DeleteDataKelompok'])->name('Delete Data Kelompok');
+    Route::get('/admin/kelompok/pilihketua/{id}', [KelompokKknController::class, 'PilihKetua'])->name('Pilih Ketua Kelompok');
+    Route::get('/admin/kelompok/pilihanggota/{id}', [KelompokKknController::class, 'PilihAnggota'])->name('Pilih Anggota Kelompok');
     // END KELOMPOK PAGE
 
     // START DaftarMahasiswa

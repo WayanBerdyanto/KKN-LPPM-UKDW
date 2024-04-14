@@ -69,7 +69,11 @@
                         </td>
                         <td class="px-6 py-4">
                             <span class="font-semibold">
-                                Belum Dibuat
+                                @if (!empty($ketua))
+                                    Ketua kelompok belum ditetapkan
+                                @else
+                                    {{ $ketua[0]->nama }}
+                                @endif
                             </span>
 
                         </td>
@@ -141,11 +145,27 @@
                             <td class="px-6 py-4">
                                 2 Terisi
                             </td>
-                            <td class="px-4 py-2 grid lg:gap-2 gap-y-2  lg:grid-cols-2 text-center">
+                            <td class="px-4 py-2 grid lg:gap-3 gap-y-2  lg:grid-cols-3 text-center">
+                                @if ($item->status == 'ketua')
+                                    <a href="#"
+                                        onclick="confirmAnggota('/admin/kelompok/pilihanggota/{{ $item->id_mahasiswa }}')"
+                                        class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                        <i class="fa-solid fa-user-group"></i>
+                                    </a>
+                                @else
+                                    <a href="#"
+                                        onclick="confirmKetua('/admin/kelompok/pilihketua/{{ $item->id_mahasiswa }}')"
+                                        class="bg-yellow-500 text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                        <i class="fa-solid fa-crown"></i>
+                                    </a>
+                                @endif
                                 <a href="#" class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
                                     <i class="fa-solid fa-info"></i>
                                 </a>
-                                <a href="#" class="bg-red-600 text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                <a href="#"
+                                    onclick="confirmDelete('/admin/kelompok/deletemahasiswa/{{ $item->id_dtl }}')"
+                                    class="bg-red-600 text-secondary py-1.5 rounded-md hover:bg-opacity-90"
+                                    data-confirm-delete="true">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
@@ -153,6 +173,60 @@
                     @endforeach
                 </tbody>
             </table>
+            <script>
+                function confirmAnggota(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Ubah Sebagai Anggota",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2C7865',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yakin'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function confirmKetua(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Pilih Sebagai Ketua",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2C7865',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yakin'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function confirmDelete(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Anda tidak akan dapat mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
         </div>
     </div>
 @endsection

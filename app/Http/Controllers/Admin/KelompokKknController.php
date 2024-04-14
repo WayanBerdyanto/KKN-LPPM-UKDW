@@ -82,7 +82,10 @@ class KelompokKknController extends Controller
                 JOIN mahasiswas mh ON mh.id = dk.id_mahasiswa
                 WHERE dk.kode_kelompok = '$id'"
         );
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail]);
+        $collection = collect($resultDetail);
+        $ketua = $collection->where('kode_kelompok', $id)->where('status', 'anggota');
+        $ketua = $ketua->all();
+        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua'=>$ketua]);
     }
 
     public function FormInsertKelompok()
@@ -175,6 +178,24 @@ class KelompokKknController extends Controller
             return redirect()->back()->with('toast_success', 'Berhasil Menginputkan Data');
         }
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
+    }
+
+    public function DeleteDataKelompok($id){
+        DetailKelompokKKN::where('id_dtl', $id)->delete();
+        return redirect()->back()->with('toast_success', 'Berhasil menghapus Data');
+    }
+    public function PilihKetua($id){
+        Mahasiswas::where('id', $id)->update([
+            'status' => 'ketua'
+        ]);
+        return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
+    }
+
+    public function PilihAnggota($id){
+        Mahasiswas::where('id', $id)->update([
+            'status' => 'anggota'
+        ]);
+        return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
     }
 
 }

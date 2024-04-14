@@ -25,7 +25,7 @@
     </nav>
     <div class="w-full px-5">
         <h1 class="text-2xl text-center my-5 font-semibold uppercase ">KELOMPOK KKN</h1>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 rounded-lg border border-slate-200 mb-5 py-5 px-5">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 rounded-lg border border-slate-200 mb-5 py-5 px-5">
             @foreach ($resultDetail as $item)
                 <div class="flex items-center w-70">
                     <input type="text" name="data"
@@ -34,7 +34,7 @@
                         class="bg-primary text-secondary text-center outline-none p-2 rounded-lg cursor-pointer hover:bg-opacity-90">
                         {{ $item->nama }}
                     </span>
-                    <a href="">
+                    <a href="/admin/kelompok/deletemahasiswa/{{ $item->id_dtl }}">
                         <i class="fa-solid fa-xmark text-xl mx-2 text-red-600"></i>
                     </a>
                 </div>
