@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Mahasiswa\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,6 +72,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
     Route::post('/admin/postjenis', [JenisKKNController::class, 'postJenisKKN'])->name('Insert Jenis');
+    Route::get('/admin/detailKKN/{id}', [JenisKKNController::class, 'detailKKN'])->name('Detail KKN');
     Route::get('/admin/updatejeniskkn/{id}', [JenisKKNController::class, 'UpdateJenis'])->name('Updatejeniskkn');
     Route::put('/admin/postUpdatejenis/{id}', [JenisKKNController::class, 'PostUpdateJenisKKN'])->name('Post Update Jenis');
     Route::get('/admin/deletejeniskkn/{id}', [JenisKKNController::class, 'DeleteJenisKKN'])->name('DeleteJenisKKN');
@@ -83,7 +85,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::put('/admin/postupdate/{id}', [SemesterAktifController::class, 'PostUpdateSemester'])->name('Post Update Semester');
     Route::get('/admin/deletesemester/{id}', [SemesterAktifController::class, 'DeleteSemester'])->name('Hapus Semester');
     // END Semester Aktif KKN
-    Route::get('/admin/logout', [AdminController::class,'logout'])->name('admin');
+    Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
 
 Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
@@ -91,6 +93,9 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa/logbook', [MahasiswaController::class, 'logbook'])->name('mahasiswa');
     Route::get('/mahasiswa/logbook/tambah', [MahasiswaController::class, 'tambah'])->name('mahasiswa');
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'profile'])->name('profile');
-    Route::get('/mahasiswa/settings', [MahasiswaController::class, 'settings'])->name('settings');
+
+    Route::get('/mahasiswa/settings', [SettingController::class, 'settings'])->name('settings');
+    Route::get('/mahasiswa/updateprofile', [SettingController::class, 'update'])->name('Update Profile');
+
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 });

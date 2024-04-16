@@ -15,6 +15,11 @@ class JenisKKNController extends Controller
         $kode_semester = SemesterAktif::where('status', 'Aktif')->orderBy('kode_semester', 'asc')->get();
         return view('admin.jeniskkn', ['key' => 'jeniskkn', 'result' => $result, 'kode_semester' => $kode_semester]);
     }
+    public function detailKKN($id)
+    {
+        $detail = JenisKKN::where('kode_jenis', $id)->first();
+        return response()->json(['detail' => $detail]);
+    }
 
     public function PostJenisKKN(Request $request)
     {
@@ -66,7 +71,8 @@ class JenisKKNController extends Controller
         return redirect('/admin/jeniskkn')->with('toast_error', 'Gagal Mengupdate Data')->withInput();
     }
 
-    public function DeleteJenisKKN($id) {
+    public function DeleteJenisKKN($id)
+    {
         jenisKKN::where('kode_jenis', $id)->delete();
         return redirect('/admin/jeniskkn')->with('success', 'Data Berhasil DiHapus');
     }

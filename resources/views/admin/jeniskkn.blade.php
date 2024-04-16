@@ -77,10 +77,11 @@
 
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-4">
-                                <a href="/admin/detailsemester/{{ $item->kode_semester }}"
-                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90">
+                                <button @click="modalDetailJenis = true" data-toggle="modal" data-target="#modalDetail"
+                                    data-id="{{ $item->kode_jenis }}"
+                                    class="bg-primary px-3 py-1 rounded-lg hover:opacity-90 tampilModalDetail">
                                     <i class="fa-solid fa-info text-lg text-secondary"></i>
-                                </a>
+                                </button>
                                 <button @click="modalUpdateJenis = true" data-toggle="modal" data-target="#formEditModal"
                                     data-id="{{ $item->kode_jenis }}"
                                     class="bg-primary px-3 py-1 rounded-lg hover:opacity-90 tampilModalUbah">
@@ -98,6 +99,77 @@
             </tbody>
         </table>
     </div>
+    {{-- Detail Jenis KKN --}}
+    <div x-show="modalDetailJenis" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="modalDetail" @click.outside="modalDetail = false"
+            class="w-full h-300 overflow-y-auto max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Detail Jenis KKN
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Kode Jenis
+                </label>
+                <span id="kodeJenis-span"class="mb-3 block text-sm font-medium text-black dark:text-white">
+
+                </span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Nama KKN
+                </label>
+                <span id="namaKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Lokasi
+                </label>
+                <span id="lokasiKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white">
+
+                </span>
+            <div class="-mx-3 flex flex-wrap">
+                <div class="w-full px-3">
+                    <button @click="modalDetailJenis = false"
+                        class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {{--  JQuery Detail KKN --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var kodeKKN;
+
+                $('.tampilModalDetail').click(function() {
+                    kodeKKN = $(this).data('id');
+                    console.log(kodeKKN);
+                    $.ajax({
+                        url: "/admin/detailKKN/" + kodeKKN,
+                        method: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            console.log("Response JSON :", response)
+                            var kode_jenis = response.detail.kode_jenis;
+                            var nama_kkn = response.detail.nama_kkn;
+                            var lokasi_kkn = response.detail.lokasi;
+                            $('#kodeJenis-span').text(kode_jenis);
+                            $('#namaKKN-span').text(nama_kkn);
+                            $('#lokasiKKN-span').text(lokasi_kkn);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error:", error);
+                        }
+                    });
+                });
+            });
+        </script>
+
+        {{-- END Detail jenis KKN --}}
 
     <script>
         function confirmDelete(url) {
