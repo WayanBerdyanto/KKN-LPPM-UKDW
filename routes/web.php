@@ -96,6 +96,8 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
 
     Route::get('/mahasiswa/settings', [SettingController::class, 'settings'])->name('settings');
     Route::get('/mahasiswa/updateprofile', [SettingController::class, 'update'])->name('Update Profile');
+    Route::get('/mahasiswa/gantipassword', [SettingController::class, 'password'])->name('Update Password');
+    Route::post('/mahasiswa/uploadfoto', [SettingController::class, 'upload'])->name('Upload Foto');
 
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 });

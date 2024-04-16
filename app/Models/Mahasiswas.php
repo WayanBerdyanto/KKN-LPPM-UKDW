@@ -26,6 +26,7 @@ class Mahasiswas extends Authenticatable
         'email',
         'no_telp',
         'role',
+        'foto',
     ];
 
     protected $guard = 'mahasiswa';
