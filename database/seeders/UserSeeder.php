@@ -62,7 +62,7 @@ class UserSeeder extends Seeder
                     'password' => bcrypt('12345678'),
                     'prodi' => $faker->city,
                     'angkatan' => '2021',
-                    'gender' => 'Laki-laki',
+                    'gender' => 'Laki-Laki',
                     'status' => 'anggota',
                     'role' => 'mahasiswa',
                     'created_at' => $now,
