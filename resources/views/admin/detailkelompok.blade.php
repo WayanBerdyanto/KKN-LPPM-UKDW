@@ -44,7 +44,7 @@
                     </h2>
                 </div>
                 <div>
-                    <a href="#" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                    <a href="/admin/kelompok/formedit/{{ $resultmaster[0]->kode_kelompok }}" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                         <i class="fa-solid fa-pencil mr-1"></i>
                         Edit
                     </a>
@@ -70,9 +70,9 @@
                         <td class="px-6 py-4">
                             <span class="font-semibold">
                                 @if (!empty($ketua))
-                                    Ketua kelompok belum ditetapkan
-                                @else
                                     {{ $ketua[0]->nama }}
+                                @else
+                                    Ketua kelompok belum ditetapkan
                                 @endif
                             </span>
 

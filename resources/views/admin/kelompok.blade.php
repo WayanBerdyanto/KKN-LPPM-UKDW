@@ -75,7 +75,7 @@
                 </span>
             </a>
             <div class="px-3 grid lg:gap-6 grid-cols-0 gap-y-2  lg:grid-cols-2 text-2xl">
-                <a href="/admin/kelompok/formedit" class="text-primary hover:opacity-90">
+                <a href="/admin/kelompok/formedit/{{ $item->kode_kelompok }}" class="text-primary hover:opacity-90">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
             </div>

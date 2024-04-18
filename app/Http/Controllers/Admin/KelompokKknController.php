@@ -83,9 +83,9 @@ class KelompokKknController extends Controller
                 WHERE dk.kode_kelompok = '$id'"
         );
         $collection = collect($resultDetail);
-        $ketua = $collection->where('kode_kelompok', $id)->where('status', 'anggota');
+        $ketua = $collection->where('kode_kelompok', $id)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua'=>$ketua]);
+        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua]);
     }
 
     public function FormInsertKelompok()
@@ -180,22 +180,70 @@ class KelompokKknController extends Controller
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
     }
 
-    public function DeleteDataKelompok($id){
+    public function DeleteDataKelompok($id)
+    {
         DetailKelompokKKN::where('id_dtl', $id)->delete();
         return redirect()->back()->with('toast_success', 'Berhasil menghapus Data');
     }
-    public function PilihKetua($id){
+    public function PilihKetua($id)
+    {
         Mahasiswas::where('id', $id)->update([
             'status' => 'ketua'
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
     }
 
-    public function PilihAnggota($id){
+    public function PilihAnggota($id)
+    {
         Mahasiswas::where('id', $id)->update([
             'status' => 'anggota'
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
+    }
+
+    public function formEditKelompok($kode_kelompok)
+    {
+        $data = KelompokKKN::where('kode_kelompok', $kode_kelompok)->first();
+        $jenis = JenisKKN::All();
+        $semester = SemesterAktif::where('status', 'Aktif')->get();
+        $dosen = Dosens::All();
+
+        return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
+    }
+
+    public function postUpdateKelompok($id, Request $request) {
+        $validate = $request->validate([
+            'kode_jenis' => 'required',
+            'kode_semester' => 'required',
+            'id_dosen' => 'required',
+            'id_dosen2' => 'required',
+            'nama_kelompok' => 'required',
+            'desa' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
+            'kapasitas' => 'required',
+        ]);
+        if (!empty($validate)){
+            KelompokKKN::where('kode_kelompok', $id)->update([
+                'kode_jenis' => $request->kode_jenis,
+                'kode_semester' => $request->kode_semester,
+                'id_dosen' => $request->id_dosen,
+                'id_dosen2' => $request->id_dosen2,
+                'nama_kelompok' => $request->nama_kelompok,
+                'desa' => $request->desa,
+                'kecamatan' => $request->kecamatan,
+                'kabupaten' => $request->kabupaten,
+                'provinsi' => $request->provinsi,
+                'kapasitas' => $request->kapasitas,
+            ]);
+            return redirect('admin/kelompok')->with('success', 'Data Kelompok Berhasil di Update');
+        }
+        if ($validate->fails()) {
+            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan')->withInput();
+        } else {
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
     }
 
 }
