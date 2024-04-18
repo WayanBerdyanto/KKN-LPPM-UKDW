@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
+use App\Http\Controllers\Dosen\SettingDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\SettingController;
@@ -36,6 +37,12 @@ Route::post('/postLogin', [AuthController::class, 'postLogin']);
 Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen', [DosenController::class, 'index'])->name('dosen');
     Route::get('/dosen/detail', [DosenController::class, 'detailKelompok'])->name('dosen');
+
+    Route::get('/dosen/setting', [SettingDosenController::class, 'setting'])->name('settings');
+    Route::get('/dosen/updateprofile', [SettingDosenController::class, 'updateProfile'])->name('Update Profile Dosen');
+    Route::get('/dosen/gantipassword', [SettingDosenController::class, 'password'])->name('Update Password Dosen');
+    Route::post('/dosen/uploadfoto', [SettingDosenController::class, 'upload'])->name('Upload Foto Dosen');
+
     Route::get('/dosen/logout', [DosenController::class, 'logout'])->name('dosen');
 });
 

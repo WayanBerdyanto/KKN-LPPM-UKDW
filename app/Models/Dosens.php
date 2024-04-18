@@ -23,6 +23,7 @@ class Dosens extends Authenticatable
         'email',
         'no_telp',
         'status',
+        'foto',
     ];
 
     protected $guard = 'dosen';

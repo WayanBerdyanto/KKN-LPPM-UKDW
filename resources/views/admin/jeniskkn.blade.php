@@ -26,7 +26,7 @@
                         class="text-secondary absolute end-2.5 bottom-2.5 bg-primary hover:bg-opacity-90 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-opacity-90">Search</button>
                 </div>
             </form>
-            <button @click="modalJenis = true"
+            <button @click="modalInsertJenis = true"
                 class="ml-4 inline-flex items-center justify-end gap-2.5 lg:mt-0 bg-primary px-4 py-3 text-center rounded-xl font-medium text-secondary hover:bg-opacity-90 lg:px-5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-plus-circle-fill text-secondary text-xl" viewBox="0 0 16 16">
@@ -87,8 +87,7 @@
                                     class="bg-primary px-3 py-1 rounded-lg hover:opacity-90 tampilModalUbah">
                                     <i class="fa-solid fa-pen-to-square text-lg text-secondary"></i>
                                 </button>
-                                <a href="#"
-                                    onclick="confirmDelete('/admin/deletejeniskkn/{{ $item->kode_jenis }}')"
+                                <a href="#" onclick="confirmDelete('/admin/deletejeniskkn/{{ $item->kode_jenis }}')"
                                     class="bg-red-600 px-3 py-1 rounded-lg hover:opacity-90" data-confirm-delete="true">
                                     <i class="fa-solid fa-trash text-lg text-secondary"></i>
                                 </a>
@@ -99,99 +98,8 @@
             </tbody>
         </table>
     </div>
-    {{-- Detail Jenis KKN --}}
-    <div x-show="modalDetailJenis" x-transition
-        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
-        <div id="modalDetail" @click.outside="modalDetail = false"
-            class="w-full h-300 overflow-y-auto max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
-            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
-                Detail Jenis KKN
-            </h3>
-            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
-            <div class="mb-4.5">
-                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
-                    Kode Jenis
-                </label>
-                <span id="kodeJenis-span"class="mb-3 block text-sm font-medium text-black dark:text-white">
-
-                </span>
-            </div>
-            <div class="mb-4.5">
-                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
-                    Nama KKN
-                </label>
-                <span id="namaKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
-            </div>
-            <div class="mb-4.5">
-                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
-                    Lokasi
-                </label>
-                <span id="lokasiKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white">
-
-                </span>
-            <div class="-mx-3 flex flex-wrap">
-                <div class="w-full px-3">
-                    <button @click="modalDetailJenis = false"
-                        class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        {{--  JQuery Detail KKN --}}
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                var kodeKKN;
-
-                $('.tampilModalDetail').click(function() {
-                    kodeKKN = $(this).data('id');
-                    console.log(kodeKKN);
-                    $.ajax({
-                        url: "/admin/detailKKN/" + kodeKKN,
-                        method: "GET",
-                        dataType: "json",
-                        success: function(response) {
-                            console.log("Response JSON :", response)
-                            var kode_jenis = response.detail.kode_jenis;
-                            var nama_kkn = response.detail.nama_kkn;
-                            var lokasi_kkn = response.detail.lokasi;
-                            $('#kodeJenis-span').text(kode_jenis);
-                            $('#namaKKN-span').text(nama_kkn);
-                            $('#lokasiKKN-span').text(lokasi_kkn);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("Error:", error);
-                        }
-                    });
-                });
-            });
-        </script>
-
-        {{-- END Detail jenis KKN --}}
-
-    <script>
-        function confirmDelete(url) {
-            Swal.fire({
-                title: 'Anda Yakin?',
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Redirect to the delete URL
-                    window.location.href = url;
-                }
-            });
-        }
-    </script>
-
     {{-- Insert Jenis KKN --}}
-    <div x-show="modalJenis" x-transition
+    <div x-show="modalInsertJenis" x-transition
         class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
         <div class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
             <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
@@ -224,7 +132,7 @@
                 </div>
                 <div class="-mx-3 flex flex-wrap">
                     <div class="w-1/2 px-3">
-                        <button @click="modalJenis = false" type="reset"
+                        <button @click="modalInsertJenis = false" type="reset"
                             class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
                             Cancel
                         </button>
@@ -240,7 +148,6 @@
         </div>
     </div>
     {{-- END Insert Jenis KKN --}}
-
     {{-- Update Jenis KKN --}}
     <div x-show="modalUpdateJenis" x-transition
         class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
@@ -291,37 +198,132 @@
             </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var kode_jenis;
+    {{-- END Update jenis KKN --}}
+    {{-- Detail Jenis KKN --}}
+    <div x-show="modalDetailJenis" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="modalDetailJenis" @click.outside="modalDetailJenis = false"
+            class="w-full h-300 overflow-y-auto max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Detail Jenis KKN
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Kode Jenis
+                </label>
+                <span id="kodeJenis-span"class="mb-3 block text-sm font-medium text-black dark:text-white">
 
-            $('.tampilModalUbah').click(function() {
-                kode_jenis = $(this).data('id');
-                console.log(kode_jenis);
-                $('form').attr('action', '/admin/postUpdatejenis/' + kode_jenis);
-                $.ajax({
-                    url: "/admin/updatejeniskkn/" + kode_jenis,
-                    method: "GET",
-                    dataType: "json",
-                    success: function(response) {
-                        var kode_jenis = response.updateJenis.kode_jenis;
-                        var nama_kkn = response.updateJenis.nama_kkn;
-                        var lokasi_kkn = response.updateJenis.lokasi;
-                        $('#kode_jenis').val(kode_jenis);
-                        $('#nama_kkn').val(nama_kkn);
-                        $('#lokasi_kkn').val(lokasi_kkn);
-                        // Now you can use these variables as needed
-                        console.log("Kode Semester: " + kode_jenis);
-                        console.log("Tahun Ajaran: " + nama_kkn);
-                        console.log("Status: " + lokasi_kkn);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error:", error);
-                    }
+                </span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Nama KKN
+                </label>
+                <span id="namaKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Lokasi
+                </label>
+                <span id="lokasiKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white">
+
+                </span>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-full px-3">
+                        <button @click="modalDetailJenis = false"
+                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {{--  JQuery Detail KKN --}}
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var kodeKKN;
+
+                    $('.tampilModalDetail').click(function() {
+                        kodeKKN = $(this).data('id');
+                        console.log(kodeKKN);
+                        $.ajax({
+                            url: "/admin/detailKKN/" + kodeKKN,
+                            method: "GET",
+                            dataType: "json",
+                            success: function(response) {
+                                console.log("Response JSON :", response)
+                                var kode_jenis = response.detail.kode_jenis;
+                                var nama_kkn = response.detail.nama_kkn;
+                                var lokasi_kkn = response.detail.lokasi;
+                                $('#kodeJenis-span').text(kode_jenis);
+                                $('#namaKKN-span').text(nama_kkn);
+                                $('#lokasiKKN-span').text(lokasi_kkn);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Error:", error);
+                            }
+                        });
+                    });
                 });
-            });
-        });
-    </script>
+            </script>
 
-@endsection
+            {{-- END Detail jenis KKN --}}
+
+            <script>
+                function confirmDelete(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Anda tidak akan dapat mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
+
+
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    var kode_jenis;
+
+                    $('.tampilModalUbah').click(function() {
+                        kode_jenis = $(this).data('id');
+                        console.log(kode_jenis);
+                        $('form').attr('action', '/admin/postUpdatejenis/' + kode_jenis);
+                        $.ajax({
+                            url: "/admin/updatejeniskkn/" + kode_jenis,
+                            method: "GET",
+                            dataType: "json",
+                            success: function(response) {
+                                var kode_jenis = response.updateJenis.kode_jenis;
+                                var nama_kkn = response.updateJenis.nama_kkn;
+                                var lokasi_kkn = response.updateJenis.lokasi;
+                                $('#kode_jenis').val(kode_jenis);
+                                $('#nama_kkn').val(nama_kkn);
+                                $('#lokasi_kkn').val(lokasi_kkn);
+                                // Now you can use these variables as needed
+                                console.log("Kode Semester: " + kode_jenis);
+                                console.log("Tahun Ajaran: " + nama_kkn);
+                                console.log("Status: " + lokasi_kkn);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Error:", error);
+                            }
+                        });
+                    });
+                });
+            </script>
+
+        @endsection
