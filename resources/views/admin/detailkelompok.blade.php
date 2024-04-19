@@ -44,7 +44,8 @@
                     </h2>
                 </div>
                 <div>
-                    <a href="/admin/kelompok/formedit/{{ $resultmaster[0]->kode_kelompok }}" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                    <a href="/admin/kelompok/formedit/{{ $resultmaster[0]->kode_kelompok }}"
+                        class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                         <i class="fa-solid fa-pencil mr-1"></i>
                         Edit
                     </a>
@@ -76,6 +77,20 @@
                                 @endif
                             </span>
 
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <span class="font-normal">Kapasitas</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            @if (!empty($resultmaster[0]->kapasitas))
+                                <span class="text-dark px-3 font-semibold">
+                                    {{ $resultmaster[0]->kapasitas }}
+                                </span>
+                            @else
+                                Kapasitas Belom di Atur
+                            @endif
                         </td>
                     </tr>
                     <tr class="border-b">
