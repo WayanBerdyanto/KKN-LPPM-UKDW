@@ -6,18 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Models\JenisKKN;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JenisKKNController extends Controller
 {
     public function jenisKKN()
     {
-        $result = JenisKKN::orderBy('kode_jenis', 'desc')->paginate(15);
+        $result = DB::table('jeniskkn')
+            ->join('semesteraktif', 'jeniskkn.kode_semester', '=', 'semesteraktif.kode_semester')
+            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran')->paginate(10);
         $kode_semester = SemesterAktif::where('status', 'Aktif')->orderBy('kode_semester', 'asc')->get();
         return view('admin.jeniskkn', ['key' => 'jeniskkn', 'result' => $result, 'kode_semester' => $kode_semester]);
     }
     public function detailKKN($id)
     {
-        $detail = JenisKKN::where('kode_jenis', $id)->first();
+        $detail = DB::table('jeniskkn')
+            ->join('semesteraktif', 'jeniskkn.kode_semester', '=', 'semesteraktif.kode_semester')
+            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran')
+            ->where('kode_jenis', $id)->first();
         return response()->json(['detail' => $detail]);
     }
 
@@ -26,6 +32,7 @@ class JenisKKNController extends Controller
         $validate = $request->validate([
             'kode_jenis' => 'required | unique:JenisKKN',
             'nama_kkn' => 'required',
+            'kode_semester' => 'required',
             'lokasi_kkn' => 'required',
         ]);
 
@@ -33,6 +40,7 @@ class JenisKKNController extends Controller
             JenisKKN::create([
                 'kode_jenis' => $request->kode_jenis,
                 'nama_kkn' => $request->nama_kkn,
+                'kode_semester' => $request->kode_semester,
                 'lokasi' => $request->lokasi_kkn,
             ]);
             return redirect('/admin/jeniskkn')->with('success', 'Data Berhasil Ditambahkan');
@@ -54,6 +62,7 @@ class JenisKKNController extends Controller
         $validate = $request->validate([
             'kode_jenis' => 'required',
             'nama_kkn' => 'required',
+            'kode_semester' => 'required',
             'lokasi_kkn' => 'required',
         ]);
 
@@ -61,6 +70,7 @@ class JenisKKNController extends Controller
             JenisKKN::where('kode_jenis', $id)->update([
                 'kode_jenis' => $request->kode_jenis,
                 'nama_kkn' => $request->nama_kkn,
+                'kode_semester' => $request->kode_semester,
                 'lokasi' => $request->lokasi_kkn,
             ]);
             return redirect('/admin/jeniskkn')->with('success', 'Data Berhasil Diupdate');
