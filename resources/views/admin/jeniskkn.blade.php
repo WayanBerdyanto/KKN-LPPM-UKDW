@@ -55,7 +55,7 @@
                         SEMESTER
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        LOKASI
+                        STATUS
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -78,7 +78,15 @@
                             {{ $item->tahun_ajaran }} ({{ $item->semester }})
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->lokasi }}
+                            @if ($item->status == 'Aktif')
+                                <span class="text-green-600 font-semibold">
+                                    {{ $item->status }}
+                                </span>
+                            @else
+                                <span class="text-red-600 font-semibold">
+                                    {{ $item->status }}
+                                </span>
+                            @endif
                         </td>
 
                         <td class="px-6 py-4">
@@ -268,32 +276,41 @@
             <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
             <div class="mb-4.5">
                 <label class="mb-3 block text-sm font-bold text-black dark:text-white">
-                    Kode Jenis
-                </label>
-                <span id="kodeJenis-span"class="mb-3 block text-sm font-medium text-black dark:text-white">
-
-                </span>
-            </div>
-            <div class="mb-4.5">
-                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
                     Nama KKN
                 </label>
                 <span id="namaKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
             </div>
             <div class="mb-4.5">
                 <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Semester
+                </label>
+                <span id="semester-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Tahun Ajaran
+                </label>
+                <span id="tahunajaran-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
                     Lokasi
                 </label>
                 <span id="lokasiKKN-span" class="mb-3 block text-sm font-medium text-black dark:text-white">
-
                 </span>
-                <div class="-mx-3 flex flex-wrap">
-                    <div class="w-full px-3">
-                        <button @click="modalDetailJenis = false"
-                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
-                            Close
-                        </button>
-                    </div>
+            </div>
+            <div class="mb-4.5">
+                <label class="mb-3 block text-sm font-bold text-black dark:text-white">
+                    Status
+                </label>
+                <span id="status-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+            </div>
+            <div class="-mx-3 flex flex-wrap">
+                <div class="w-full px-3">
+                    <button @click="modalDetailJenis = false"
+                        class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                        Close
+                    </button>
                 </div>
             </div>
 
@@ -312,12 +329,16 @@
                             dataType: "json",
                             success: function(response) {
                                 console.log("Response JSON :", response)
-                                var kode_jenis = response.detail.kode_jenis;
                                 var nama_kkn = response.detail.nama_kkn;
+                                var semester = response.detail.semester;
+                                var tahun_ajaran = response.detail.tahun_ajaran;
                                 var lokasi_kkn = response.detail.lokasi;
-                                $('#kodeJenis-span').text(kode_jenis);
+                                var status = response.detail.status;
                                 $('#namaKKN-span').text(nama_kkn);
+                                $('#semester-span').text(semester);
+                                $('#tahunajaran-span').text(tahun_ajaran);
                                 $('#lokasiKKN-span').text(lokasi_kkn);
+                                $('#status-span').text(status);
                             },
                             error: function(xhr, status, error) {
                                 console.error("Error:", error);

@@ -26,7 +26,6 @@ class KelompokKknController extends Controller
             d2.nama AS nama_dosen2,
             kk.*,
             j.*,
-            s.*,
             COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar
         FROM
             kelompokkkn kk
@@ -34,8 +33,6 @@ class KelompokKknController extends Controller
             detailkelompokkkn dk ON kk.kode_kelompok = dk.kode_kelompok
         JOIN
             jeniskkn j ON j.kode_jenis = kk.kode_jenis
-        JOIN
-            semesteraktif s ON s.kode_semester = kk.kode_semester
         LEFT JOIN
             dosens d1 ON d1.id = kk.id_dosen
         LEFT JOIN
@@ -43,8 +40,7 @@ class KelompokKknController extends Controller
         WHERE
             kk.nama_kelompok LIKE :nama_kelompok
         GROUP BY
-            kk.kode_kelompok, d1.id, d2.id, j.kode_jenis, s.kode_semester
-        ', ['nama_kelompok' => '%' . $value . '%']);
+            kk.kode_kelompok, d1.id, d2.id, j.kode_jenis', ['nama_kelompok' => '%' . $value . '%']);
         return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result]);
     }
 
@@ -91,9 +87,8 @@ class KelompokKknController extends Controller
     public function FormInsertKelompok()
     {
         $jenis = JenisKKN::All();
-        $semester = SemesterAktif::where('status', 'Aktif')->get();
         $dosen = Dosens::All();
-        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
+        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis,'dosen' => $dosen]);
     }
 
     public function PostInsertKelompok(Request $request)
@@ -101,7 +96,6 @@ class KelompokKknController extends Controller
         $validate = $request->validate([
             'kode_kelompok' => 'required | unique:Kelompokkkn',
             'kode_jenis' => 'required',
-            'kode_semester' => 'required',
             'id_dosen' => 'required',
             'id_dosen2' => 'different:id_dosen',
             'nama_kelompok' => 'required',
@@ -117,7 +111,6 @@ class KelompokKknController extends Controller
             $kelompok = KelompokKKN::create([
                 'kode_kelompok' => $request->kode_kelompok,
                 'kode_jenis' => $request->kode_jenis,
-                'kode_semester' => $request->kode_semester,
                 'id_dosen' => $request->id_dosen,
                 'id_dosen2' => $request->id_dosen2,
                 'nama_kelompok' => $request->nama_kelompok,
@@ -188,7 +181,7 @@ class KelompokKknController extends Controller
     public function PilihKetua($id)
     {
         Mahasiswas::where('id', $id)->update([
-            'status' => 'ketua'
+            'status' => 'ketua',
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
     }
@@ -196,7 +189,7 @@ class KelompokKknController extends Controller
     public function PilihAnggota($id)
     {
         Mahasiswas::where('id', $id)->update([
-            'status' => 'anggota'
+            'status' => 'anggota',
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
     }
@@ -211,7 +204,8 @@ class KelompokKknController extends Controller
         return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
     }
 
-    public function postUpdateKelompok($id, Request $request) {
+    public function postUpdateKelompok($id, Request $request)
+    {
         $validate = $request->validate([
             'kode_jenis' => 'required',
             'kode_semester' => 'required',
@@ -224,7 +218,7 @@ class KelompokKknController extends Controller
             'provinsi' => 'required',
             'kapasitas' => 'required',
         ]);
-        if (!empty($validate)){
+        if (!empty($validate)) {
             KelompokKKN::where('kode_kelompok', $id)->update([
                 'kode_jenis' => $request->kode_jenis,
                 'kode_semester' => $request->kode_semester,

@@ -14,7 +14,7 @@ class JenisKKNController extends Controller
     {
         $result = DB::table('jeniskkn')
             ->join('semesteraktif', 'jeniskkn.kode_semester', '=', 'semesteraktif.kode_semester')
-            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran')->paginate(10);
+            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran', 'semesteraktif.status')->paginate(10);
         $kode_semester = SemesterAktif::where('status', 'Aktif')->orderBy('kode_semester', 'asc')->get();
         return view('admin.jeniskkn', ['key' => 'jeniskkn', 'result' => $result, 'kode_semester' => $kode_semester]);
     }
@@ -22,7 +22,7 @@ class JenisKKNController extends Controller
     {
         $detail = DB::table('jeniskkn')
             ->join('semesteraktif', 'jeniskkn.kode_semester', '=', 'semesteraktif.kode_semester')
-            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran')
+            ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran', 'semesteraktif.status')
             ->where('kode_jenis', $id)->first();
         return response()->json(['detail' => $detail]);
     }
