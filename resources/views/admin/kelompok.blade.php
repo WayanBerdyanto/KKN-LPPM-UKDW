@@ -45,7 +45,7 @@
                     {{ $item->provinsi }},
                 </span>
                 <div class="flex text-dark text-sm font-normal mt-1 items-center">
-                    {{-- <div class="mr-3">
+                    <div class="mr-3">
                         @if ($item->semester == 'Genap')
                             <span class="text-primary font-semibold">
                                 {{ $item->semester }}
@@ -59,16 +59,16 @@
                         <span>
                             {{ $item->tahun_ajaran }}
                         </span>
-                    </div> --}}
-                    {{-- @if ($item->status == 'Aktif')
+                    </div>
+                    @if ($item->status == 'Aktif')
                         <span class="text-secondary px-3 rounded-full py-1 bg-primary font-semibold">
                             {{ $item->status }}
                         </span>
-                    @else --}}
-                        {{-- <span class="text-secondary px-3 rounded-full py-1 bg-red-600 font-semibold">
+                    @else
+                        <span class="text-secondary px-3 rounded-full py-1 bg-red-600 font-semibold">
                             {{ $item->status }}
                         </span>
-                    @endif --}}
+                    @endif
                 </div>
                 <span class="text-sm font-semibold">
                     {{ $item->id_mahasiswa_terdaftar }}- {{ $item->kapasitas }} Peserta

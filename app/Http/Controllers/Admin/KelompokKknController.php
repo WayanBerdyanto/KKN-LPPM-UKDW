@@ -18,55 +18,47 @@ class KelompokKknController extends Controller
     {
         $value = $request->input('name');
 
-        $result = DB::select('
-        SELECT
-            d1.id AS id_dosen1,
-            d1.nama AS nama_dosen1,
-            d2.id AS id_dosen2,
-            d2.nama AS nama_dosen2,
-            kk.*,
-            j.*,
-            COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar
-        FROM
-            kelompokkkn kk
-        LEFT JOIN
-            detailkelompokkkn dk ON kk.kode_kelompok = dk.kode_kelompok
-        JOIN
-            jeniskkn j ON j.kode_jenis = kk.kode_jenis
-        LEFT JOIN
-            dosens d1 ON d1.id = kk.id_dosen
-        LEFT JOIN
-            dosens d2 ON d2.id = kk.id_dosen2
-        WHERE
-            kk.nama_kelompok LIKE :nama_kelompok
-        GROUP BY
-            kk.kode_kelompok, d1.id, d2.id, j.kode_jenis', ['nama_kelompok' => '%' . $value . '%']);
+        $result = DB::table('kelompokkkn AS kk')
+            ->leftJoin('detailkelompokkkn AS dk', 'kk.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
+            ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
+            ->select(
+                'd1.id AS id_dosen1',
+                'd1.nama AS nama_dosen1',
+                'd2.id AS id_dosen2',
+                'd2.nama AS nama_dosen2',
+                'kk.*',
+                'j.*',
+                'sa.*',
+                DB::raw('COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar')
+            )
+            ->where('kk.nama_kelompok', 'LIKE', '%' . $value . '%')
+            ->groupBy('kk.kode_kelompok', 'd1.id', 'd2.id', 'j.kode_jenis')
+            ->get();
+
         return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result]);
     }
 
     public function detailKelompok($id)
     {
-        $resultmaster = DB::select("
-        SELECT
-            d1.id AS id_dosen1,
-            d1.nama AS nama_dosen1,
-            d2.id AS id_dosen2,
-            d2.nama AS nama_dosen2,
-            kk.*,
-            j.*,
-            s.*
-        FROM
-            kelompokkkn kk
-        JOIN
-            jeniskkn j ON j.kode_jenis = kk.kode_jenis
-        JOIN
-            semesteraktif s ON s.kode_semester = kk.kode_semester
-        LEFT JOIN
-            dosens d1 ON d1.id = kk.id_dosen
-        LEFT JOIN
-            dosens d2 ON d2.id = kk.id_dosen2
-        WHERE
-            kk.kode_kelompok = '$id'");
+        $resultmaster = DB::table('kelompokkkn AS kk')
+            ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
+            ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
+            ->select(
+                'd1.id AS id_dosen1',
+                'd1.nama AS nama_dosen1',
+                'd2.id AS id_dosen2',
+                'd2.nama AS nama_dosen2',
+                'kk.*',
+                'j.*',
+                'sa.*'
+            )
+            ->where('kk.kode_kelompok', '=', $id)
+            ->get();
 
         $resultDetail = DB::select(
             "SELECT
@@ -88,7 +80,7 @@ class KelompokKknController extends Controller
     {
         $jenis = JenisKKN::All();
         $dosen = Dosens::All();
-        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis,'dosen' => $dosen]);
+        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis, 'dosen' => $dosen]);
     }
 
     public function PostInsertKelompok(Request $request)

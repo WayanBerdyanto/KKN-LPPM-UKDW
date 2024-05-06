@@ -70,13 +70,12 @@
                         </td>
                         <td class="px-6 py-4">
                             <span class="font-semibold">
-                                @if (!empty($ketua))
-                                    {{ $ketua[0]->nama }}
-                                @else
+                                @forelse ($ketua as $item)
+                                    {{ $item->nama }}
+                                @empty
                                     Ketua kelompok belum ditetapkan
-                                @endif
+                                @endforelse
                             </span>
-
                         </td>
                     </tr>
                     <tr class="border-b">
