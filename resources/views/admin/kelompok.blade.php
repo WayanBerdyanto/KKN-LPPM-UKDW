@@ -32,7 +32,7 @@
             class="w-full bg-white py-3 pl-5 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5 hover:bg-slate-50 cursor-pointer">
             <a href="/admin/kelompok/detail/{{ $item->kode_kelompok }}" class="w-full py-1 px-3">
                 <h1 class="text-dark text-md font-bold">
-                    {{ $item->nama_kelompok }}
+                    {{ $item->nama_kelompok }} ({{ $item->nama_kkn }} )
                 </h1>
                 <h2 class="text-dark mt-2 text-sm font-medium">
                     Dosen : {{ $item->nama_dosen1 }},

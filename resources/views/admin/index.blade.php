@@ -1,7 +1,6 @@
 @section('title', 'Admin | Dashboard')
 @extends('admin.layouts.main')
 @section('content')
-    {{-- <h1 class="font-normal text-xl">Selamat Datang <strong>{{ Auth::guard('admin')->user()->username }}</strong> ....</h1> --}}
     <h2 class="flex items-center text-2xl font-medium text-gray-700 sm:text-2xl text-boxdark">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-grid-1x2 mr-2 font-semibold" viewBox="0 0 16 16">
@@ -12,48 +11,20 @@
     </h2>
     <div class="max-w-7xl mx-auto mt-5 mb-10">
         <div class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5 mt-4">
-            <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKN Reguler</dt>
-                        <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">30</dd>
-                    </dl>
+            @foreach ($result as $item)
+                <div class="bg-white overflow-hidden shadow sm:rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <dl>
+                            <dt class="text-sm leading-5 font-medium text-gray-500 truncate">
+                                {{ $item->nama_kkn }}
+                            </dt>
+                            <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">
+                                {{ $item->jumlah }}
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT ISL HK POLY-U</dt>
-                        <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">5</dd>
-                    </dl>
-                </div>
-            </div>
-            <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INCLUSIVE AND WASTE
-                            MANAGEMENT</dt>
-                        <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">19</dd>
-                    </dl>
-                </div>
-            </div>
-            <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT NUSANTARA</dt>
-                        <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">20</dd>
-                    </dl>
-                </div>
-            </div>
-            <div class="bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    <dl>
-                        <dt class="text-sm leading-5 font-medium text-gray-500 truncate">KKNNT INKLUSIF #3 SLB N 1
-                            YOGYAKARTA</dt>
-                        <dd class="mt-1 text-3xl leading-9 font-semibold text-indigo-600">12</dd>
-                    </dl>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
@@ -73,7 +44,11 @@
                             </span>
                         </div>
                         <div class="flex-1 pl-1">
-                            <div class="text-xl font-medium text-gray-600">900</div>
+                            <div class="text-xl font-medium text-gray-600">
+                                @foreach ($mahasiswa as $item)
+                                    {{ $item->jumlah }}
+                                @endforeach
+                            </div>
                             <div class="text-sm text-gray-400 sm:text-base">
                                 Mahasiswa Aktif
                             </div>
@@ -94,7 +69,11 @@
                             </span>
                         </div>
                         <div class="flex-1 pl-1">
-                            <div class="text-xl font-medium text-gray-600">15</div>
+                            <div class="text-xl font-medium text-gray-600">
+                                @foreach ($dosen as $item)
+                                    {{ $item->jumlah }}
+                                @endforeach
+                            </div>
                             <div class="text-sm text-gray-400 sm:text-base">
                                 Dosen Pembimbing
                             </div>
@@ -117,7 +96,11 @@
                             </span>
                         </div>
                         <div class="flex-1 pl-1">
-                            <div class="text-xl font-medium text-gray-600">60</div>
+                            <div class="text-xl font-medium text-gray-600">
+                                @foreach ($kelompok as $item)
+                                    {{ $item->jumlah_kelompok }}
+                                @endforeach
+                            </div>
                             <div class="text-sm text-gray-400 sm:text-base">
                                 Jumlah Kelompok
                             </div>
