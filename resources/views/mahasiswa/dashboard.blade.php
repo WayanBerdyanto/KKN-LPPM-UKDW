@@ -118,7 +118,7 @@
                             <tr>
                                 <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                                     <h5 class="font-medium text-dark dark:text-secondary">
-                                        {{ $result->firstItem() + $idx }}
+                                        {{ $idx + 1 }}
                                     </h5>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">

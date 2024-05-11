@@ -11,6 +11,7 @@ use App\Http\Controllers\Dosen\SettingDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\SettingController;
+use App\Http\Controllers\Mahasiswa\LogbookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -99,8 +100,8 @@ Route::middleware('cekstatus:admin')->group(function () {
 
 Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa', [MahasiswaController::class, 'dashboard'])->name('mahasiswa');
-    Route::get('/mahasiswa/logbook', [MahasiswaController::class, 'logbook'])->name('mahasiswa');
-    Route::get('/mahasiswa/logbook/tambah', [MahasiswaController::class, 'tambah'])->name('mahasiswa');
+    Route::get('/mahasiswa/logbook', [LogbookController::class, 'logbook'])->name('mahasiswalogbook');
+    Route::post('/mahasiswa/logbook/postLogbook', [LogbookController::class, 'postLogbook'])->name('postlogbook');
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'profile'])->name('profile');
 
     Route::get('/mahasiswa/settings', [SettingController::class, 'settings'])->name('settings');

@@ -19,7 +19,6 @@ class MahasiswaController extends Controller
             ->where('dk.id_mahasiswa', '=', $idMhs)
             ->get();
         $resultKode = $kode_kel[0]->kode_kelompok;
-
         $resultmaster = DB::table('kelompokkkn AS kk')
             ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
             ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
@@ -41,25 +40,16 @@ class MahasiswaController extends Controller
             ->join('mahasiswas as mh', 'mh.id', '=', 'dk.id_mahasiswa')
             ->select('dk.*', 'kk.*', 'mh.*')
             ->where('dk.kode_kelompok', '=', $resultKode)
-            ->paginate(10);
-
+            ->get();
         $collection = collect($resultDashboard);
         $ketua = $collection->where('kode_kelompok', $resultKode)->where('status', 'ketua');
         $ketua = $ketua->all();
         return view('mahasiswa.dashboard', ['key' => 'home', 'result' => $resultDashboard, 'resultmaster' => $resultmaster, 'ketua' => $ketua]);
     }
-    public function logbook()
-    {
-        return view('mahasiswa.logbook', ['key' => 'logbook']);
-    }
-    public function tambah()
-    {
-        return view('mahasiswa.logbook');
-    }
 
     public function profile()
     {
-        return view('mahasiswa.profile', ['key' => '']);
+        return view('mahasiswa.profile', ['key' => 'home']);
     }
 
     public function logout()
