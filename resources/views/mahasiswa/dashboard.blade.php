@@ -10,15 +10,19 @@
             <div class="w-full  lg:w-4/6 py-2">
                 <div class="flex justify-between border-b-2 border-gray-300 py-2">
                     <div>
-                        <h1 class="text-dark text-md font-bold">
-                            {{ $resultmaster[0]->nama_kelompok }}
-                        </h1>
+                        @foreach ($resultmaster as $item)
+                            <h1 class="text-dark text-md font-bold">
+                                {{ $item->nama_kelompok }}
+                            </h1>
+                        @endforeach
                         <h2 class="text-dark mt-1 text-sm font-normal block">
                             <i class="fa-solid fa-location-dot mr-1"></i>
-                            {{ $resultmaster[0]->desa }},
-                            {{ $resultmaster[0]->kecamatan }},
-                            {{ $resultmaster[0]->kabupaten }},
-                            {{ $resultmaster[0]->provinsi }}
+                            @foreach ($resultmaster as $item)
+                                {{ $item->desa }},
+                                {{ $item->kecamatan }},
+                                {{ $item->kabupaten }},
+                                {{ $item->provinsi }}
+                            @endforeach
                         </h2>
                     </div>
                 </div>
@@ -30,8 +34,10 @@
                             </td>
                             <td class="px-6 py-4">
                                 <span class="font-semibold">
-                                    {{ $resultmaster[0]->nama_dosen1 }},
-                                    {{ $resultmaster[0]->nama_dosen2 }}
+                                    @foreach ($resultmaster as $item)
+                                        {{ $item->nama_dosen1 }},
+                                        {{ $item->nama_dosen2 }}
+                                    @endforeach
                                 </span>
                             </td>
                         </tr>
@@ -54,13 +60,13 @@
                                 <span class="font-normal">Kapasitas</span>
                             </td>
                             <td class="px-6 py-4">
-                                @if (!empty($resultmaster[0]->kapasitas))
-                                    <span class="text-dark px-3 font-semibold">
-                                        {{ $resultmaster[0]->kapasitas }}
+                                @forelse ($resultmaster as $item)
+                                    <span class="text-dark font-semibold">
+                                        {{ $item->kapasitas }}
                                     </span>
-                                @else
+                                @empty
                                     Kapasitas Belom di Atur
-                                @endif
+                                @endforelse
                             </td>
                         </tr>
                         <tr class="border-b">
@@ -68,15 +74,11 @@
                                 <span class="font-normal">Status</span>
                             </td>
                             <td class="px-6 py-4">
-                                @if ($resultmaster[0]->status == 'Aktif')
-                                    <span class="text-secondary px-3 rounded-full py-1 bg-primary font-semibold">
-                                        {{ $resultmaster[0]->status }}
-                                    </span>
-                                @else
-                                    <span class="text-secondary px-3 rounded-full py-1 bg-red-600 font-semibold">
-                                        {{ $resultmaster[0]->status }}
-                                    </span>
-                                @endif
+                                <span class="text-dark  rounded-full font-semibold">
+                                    @foreach ($resultmaster as $item)
+                                        {{ $item->status }}
+                                    @endforeach
+                                </span>
                             </td>
                         </tr>
                     </table>

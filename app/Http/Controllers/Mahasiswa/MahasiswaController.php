@@ -12,13 +12,15 @@ class MahasiswaController extends Controller
     {
 
         $idMhs = Auth::guard('mahasiswa')->user()->id;
-
+        $resultKode = "";
         $kode_kel = DB::table('detailkelompokkkn as dk')
             ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
             ->select('dk.kode_kelompok', 'mh.nama')
             ->where('dk.id_mahasiswa', '=', $idMhs)
             ->get();
-        $resultKode = $kode_kel[0]->kode_kelompok;
+        if ($kode_kel->count() > 0) {
+            $resultKode = $kode_kel[0]->kode_kelompok;
+        }
         $resultmaster = DB::table('kelompokkkn AS kk')
             ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
             ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
