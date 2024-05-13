@@ -4,7 +4,7 @@
     <div class="container mx-auto mt-4">
         <div class="relative flex flex-wrap justify-between items-center w-full p-2.5">
             <div class="w-full h-full mb-5 lg:w-2/6">
-                <img src="{{ asset('img/layanan/example1.jpg') }}" alt=""
+                <img src="{{ asset('img/mahasiswa/' .Auth::guard('mahasiswa')->user()->foto ) }}" alt=""
                     class="object-contain w-90 h-90 rounded-full border border-primary m-auto">
             </div>
             <div class="w-full  lg:w-4/6 py-2">
@@ -96,7 +96,7 @@
                         </tr>
                         <tr class="border-b">
                             <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                                <span class="font-normal">Email</span>
+                                <span class="font-normal">No Telp</span>
                             </td>
                             <td class="px-6 py-4">
                                 <span class="font-semibold">

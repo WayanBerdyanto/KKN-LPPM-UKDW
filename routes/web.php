@@ -3,15 +3,17 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DaftarMahasiswaController;
 use App\Http\Controllers\Admin\JenisKKNController;
-use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Admin\KelompokKknController;
+use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\SettingDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
-use App\Http\Controllers\Mahasiswa\MahasiswaController;
-use App\Http\Controllers\Mahasiswa\SettingController;
+use App\Http\Controllers\Mahasiswa\LaporanKegiatanController;
 use App\Http\Controllers\Mahasiswa\LogbookController;
+use App\Http\Controllers\Mahasiswa\MahasiswaController;
+use App\Http\Controllers\Mahasiswa\RencanaKegiatanController;
+use App\Http\Controllers\Mahasiswa\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -108,6 +110,11 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa/updateprofile', [SettingController::class, 'update'])->name('Update Profile');
     Route::get('/mahasiswa/gantipassword', [SettingController::class, 'password'])->name('Update Password');
     Route::post('/mahasiswa/uploadfoto', [SettingController::class, 'upload'])->name('Upload Foto');
+
+    Route::get('/mahasiswa/rencanakegiatan', [RencanaKegiatanController::class, 'rencanakegiatan'])->name('rencanakegiatan');
+    Route::get('/mahasiswa/templaterencana', [RencanaKegiatanController::class, 'templaterencana'])->name('templaterencanakegiatan');
+
+    Route::get('/mahasiswa/laporankegiatan', [LaporanKegiatanController::class, 'laporankegiatan'])->name('laporankegiatan');
 
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 });

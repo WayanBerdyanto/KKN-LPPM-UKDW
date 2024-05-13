@@ -23,7 +23,7 @@
             @if (Auth::guard('mahasiswa')->user()->status == 'ketua')
                 <li class="pt-5" x-data="{ dropdownOpen: false }">
                     <a @click="dropdownOpen = !dropdownOpen"
-                        class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group  cursor-pointer"
+                        class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group  cursor-pointer {{ $key == 'kegiatan' ? 'bg-primary hover:text-secondary' : 'hover:bg-gray-600' }}"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-activity" viewBox="0 0 16 16">
@@ -38,13 +38,13 @@
                         <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                             <li>
                                 <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-secondary font-medium text-bodydark2 duration-300 ease-in-out hover:bg-gray-600 p-2"
-                                    href="#" @click="dropdownOpen = false">
+                                    href="/mahasiswa/rencanakegiatan" @click="dropdownOpen = false">
                                     Rencana Kegiatan
                                 </a>
                             </li>
                             <li>
                                 <a class="group relative flex items-center gap-2.5 rounded-md px-4 text-secondary  font-medium text-bodydark2 duration-300 ease-in-out hover:bg-gray-600 p-2"
-                                    href="#" @click="dropdownOpen = false">
+                                    href="/mahasiswa/laporankegiatan" @click="dropdownOpen = false">
                                     Laporan Kegiatan
                                 </a>
                             </li>

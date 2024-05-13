@@ -37,7 +37,7 @@
         </div>
         <div class="h-10 w-10 rounded-full cursor-pointer bg-secondary border-2 border-blue-400">
             <img class="w-full h-full rounded-full"
-                src="{{ asset('img/mahasiswa/' . ($data->foto ?? 'example1.jpg')) }}" />
+                src="{{ asset('img/mahasiswa/' . Auth::guard('mahasiswa')->user()->foto )}}" />
         </div>
     </button>
 </header>

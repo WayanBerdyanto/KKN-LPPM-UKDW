@@ -11,11 +11,11 @@
                 <div class="flex justify-between border-b-2 border-gray-300 py-2">
                     <div>
                         @foreach ($resultmaster as $item)
-                            <h1 class="text-dark text-md font-bold">
+                            <h1 class="text-dark dark:text-secondary text-md font-bold">
                                 {{ $item->nama_kelompok }}
                             </h1>
                         @endforeach
-                        <h2 class="text-dark mt-1 text-sm font-normal block">
+                        <h2 class="text-dark dark:text-secondary mt-1 text-sm font-normal block">
                             <i class="fa-solid fa-location-dot mr-1"></i>
                             @foreach ($resultmaster as $item)
                                 {{ $item->desa }},
@@ -29,11 +29,11 @@
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right">
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span>Pembimbing</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-semibold">
+                                <span class="font-semibold text-dark dark:text-secondary">
                                     @foreach ($resultmaster as $item)
                                         {{ $item->nama_dosen1 }},
                                         {{ $item->nama_dosen2 }}
@@ -42,11 +42,11 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Ketua Kelompok</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-semibold">
+                                <span class="font-semibold text-dark dark:text-secondary">
                                     @forelse ($ketua as $item)
                                         {{ $item->nama }}
                                     @empty
@@ -56,12 +56,12 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Kapasitas</span>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-dark dark:text-secondary">
                                 @forelse ($resultmaster as $item)
-                                    <span class="text-dark font-semibold">
+                                    <span class="text-dark dark:text-secondary font-semibold">
                                         {{ $item->kapasitas }}
                                     </span>
                                 @empty
@@ -70,11 +70,11 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Status</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="text-dark  rounded-full font-semibold">
+                                <span class="text-dark dark:text-secondary rounded-full font-semibold">
                                     @foreach ($resultmaster as $item)
                                         {{ $item->status }}
                                     @endforeach

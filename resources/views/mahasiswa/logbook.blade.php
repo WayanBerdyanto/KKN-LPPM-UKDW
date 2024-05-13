@@ -47,7 +47,7 @@
                     </p>
                     <hr class="mt-2 border border-secondary">
                     <h5 class="text-1xl font-semibold text-primary my-2.5">Komentar</h5>
-                    <p class="text-base text-dar mt-2 text-gray-500">
+                    <p class="text-base text-dar mt-2 text-gray-500 truncate">
                         @if (empty($data->komentar_dosen))
                             <span class="italic">belum ada komentar</span>
                         @else
