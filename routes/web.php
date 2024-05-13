@@ -104,6 +104,10 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa', [MahasiswaController::class, 'dashboard'])->name('mahasiswa');
     Route::get('/mahasiswa/logbook', [LogbookController::class, 'logbook'])->name('mahasiswalogbook');
     Route::post('/mahasiswa/logbook/postLogbook', [LogbookController::class, 'postLogbook'])->name('postlogbook');
+    Route::get('/mahasiswa/detailLogbook/{id}', [LogbookController::class, 'detailLogbook'])->name('detail Logbook');
+    Route::get('/mahasiswa/updateLogbook/{id}', [LogbookController::class, 'updateLogbook'])->name('update Logbook');
+    Route::post('/mahasiswa/postUpdateLogbook/{id}', [LogbookController::class, 'postUpdateLogbook'])->name('post update Logbook');
+    Route::get('/mahasiswa/deletelogbook/{id}', [LogbookController::class, 'deletelogbook'])->name('delete Logbook');
     Route::get('/mahasiswa/profile', [MahasiswaController::class, 'profile'])->name('profile');
 
     Route::get('/mahasiswa/settings', [SettingController::class, 'settings'])->name('settings');

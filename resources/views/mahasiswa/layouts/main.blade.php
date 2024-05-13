@@ -15,7 +15,7 @@
         rel="stylesheet">
 </head>
 
-<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false,'modalLogbook': false, 'modalkegiatan':false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalLogbook': false, 'modalkegiatan': false, 'modalDetailLogbook': false, 'modalUpdateLogbook': false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark text-secondary bg-dark': darkMode === true }">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })"
         class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-dark">
@@ -33,6 +33,10 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     @include('mahasiswa.layouts.header')
 
     @include('mahasiswa.layouts.sidebar')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @include('sweetalert::alert')
 
     <div class="md:ml-64">
         <div class="p-4 ">

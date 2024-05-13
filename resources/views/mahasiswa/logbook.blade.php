@@ -24,15 +24,18 @@
                             </h5>
                         </div>
                         <div class="flex p-2 text-secondary">
-                            <a href="" class="bg-primary hover:bg-opacity-90 mr-4 px-3 py-2 rounded-lg">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                Detail
-                            </a>
-                            <a href="" class="bg-primary hover:bg-opacity-90 mr-4 px-3 py-2 rounded-lg">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                                Edit
-                            </a>
-                            <a href="" class="bg-red-500 hover:bg-opacity-90 px-3 py-2 rounded-lg">
+
+                            <button @click="modalDetailLogbook = true" data-toggle="modal" data-target="#modalDetailLogbook"
+                                class="bg-primary hover:bg-opacity-90 mr-4 px-3 py-2 rounded-lg detailLogbook"
+                                data-id="{{ $data->id }}">
+                                <i class="fa-regular fa-pen-to-square"></i> Detail</button>
+
+                            <button @click="modalUpdateLogbook = true" data-toggle="modal" data-target="#modalUpdateLogbook"
+                                class="bg-primary hover:bg-opacity-90 mr-4 px-3 py-2 rounded-lg updateLogbook"
+                                data-id="{{ $data->id }}">
+                                <i class="fa-regular fa-pen-to-square"></i> Edit</button>
+                            <a href="#" onclick="confirmDelete('/mahasiswa/deletelogbook/{{ $data->id }}')"
+                                class="bg-red-500 hover:bg-opacity-90 px-3 py-2 rounded-lg" data-confirm-delete="true">
                                 <i class="fa-solid fa-trash"></i>
                                 Hapus
                             </a>
@@ -60,6 +63,7 @@
         </div>
     </div>
 
+    {{-- Modal Insert Logbook --}}
     <div x-show="modalLogbook" x-transition
         class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
         <div id="modalLogbook" @click.outside="modalLogbook = false"
@@ -110,4 +114,230 @@
             </form>
         </div>
     </div>
+    {{-- End Modal Insert Logbook --}}
+
+    {{-- Modal Detail Logbook --}}
+    <div x-show="modalDetailLogbook" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="modalDetailLogbook" @click.outside="modalDetailLogbook = false"
+            class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Logbook
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+
+            <form action="/mahasiswa/logbook/postLogbook" method="POST">
+                @csrf
+                <input type="text" name="idMhs" value="{{ Auth::guard('mahasiswa')->user()->id }}" hidden>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Judul
+                    </label>
+                    <span id="judul-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Tanggal
+                    </label>
+                    <span id="tanggal-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Deskripsi
+                    </label>
+                    <span id="deskripsi-span" class="mb-3 block text-sm font-medium text-black dark:text-white"></span>
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Komentar
+                    </label>
+                    <span id="komentar-span"
+                        class="mb-3 block text-sm font-medium text-black dark:text-white italic"></span>
+                </div>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-1/2 px-3">
+                        <button @click="modalDetailLogbook = false" type="reset"
+                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="w-1/2 px-3">
+                        <button
+                            class="block w-full rounded-md border border-primary bg-primary hover:opacity-90 p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- End Modal Detail Logbook --}}
+
+    {{-- Modal Update Logbook --}}
+    <div x-show="modalUpdateLogbook" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="modalUpdateLogbook" @click.outside="modalUpdateLogbook = false"
+            class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Logbook
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+
+            <form action="/mahasiswa/logbook/postLogbook" method="POST">
+                @csrf
+                <input type="text" name="idMhs" value="{{ Auth::guard('mahasiswa')->user()->id }}" hidden>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Komentar
+                    </label>
+                    <span id="komentar-update"
+                        class="mb-3 block text-sm font-medium text-black dark:text-white italic"></span>
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Judul
+                    </label>
+                    <input name="judul" type="text" id="judul_update"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Tanggal
+                    </label>
+                    <input name="tanggal" type="date" id="tanggal_update"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                </div>
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Deskripsi
+                    </label>
+                    <textarea name="deskripsi" cols="30" rows="10" id="deskripsi_update"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"></textarea>
+                </div>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-1/2 px-3">
+                        <button @click="modalUpdateLogbook = false" type="reset"
+                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="w-1/2 px-3">
+                        <button
+                            class="block w-full rounded-md border border-primary bg-primary hover:opacity-90 p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- End Modal Update Logbook --}}
+
+    {{--  JQuery Detail Logbook --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var id_logbook;
+
+            $('.detailLogbook').click(function() {
+                id_logbook = $(this).data('id');
+                console.log(id_logbook);
+                $.ajax({
+                    url: "/mahasiswa/detailLogbook/" + id_logbook,
+                    method: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.detail != null) {
+                            console.log("Response JSON :", response)
+                            var judul = response.detail.judul;
+                            var tanggal = response.detail.tanggal;
+                            var deskripsi = response.detail.deskripsi;
+                            var komentar = response.detail.komentar;
+                            $('#judul-span').text(judul);
+                            $('#tanggal-span').text(tanggal);
+                            $('#deskripsi-span').text(deskripsi);
+                            if (komentar != null) {
+                                $('#komentar-span').text(komentar);
+                            } else {
+                                $('#komentar-span').text("Belum ada komentar");
+                            }
+                        } else {
+                            console.log("Response bernilai null")
+                        }
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{-- END JQuery Detail Logbook --}}
+
+    {{--  JQuery Update Logbook --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var id_logbook;
+
+            $('.updateLogbook').click(function() {
+                id_logbook = $(this).data('id');
+                console.log(id_logbook);
+                $('form').attr('action', '/mahasiswa/postUpdateLogbook/' + id_logbook);
+                $.ajax({
+                    url: "/mahasiswa/updateLogbook/" + id_logbook,
+                    method: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response)
+                        var judul = response.detail.judul;
+                        var tanggal = response.detail.tanggal;
+                        var deskripsi = response.detail.deskripsi;
+                        var komentar = response.detail.komentar;
+                        $('#judul_update').val(judul);
+                        $('#tanggal_update').val(tanggal);
+                        $('#deskripsi_update').val(deskripsi);
+                        if (komentar != null) {
+                            $('#komentar-update').text(komentar);
+                        } else {
+                            $('#komentar-update').text("Belum ada komentar");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{--  END JQuery Update Logbook --}}
+
+    {{-- JQuery Delete Logbook --}}
+    <script>
+        function confirmDelete(url) {
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan data yang sudah dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the delete URL
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
+
+    {{--  END JQuery Delete Logbook --}}
+
+
+
 @endsection
