@@ -13,13 +13,13 @@ class DaftarMahasiswaController extends Controller
         $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
         return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
     }
-    
+
     // Start Search Mahasiswa
     public function search(Request $request)
     {
         $cari = $request->search;
-        $result = Mahasiswas::where('nama', 'like', '%' . $cari . '%')->paginate(15);
-        $result = Mahasiswas::where('username', 'like', '%' . $cari . '%')->paginate(15);
+        // $result = Mahasiswas::where('nama', 'like', '%' . $cari . '%')->paginate(15);
+        $result = Mahasiswas::where('username', 'like', '%' . $cari . '%')->orWhere('nama', 'like', '%' . $cari . '%')->paginate(15);
         $result->appends($request->all());
         return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
     }
