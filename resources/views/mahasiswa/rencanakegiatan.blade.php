@@ -23,9 +23,9 @@
     </div>
 
     <div x-show="modalkegiatan" x-transition
-        class="fixed left-0 top-0 flex h-80 min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
         <div id="modalkegiatan" @click.outside="modalkegiatan = false"
-            class="w-full max-w-[570px] rounded-[20px] bg-white dark:bg-boxdark px-8 py-5  dark:bg-dark-2 md:px-[70px] md:py-[60px] border border-secondary">
+            class="w-full max-w-[570px] h-full min-h-full overflow-y-auto rounded-[20px] bg-white dark:bg-boxdark px-8 py-5  dark:bg-dark-2 md:px-[70px] md:py-[60px] border border-secondary">
             <h3 class="pb-[18px] text-xl font-semibold text-dark dark:text-secondary text-center sm:text-2xl">
                 Rencana Kegiatan
             </h3>

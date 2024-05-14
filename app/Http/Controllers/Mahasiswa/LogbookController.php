@@ -13,7 +13,8 @@ class LogbookController extends Controller
 
     public function logbook()
     {
-        $result = LogbookMahasiswa::orderBy('id', 'desc')->get();
+        $id =  Auth::guard('mahasiswa')->user()->id;
+        $result = LogbookMahasiswa::orderBy('id', 'desc')->where('id_mahasiswa', $id)->get();
         return view('mahasiswa.logbook', ['key' => 'logbook', 'result' => $result]);
     }
 
