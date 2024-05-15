@@ -26,6 +26,21 @@ class RencanaKegiatanController extends Controller
 
     public function postrencanakegiatan(Request $request)
     {
+        $validate = $request->validate([
+            'kode_kelompok' => 'required',
+            'id_mahasiswa' => 'required',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'tanggal' => 'required|date',
+            'foto' => 'required|file|mimes:docx|max:2048',
+        ]);
+
+        try {
+            if (!empty($validate)) {
+                
+            }
+        } catch (Exception $e) {
+        }
 
     }
 

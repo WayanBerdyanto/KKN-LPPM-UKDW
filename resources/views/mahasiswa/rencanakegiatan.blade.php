@@ -34,7 +34,7 @@
             <form action="/mahasiswa/rencanakegiatan/postrencanakegiatan" method="POST">
                 @csrf
                 <input type="text" name="kode_kelompok" value="{{ $resultKode }}" hidden>
-                <input type="text" name="idMhs" value="{{ Auth::guard('mahasiswa')->user()->id }}" hidden>
+                <input type="text" name="id_mahasiswa" value="{{ Auth::guard('mahasiswa')->user()->id }}" hidden>
                 <div class="mb-4.5">
                     <label class="mb-3 block text-sm font-medium text-dark dark:text-secondary">
                         Judul
@@ -46,7 +46,7 @@
                     <label class="mb-3 block text-sm font-medium text-dark dark:text-secondary">
                         Deskripsi
                     </label>
-                    <textarea name="deskripsi" cols="30" rows="10"
+                    <textarea name="deskripsi" cols="10" rows="5"
                         class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-dark dark:text-secondary outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"></textarea>
                 </div>
                 <div class="mb-4.5">
