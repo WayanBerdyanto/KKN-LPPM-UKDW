@@ -48,7 +48,7 @@ class KelompokKknController extends Controller
             ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
             ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
             ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
-            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')    
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
             ->select(
                 'd1.id AS id_dosen1',
                 'd1.nama AS nama_dosen1',
@@ -116,6 +116,40 @@ class KelompokKknController extends Controller
             return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
         }
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
+    }
+
+    public function postUpdateKelompok($id, Request $request)
+    {
+        $validate = $request->validate([
+            'kode_jenis' => 'required',
+            'id_dosen' => 'required',
+            'id_dosen2' => 'different:id_dosen',
+            'nama_kelompok' => 'required',
+            'desa' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
+            'kapasitas' => 'required',
+        ]);
+        if (!empty($validate)) {
+            KelompokKKN::where('kode_kelompok', $id)->update([
+                'kode_jenis' => $request->kode_jenis,
+                'id_dosen' => $request->id_dosen,
+                'id_dosen2' => $request->id_dosen2,
+                'nama_kelompok' => $request->nama_kelompok,
+                'desa' => $request->desa,
+                'kecamatan' => $request->kecamatan,
+                'kabupaten' => $request->kabupaten,
+                'provinsi' => $request->provinsi,
+                'kapasitas' => $request->kapasitas,
+            ]);
+            return redirect('/admin/kelompok/detail/'.$id)->with('success', 'Data Kelompok Berhasil di Update');
+        }
+        if ($validate->fails()) {
+            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan')->withInput();
+        } else {
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
     }
 
     public function DataInsertKelompok(Request $request, $id)
@@ -205,41 +239,4 @@ class KelompokKknController extends Controller
 
         return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
     }
-
-    public function postUpdateKelompok($id, Request $request)
-    {
-        $validate = $request->validate([
-            'kode_jenis' => 'required',
-            'kode_semester' => 'required',
-            'id_dosen' => 'required',
-            'id_dosen2' => 'required',
-            'nama_kelompok' => 'required',
-            'desa' => 'required',
-            'kecamatan' => 'required',
-            'kabupaten' => 'required',
-            'provinsi' => 'required',
-            'kapasitas' => 'required',
-        ]);
-        if (!empty($validate)) {
-            KelompokKKN::where('kode_kelompok', $id)->update([
-                'kode_jenis' => $request->kode_jenis,
-                'kode_semester' => $request->kode_semester,
-                'id_dosen' => $request->id_dosen,
-                'id_dosen2' => $request->id_dosen2,
-                'nama_kelompok' => $request->nama_kelompok,
-                'desa' => $request->desa,
-                'kecamatan' => $request->kecamatan,
-                'kabupaten' => $request->kabupaten,
-                'provinsi' => $request->provinsi,
-                'kapasitas' => $request->kapasitas,
-            ]);
-            return redirect('admin/kelompok')->with('success', 'Data Kelompok Berhasil di Update');
-        }
-        if ($validate->fails()) {
-            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan')->withInput();
-        } else {
-            return redirect()->back()->withErrors($validate)->withInput();
-        }
-    }
-
 }

@@ -84,6 +84,7 @@ Route::middleware('cekstatus:admin')->group(function () {
 
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
+    Route::get('/admin/jeniskkn/searchsemester', [JenisKKNController::class, 'jenisKKN'])->name('filtersemester');
     Route::post('/admin/postjenis', [JenisKKNController::class, 'postJenisKKN'])->name('Insert Jenis');
     Route::get('/admin/detailKKN/{id}', [JenisKKNController::class, 'detailKKN'])->name('Detail KKN');
     Route::get('/admin/updatejeniskkn/{id}', [JenisKKNController::class, 'UpdateJenis'])->name('Updatejeniskkn');
