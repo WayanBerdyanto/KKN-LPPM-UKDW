@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-</head>
+</head> 
 
 <body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalLogbook': false, 'modalkegiatan': false, 'modalDetailLogbook': false, 'modalUpdateLogbook': false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark text-secondary bg-dark': darkMode === true }">

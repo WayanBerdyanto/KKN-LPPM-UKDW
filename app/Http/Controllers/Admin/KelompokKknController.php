@@ -17,7 +17,7 @@ class KelompokKknController extends Controller
     public function kelompok(Request $request)
     {
         $value = $request->input('name');
-
+        $semester = SemesterAktif::orderBy('tahun_ajaran', 'desc')->get();
         $result = DB::table('kelompokkkn AS kk')
             ->leftJoin('detailkelompokkkn AS dk', 'kk.kode_kelompok', '=', 'dk.kode_kelompok')
             ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
@@ -35,10 +35,11 @@ class KelompokKknController extends Controller
                 DB::raw('COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar')
             )
             ->where('kk.nama_kelompok', 'LIKE', '%' . $value . '%')
+            ->orWhere('sa.tahun_ajaran', 'LIKE', '%' . $value . '%')
+            ->orderBy('sa.status', 'asc')
             ->groupBy('kk.kode_kelompok', 'd1.id', 'd2.id', 'j.kode_jenis')
             ->get();
-
-        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result]);
+        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result, 'semester'=>$semester])->render();
     }
 
     public function detailKelompok($id)

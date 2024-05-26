@@ -16,7 +16,7 @@
                 </div>
                 <input type="search" id="default-search" name="name"
                     class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray duration-500 rounded-lg focus:outline-none focus:ring  focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-secondary dark:focus:ring-primary dark:focus:border-primary"
-                    placeholder="Search.." />
+                    placeholder="Cari Nama Kelompok" />
                 <button type="submit"
                     class="text-secondary absolute end-2.5 bottom-2.5 bg-primary hover:bg-opacity-90 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-opacity-90">Search</button>
             </div>
@@ -27,8 +27,21 @@
             Add
         </a>
     </div>
+    <div>
+        <form id="filterForm" action="{{ route('Filter Kelompok') }}" method="GET">
+            <label for="semesterFilter" class="block mb-2 text-lg font-medium text-gray-900">Filter Semester</label>
+            <select id="semesterFilter" name="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                onchange="document.getElementById('filterForm').submit()">
+                <option value="">Pilih Semester</option>
+                @foreach ($semester as $data)
+                    <option value="{{ $data->tahun_ajaran }}">{{ $data->semester }} - {{ $data->tahun_ajaran }}</option>
+                @endforeach
+            </select>
+        </form>
+    </div>
     @foreach ($result as $item)
-        <div
+        <div id="resultContainer"
             class="w-full bg-white py-3 pl-5 flex justify-between items-center hover:bg-gray-100 duration-500 mt-4 shadow-lg rounded-3xl mb-5 hover:bg-slate-50 cursor-pointer">
             <a href="/admin/kelompok/detail/{{ $item->kode_kelompok }}" class="w-full py-1 px-3">
                 <h1 class="text-dark text-md font-bold">
@@ -74,11 +87,6 @@
                     {{ $item->id_mahasiswa_terdaftar }}- {{ $item->kapasitas }} Peserta
                 </span>
             </a>
-            <div class="px-3 grid lg:gap-6 grid-cols-0 gap-y-2  lg:grid-cols-2 text-2xl">
-                <a href="/admin/kelompok/formedit/{{ $item->kode_kelompok }}" class="text-primary hover:opacity-90">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-            </div>
         </div>
     @endforeach
 

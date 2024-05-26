@@ -62,6 +62,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::post('/admin/kelompok/postinsertkelompok', [KelompokKknController::class, 'PostInsertKelompok'])->name('Post Insert');
     Route::post('/admin/kelompok/postupdatekelompok/{id}', [KelompokKknController::class, 'PostUpdateKelompok'])->name('Post Update Kelompok');
     Route::get('/admin/kelompok/search', [KelompokKknController::class, 'kelompok'])->name('Search Kelompok');
+    Route::get('/admin/kelompok/filter', [KelompokKknController::class, 'kelompok'])->name('Filter Kelompok');
     Route::get('/admin/kelompok/{id}/insertdatakelompok', [KelompokKknController::class, 'DataInsertKelompok'])->name('Data Insert Mahasiswa');
     Route::post('/admin/kelompok/{id}/postdatakelompok', [KelompokKknController::class, 'PostDataKelompok'])->name('Data Insert Mahasiswa');
     Route::get('/admin/kelompok/deletemahasiswa/{id}', [KelompokKknController::class, 'DeleteDataKelompok'])->name('Delete Data Kelompok');
@@ -116,7 +117,7 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::post('/mahasiswa/uploadfoto', [SettingController::class, 'upload'])->name('Upload Foto');
 
     Route::get('/mahasiswa/rencanakegiatan', [RencanaKegiatanController::class, 'rencanakegiatan'])->name('rencanakegiatan');
-    Route::post('/mahasiswa/postrencanakegiatan', [RencanaKegiatanController::class, 'postrencanakegiatan'])->name('postrencanakegiatan');
+    Route::post('/mahasiswa/rencanakegiatan/postrencanakegiatan', [RencanaKegiatanController::class, 'postrencanakegiatan'])->name('postrencanakegiatan');
     Route::get('/mahasiswa/templaterencana', [RencanaKegiatanController::class, 'templaterencana'])->name('templaterencanakegiatan');
 
     Route::get('/mahasiswa/laporankegiatan', [LaporanKegiatanController::class, 'laporankegiatan'])->name('laporankegiatan');

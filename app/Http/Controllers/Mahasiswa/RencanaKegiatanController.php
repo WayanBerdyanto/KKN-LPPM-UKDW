@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\RencanaKegiatan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -32,14 +34,27 @@ class RencanaKegiatanController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'tanggal' => 'required|date',
-            'foto' => 'required|file|mimes:docx|max:2048',
+            'file' => 'required',
         ]);
-
+        // if (empty($validate)) {
+        //     return redirect()->back()->with('toast_error', 'Data Gagal Di inputkan');
+        // }
+        // dd($request->file);
+        // dd($file->getClientOriginalName());
         try {
-            if (!empty($validate)) {
-                
-            }
+            RencanaKegiatan::create([
+                'kode_kelompok' => $request->kode_kelompok,
+                'id_mahasiswa' => $request->id_mahasiswa,
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'tanggal' => $request->tanggal,
+                'file' => $request->file,
+                'komentar_dosen' => ''
+            ]);
+            return redirect()->back()->with('toast_success', 'Data Berhasil Di inputkan');
         } catch (Exception $e) {
+            return response()->view('mahasiswa.rencanakegiatan', ['error' => $e->getMessage()], 403);
+            throw $e;
         }
 
     }
