@@ -16,7 +16,11 @@ class JenisKKNController extends Controller
         $result = DB::table('jeniskkn')
             ->join('semesteraktif', 'jeniskkn.kode_semester', '=', 'semesteraktif.kode_semester')
             ->select('jeniskkn.*', 'semesteraktif.semester', 'semesteraktif.tahun_ajaran', 'semesteraktif.status')->orderBy('semesteraktif.status', 'asc')
-            ->where('semesteraktif.status', '=' , $value)
+            ->when($value, function ($query, $value) {
+                if ($value !== "") {
+                    return $query->where('semesteraktif.status', $value);
+                }
+            })
             ->paginate(10);
         $kode_semester = SemesterAktif::where('status', 'Aktif')
             ->orderBy('kode_semester', 'asc')->get();
