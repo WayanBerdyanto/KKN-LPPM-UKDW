@@ -39,7 +39,7 @@ class KelompokKknController extends Controller
             ->orderBy('sa.status', 'asc')
             ->groupBy('kk.kode_kelompok', 'd1.id', 'd2.id', 'j.kode_jenis')
             ->get();
-        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result, 'semester'=>$semester])->render();
+        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result, 'semester' => $semester])->render();
     }
 
     public function detailKelompok($id)
@@ -48,7 +48,7 @@ class KelompokKknController extends Controller
             ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
             ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
             ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
-            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')    
             ->select(
                 'd1.id AS id_dosen1',
                 'd1.nama AS nama_dosen1',
@@ -61,16 +61,13 @@ class KelompokKknController extends Controller
             ->where('kk.kode_kelompok', '=', $id)
             ->get();
 
-        $resultDetail = DB::select(
-            "SELECT
-                dk.*,
-                kk.*,
-                mh.*
-                FROM detailkelompokkkn dk
-                JOIN kelompokkkn kk ON kk.kode_kelompok = dk.kode_kelompok
-                JOIN mahasiswas mh ON mh.id = dk.id_mahasiswa
-                WHERE dk.kode_kelompok = '$id'"
-        );
+        $resultDetail = DB::table('detailkelompokkkn AS dk')
+            ->join('kelompokkkn as kk', 'kk.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->join('mahasiswas as mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.*', 'kk.*', 'mh.*')
+            ->where('dk.kode_kelompok', '=', $id)
+            ->orderBy('mh.status', 'asc')
+            ->get();
         $collection = collect($resultDetail);
         $ketua = $collection->where('kode_kelompok', $id)->where('status', 'ketua');
         $ketua = $ketua->all();
@@ -173,10 +170,22 @@ class KelompokKknController extends Controller
     }
     public function PilihKetua($id)
     {
-        Mahasiswas::where('id', $id)->update([
-            'status' => 'ketua',
-        ]);
-        return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
+        $ketua = DB::table('detailkelompokkkn AS dk')
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->join('kelompokkkn AS K', 'k.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->select('dk.id_mahasiswa', 'dk.kode_kelompok', 'mh.nama', 'mh.status')
+            ->where('dk.kode_kelompok', '=', 'KEL08')
+            ->get();
+        $takeketua = $ketua->contains('status', 'ketua');
+        if ($takeketua) {
+            return redirect()->back()->with('toast_info', 'Ketua Sudah Dipilih');
+        } else {
+            Mahasiswas::where('id', $id)->update([
+                'status' => 'ketua',
+            ]);
+            return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
+        }
+
     }
 
     public function PilihAnggota($id)

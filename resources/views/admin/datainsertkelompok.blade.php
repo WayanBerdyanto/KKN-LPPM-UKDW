@@ -5,7 +5,8 @@
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li>
                 <div class="flex items-center">
-                    <a href="/admin/kelompok/detail/{{ $id }}" class="ms-1 text-sm font-medium text-gray-700 hover:text-primary">
+                    <a href="/admin/kelompok/detail/{{ $id }}"
+                        class="ms-1 text-sm font-medium text-gray-700 hover:text-primary">
                         <i class="fa-solid fa-users-line mr-1"></i>
                         detail
                     </a>
@@ -41,11 +42,34 @@
             @endforeach
         </div>
 
-        <div class="w-1/4 block lg:flex lg:justify-between lg:items-center">
-            <div
-                class="block w-full p-4 ps-4 text-sm text-graydark border border-slate-400 duration-500 rounded-lg focus-within:outline-none focus-within:ring  focus-within:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-secondary dark:focus:ring-primary dark:focus:border-primary">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="myInput" class="ml-3 outline-none" placeholder="Search.." />
+        <div class="flex justify-between items-center">
+            <div class="w-1/4 block lg:flex lg:justify-between lg:items-center">
+                <div
+                    class="block w-full p-4 ps-4 text-sm text-graydark border border-slate-400 duration-500 rounded-lg focus-within:outline-none focus-within:ring  focus-within:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-secondary dark:focus:ring-primary dark:focus:border-primary">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="myInput" class="ml-3 outline-none" placeholder="Search.." />
+                </div>
+            </div>
+            <div x-data="{ isLoading: false }">
+                <a href="{{ route('adminkelompok', ['id' => $id]) }}" @click="isLoading = true"
+                    class="py-3 px-5 text-secondary bg-primary rounded-lg">
+                    <template x-if="isLoading">
+                        <svg class="inline-block animate-spin" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                            <path
+                                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                        </svg>&nbsp;
+                    </template>
+                    <template x-if="!isLoading">
+                        <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>&nbsp;
+                    </template>
+                    Selesai
+                </a>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

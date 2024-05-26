@@ -56,7 +56,7 @@ Route::middleware('cekstatus:admin')->group(function () {
 
     // START KELOMPOK PAGE
     Route::get('/admin/kelompok', [KelompokKknController::class, 'kelompok'])->name('admin');
-    Route::get('/admin/kelompok/detail/{id}', [KelompokKknController::class, 'detailKelompok'])->name('admin');
+    Route::get('/admin/kelompok/detail/{id}', [KelompokKknController::class, 'detailKelompok'])->name('adminkelompok');
     Route::get('/admin/kelompok/forminsert', [KelompokKknController::class, 'FormInsertKelompok'])->name('Form Insert');
     Route::get('/admin/kelompok/formedit/{kode_kelompok}', [KelompokKknController::class, 'FormEditKelompok'])->name('Form Edit');
     Route::post('/admin/kelompok/postinsertkelompok', [KelompokKknController::class, 'PostInsertKelompok'])->name('Post Insert');

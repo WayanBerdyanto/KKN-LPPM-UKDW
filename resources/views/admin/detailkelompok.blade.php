@@ -151,7 +151,7 @@
                                 {{ $item->username }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $item->nama }}
+                                <span class="font-semibold">{{ $item->nama }}</span>&nbsp; <span class="font-normal">({{ $item->status }})</span>
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->prodi }}
