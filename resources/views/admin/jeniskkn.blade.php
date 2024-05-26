@@ -21,10 +21,10 @@
                     </div>
                     <select name="value"
                         class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray duration-500 rounded-lg focus:outline-none focus:ring  focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-secondary dark:focus:ring-primary dark:focus:border-primary"  onchange="document.getElementById('filtersemester').submit()">
-                        <option selected>Pilih Status Semester</option>
-                        <option value="">Tampilkan Semua</option>
-                        <option value="Aktif">Aktif</option>
-                        <option value="Tidak Aktif">Tidak Aktif</option>
+                        <option >Pilih Status Semester</option>
+                        <option  {{ $value == ''?'selected':'' }} value="">Tampilkan Semua</option>
+                        <option  {{ $value == 'Aktif'?'selected':'' }} value="Aktif">Aktif</option>
+                        <option  {{ $value == 'Tidak Aktif'?'selected':'' }} value="Tidak Aktif">Tidak Aktif</option>
                     </select>
                 </div>
             </form>

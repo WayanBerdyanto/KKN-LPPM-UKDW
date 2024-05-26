@@ -24,7 +24,7 @@ class JenisKKNController extends Controller
             ->paginate(10);
         $kode_semester = SemesterAktif::where('status', 'Aktif')
             ->orderBy('kode_semester', 'asc')->get();
-        return view('admin.jeniskkn', ['key' => 'jeniskkn', 'result' => $result, 'kode_semester' => $kode_semester]);
+        return view('admin.jeniskkn', ['key' => 'jeniskkn', 'result' => $result, 'kode_semester' => $kode_semester ,'value'=> $value]);
     }
 
     public function detailKKN($id)
