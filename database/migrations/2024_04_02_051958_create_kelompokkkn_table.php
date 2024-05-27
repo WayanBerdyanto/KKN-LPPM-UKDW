@@ -17,21 +17,18 @@ return new class extends Migration
             $table->char('kode_jenis', 5);
             $table->foreign('kode_jenis')->references('kode_jenis')->on('jeniskkn');
 
-            $table->char('kode_semester', 5);
-            $table->foreign('kode_semester')->references('kode_semester')->on('semesteraktif');
-
             $table->unsignedBigInteger('id_dosen');
             $table->foreign('id_dosen')->references('id')->on('dosens');
 
             $table->unsignedBigInteger('id_dosen2')->nullable();
             $table->foreign('id_dosen2')->references('id')->on('dosens');
 
-            $table->string('nama_kelompok', 50);
-            $table->string('desa', 50);
-            $table->string('kecamatan', 50);
-            $table->string('kabupaten', 50);
-            $table->string('provinsi', 50);
-            $table->integer('kapasitas');
+            $table->string('nama_kelompok', 50)->nullable();
+            $table->string('desa', 50)->nullable();
+            $table->string('kecamatan', 50)->nullable();
+            $table->string('kabupaten', 50)->nullable();
+            $table->string('provinsi', 50)->nullable();
+            $table->integer('kapasitas')->nullable();
             $table->timestamps();
         });
     }

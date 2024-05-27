@@ -14,7 +14,6 @@ class KelompokKKN extends Model
     protected $fillable = [
         'kode_kelompok',
         'kode_jenis',
-        'kode_semester',
         'id_dosen',
         'id_dosen2',
         'nama_kelompok',

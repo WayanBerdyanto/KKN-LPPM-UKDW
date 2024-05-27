@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DetailKelompokKKN;
 use App\Models\Dosens;
-use App\Models\JenisKKN;
 use App\Models\KelompokKKN;
+use App\Models\LogbookMahasiswa;
 use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
@@ -17,83 +17,72 @@ class KelompokKknController extends Controller
     public function kelompok(Request $request)
     {
         $value = $request->input('name');
-
-        $result = DB::select('
-        SELECT
-            d1.id AS id_dosen1,
-            d1.nama AS nama_dosen1,
-            d2.id AS id_dosen2,
-            d2.nama AS nama_dosen2,
-            kk.*,
-            j.*,
-            s.*,
-            COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar
-        FROM
-            kelompokkkn kk
-        LEFT JOIN
-            detailkelompokkkn dk ON kk.kode_kelompok = dk.kode_kelompok
-        JOIN
-            jeniskkn j ON j.kode_jenis = kk.kode_jenis
-        JOIN
-            semesteraktif s ON s.kode_semester = kk.kode_semester
-        LEFT JOIN
-            dosens d1 ON d1.id = kk.id_dosen
-        LEFT JOIN
-            dosens d2 ON d2.id = kk.id_dosen2
-        WHERE
-            kk.nama_kelompok LIKE :nama_kelompok
-        GROUP BY
-            kk.kode_kelompok, d1.id, d2.id, j.kode_jenis, s.kode_semester
-        ', ['nama_kelompok' => '%' . $value . '%']);
-        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result]);
+        $semester = SemesterAktif::orderBy('tahun_ajaran', 'desc')->get();
+        $result = DB::table('kelompokkkn AS kk')
+            ->leftJoin('detailkelompokkkn AS dk', 'kk.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
+            ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
+            ->select(
+                'd1.id AS id_dosen1',
+                'd1.nama AS nama_dosen1',
+                'd2.id AS id_dosen2',
+                'd2.nama AS nama_dosen2',
+                'kk.*',
+                'j.*',
+                'sa.*',
+                DB::raw('COUNT(dk.id_mahasiswa) AS id_mahasiswa_terdaftar')
+            )
+            ->where('kk.nama_kelompok', 'LIKE', '%' . $value . '%')
+            ->orWhere('sa.tahun_ajaran', 'LIKE', '%' . $value . '%')
+            ->orderBy('sa.status', 'asc')
+            ->groupBy('kk.kode_kelompok', 'd1.id', 'd2.id', 'j.kode_jenis')
+            ->get();
+        return view('admin.kelompok', ['key' => 'kelompok', 'result' => $result, 'semester' => $semester])->render();
     }
 
     public function detailKelompok($id)
     {
-        $resultmaster = DB::select("
-        SELECT
-            d1.id AS id_dosen1,
-            d1.nama AS nama_dosen1,
-            d2.id AS id_dosen2,
-            d2.nama AS nama_dosen2,
-            kk.*,
-            j.*,
-            s.*
-        FROM
-            kelompokkkn kk
-        JOIN
-            jeniskkn j ON j.kode_jenis = kk.kode_jenis
-        JOIN
-            semesteraktif s ON s.kode_semester = kk.kode_semester
-        LEFT JOIN
-            dosens d1 ON d1.id = kk.id_dosen
-        LEFT JOIN
-            dosens d2 ON d2.id = kk.id_dosen2
-        WHERE
-            kk.kode_kelompok = '$id'");
+        $resultmaster = DB::table('kelompokkkn AS kk')
+            ->join('jeniskkn AS j', 'j.kode_jenis', '=', 'kk.kode_jenis')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'j.kode_semester')
+            ->leftJoin('dosens AS d1', 'd1.id', '=', 'kk.id_dosen')
+            ->leftJoin('dosens AS d2', 'd2.id', '=', 'kk.id_dosen2')
+            ->select(
+                'd1.id AS id_dosen1',
+                'd1.nama AS nama_dosen1',
+                'd2.id AS id_dosen2',
+                'd2.nama AS nama_dosen2',
+                'kk.*',
+                'j.*',
+                'sa.*'
+            )
+            ->where('kk.kode_kelompok', '=', $id)
+            ->get();
 
-        $resultDetail = DB::select(
-            "SELECT
-                dk.*,
-                kk.*,
-                mh.*
-                FROM detailkelompokkkn dk
-                JOIN kelompokkkn kk ON kk.kode_kelompok = dk.kode_kelompok
-                JOIN mahasiswas mh ON mh.id = dk.id_mahasiswa
-                WHERE dk.kode_kelompok = '$id'"
-        );
+        $resultDetail = DB::table('detailkelompokkkn AS dk')
+            ->join('kelompokkkn as kk', 'kk.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->join('mahasiswas as mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.*', 'kk.*', 'mh.*')
+            ->where('dk.kode_kelompok', '=', $id)
+            ->orderBy('mh.status', 'asc')
+            ->get();
         $collection = collect($resultDetail);
-        $ketua = $collection->where('kode_kelompok', $id)->where('status', 'anggota');
+        $ketua = $collection->where('kode_kelompok', $id)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua'=>$ketua]);
+        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua]);
     }
 
     public function FormInsertKelompok()
     {
-        $jenis = JenisKKN::All();
-        $semester = SemesterAktif::where('status', 'Aktif')->get();
+        $jenis = DB::table('jeniskkn AS jk')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'jk.kode_semester')
+            ->select('jk.kode_jenis', 'jk.nama_kkn')
+            ->where('sa.status', '=', 'Aktif')
+            ->get();
         $dosen = Dosens::All();
-        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
+        return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis, 'dosen' => $dosen]);
     }
 
     public function PostInsertKelompok(Request $request)
@@ -101,7 +90,6 @@ class KelompokKknController extends Controller
         $validate = $request->validate([
             'kode_kelompok' => 'required | unique:Kelompokkkn',
             'kode_jenis' => 'required',
-            'kode_semester' => 'required',
             'id_dosen' => 'required',
             'id_dosen2' => 'different:id_dosen',
             'nama_kelompok' => 'required',
@@ -117,7 +105,6 @@ class KelompokKknController extends Controller
             $kelompok = KelompokKKN::create([
                 'kode_kelompok' => $request->kode_kelompok,
                 'kode_jenis' => $request->kode_jenis,
-                'kode_semester' => $request->kode_semester,
                 'id_dosen' => $request->id_dosen,
                 'id_dosen2' => $request->id_dosen2,
                 'nama_kelompok' => $request->nama_kelompok,
@@ -133,6 +120,54 @@ class KelompokKknController extends Controller
             return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
         }
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
+    }
+
+    public function formEditKelompok($kode_kelompok)
+    {
+        $data = KelompokKKN::where('kode_kelompok', $kode_kelompok)->first();
+        $jenis = DB::table('jeniskkn AS jk')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'jk.kode_semester')
+            ->select('jk.kode_jenis', 'jk.nama_kkn')
+            ->where('sa.status', '=', 'Aktif')
+            ->get();
+        $semester = SemesterAktif::where('status', 'Aktif')->get();
+        $dosen = Dosens::All();
+
+        return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
+    }
+
+    public function postUpdateKelompok($id, Request $request)
+    {
+        $validate = $request->validate([
+            'kode_jenis' => 'required',
+            'id_dosen' => 'required',
+            'id_dosen2' => 'different:id_dosen',
+            'nama_kelompok' => 'required',
+            'desa' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
+            'kapasitas' => 'required',
+        ]);
+        if (!empty($validate)) {
+            KelompokKKN::where('kode_kelompok', $id)->update([
+                'kode_jenis' => $request->kode_jenis,
+                'id_dosen' => $request->id_dosen,
+                'id_dosen2' => $request->id_dosen2,
+                'nama_kelompok' => $request->nama_kelompok,
+                'desa' => $request->desa,
+                'kecamatan' => $request->kecamatan,
+                'kabupaten' => $request->kabupaten,
+                'provinsi' => $request->provinsi,
+                'kapasitas' => $request->kapasitas,
+            ]);
+            return redirect('/admin/kelompok/detail/' . $id)->with('success', 'Data Kelompok Berhasil di Update');
+        }
+        if ($validate->fails()) {
+            return redirect()->back()->with('toast_error', 'Terjadi Kesalahan')->withInput();
+        } else {
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
     }
 
     public function DataInsertKelompok(Request $request, $id)
@@ -180,22 +215,55 @@ class KelompokKknController extends Controller
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
     }
 
-    public function DeleteDataKelompok($id){
+    public function DeleteDataKelompok($id)
+    {
         DetailKelompokKKN::where('id_dtl', $id)->delete();
         return redirect()->back()->with('toast_success', 'Berhasil menghapus Data');
     }
-    public function PilihKetua($id){
-        Mahasiswas::where('id', $id)->update([
-            'status' => 'ketua'
-        ]);
-        return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
+    public function PilihKetua($id)
+    {
+        $kode_kelompok = DB::table('detailkelompokkkn AS dk')
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.kode_kelompok')
+            ->where('mh.id', '=', $id)
+            ->value('dk.kode_kelompok');
+        $ketua = DB::table('detailkelompokkkn AS dk')
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->join('kelompokkkn AS K', 'k.kode_kelompok', '=', 'dk.kode_kelompok')
+            ->select('dk.id_mahasiswa', 'dk.kode_kelompok', 'mh.nama', 'mh.status')
+            ->where('dk.kode_kelompok', '=', $kode_kelompok)
+            ->get();
+        $takeketua = $ketua->contains('status', 'ketua');
+        if ($takeketua) {
+            return redirect()->back()->with('toast_info', 'Ketua Sudah Dipilih');
+        } else {
+            Mahasiswas::where('id', $id)->update([
+                'status' => 'ketua',
+            ]);
+            return redirect()->back()->with('toast_success', 'Berhasil Memilih Ketua');
+        }
+
     }
 
-    public function PilihAnggota($id){
+    public function PilihAnggota($id)
+    {
         Mahasiswas::where('id', $id)->update([
-            'status' => 'anggota'
+            'status' => 'anggota',
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
     }
 
+    public function lihatlogbook($id)
+    {
+        $datakelompok = DB::table('detailkelompokkkn AS dk')
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.kode_kelompok')
+            ->where('mh.id', '=', $id)
+            ->value('dk.kode_kelompok');
+        $nama_kelompok = KelompokKKN::where('kode_kelompok', $datakelompok)
+        ->value('nama_kelompok');
+        $data = LogbookMahasiswa::orderBy('tanggal', 'desc')->where('id_mahasiswa', $id)->get();
+        $mahasiswa = Mahasiswas::where('id', $id)->first();
+        return view('admin.logbookmahasiswa', ['key' => 'kelompok', 'data' => $data, 'datakelompok' => $datakelompok, 'namakelompok' => $nama_kelompok, 'mahasiswa' => $mahasiswa]);
+    }
 }

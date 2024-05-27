@@ -44,7 +44,8 @@
                     </h2>
                 </div>
                 <div>
-                    <a href="#" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                    <a href="/admin/kelompok/formedit/{{ $resultmaster[0]->kode_kelompok }}"
+                        class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                         <i class="fa-solid fa-pencil mr-1"></i>
                         Edit
                     </a>
@@ -69,13 +70,26 @@
                         </td>
                         <td class="px-6 py-4">
                             <span class="font-semibold">
-                                @if (!empty($ketua))
+                                @forelse ($ketua as $item)
+                                    {{ $item->nama }}
+                                @empty
                                     Ketua kelompok belum ditetapkan
-                                @else
-                                    {{ $ketua[0]->nama }}
-                                @endif
+                                @endforelse
                             </span>
-
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <span class="font-normal">Kapasitas</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            @if (!empty($resultmaster[0]->kapasitas))
+                                <span class="text-dark px-3 font-semibold">
+                                    {{ $resultmaster[0]->kapasitas }}
+                                </span>
+                            @else
+                                Kapasitas Belom di Atur
+                            @endif
                         </td>
                     </tr>
                     <tr class="border-b">
@@ -137,13 +151,18 @@
                                 {{ $item->username }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ $item->nama }}
+                                <span class="font-semibold">{{ $item->nama }}</span>&nbsp; <span
+                                    class="font-normal">({{ $item->status }})</span>
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->prodi }}
                             </td>
                             <td class="px-6 py-4">
-                                2 Terisi
+                                <a href="{{ route('lihatlogbook',[$item->id]) }}"
+                                    class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-book"></i>
+                                    Lihat Logbook
+                                </a>&nbsp;
                             </td>
                             <td class="px-4 py-2 grid lg:gap-3 gap-y-2  lg:grid-cols-3 text-center">
                                 @if ($item->status == 'ketua')

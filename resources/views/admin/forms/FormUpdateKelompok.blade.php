@@ -1,13 +1,13 @@
-@section('title', 'Admin | Insert Mahasiswa')
+@section('title', 'Admin | Update Kelompok')
 @extends('admin.layouts.main')
 @section('content')
     <div class="w-full px-5">
         <nav>
             <ol class="flex items-center gap-2">
                 <li>
-                    <a class="font-medium" href="/admin/kelompok">Daftar Kelompok /</a>
+                    <a class="font-medium" href="/admin/kelompok/detail/{{ $data->kode_kelompok }}">Daftar Kelompok /</a>
                 </li>
-                <li class="font-medium text-primary">Form Insert Kelompok</li>
+                <li class="font-medium text-primary">Form Update Kelompok</li>
             </ol>
         </nav>
         <div class="rounded-sm border mt-4 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -16,7 +16,7 @@
                     Form Kelompok KKN
                 </h3>
             </div>
-            <form method="POST" action="/admin/kelompok/postinsertkelompok">
+            <form method="POST" action="/admin/kelompok/postupdatekelompok/{{ $data->kode_kelompok }}">
                 @csrf
                 <div class="p-6.5">
                     <div class="mb-4.5">
@@ -24,7 +24,8 @@
                             Kode Kelompok
                         </label>
                         <input type="text" maxlength="5" placeholder="Contoh KEL01" name="kode_kelompok"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('kode_kelompok') }}"/>
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-zinc-600 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->kode_kelompok }}" disabled />
                     </div>
 
                     <div class="mb-4.5">
@@ -36,7 +37,10 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
                                 @foreach ($jenis as $item)
-                                    <option value="{{ $item->kode_jenis }}" class="text-body">{{ $item->nama_kkn }}</option>
+                                    <option value="{{ $item->kode_jenis }}" class="text-body"
+                                        {{ $data->kode_jenis == $item->kode_jenis ? 'selected' : '' }}>
+                                        {{ $item->nama_kkn }}
+                                    </option>
                                 @endforeach
                             </select>
                             <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
@@ -61,7 +65,8 @@
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
                                 @foreach ($dosen as $item)
-                                    <option value="{{ $item->id }}" class="text-body">{{ $item->nama }}</option>
+                                    <option value="{{ $item->id }}" class="text-body"
+                                        {{ $data->id_dosen == $item->id ? 'selected' : '' }}>{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                             <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
@@ -85,9 +90,10 @@
                             <select name="id_dosen2"
                                 class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                 :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
-                                <option value="{{ NULL }}">Pilih Dosen Pembimbing</option>
+                                <option value="{{ null }}">Pilih Dosen Pembimbing</option>
                                 @foreach ($dosen as $item)
-                                    <option value="{{ $item->id }}" class="text-body">{{ $item->nama }}</option>
+                                    <option value="{{ $item->id }}" class="text-body"
+                                        {{ $data->id_dosen2 == $item->id ? 'selected' : '' }}>{{ $item->nama }}</option>
                                 @endforeach
                             </select>
                             <span class="absolute right-4 top-1/2 z-30 -translate-y-1/2">
@@ -102,13 +108,14 @@
                             </span>
                         </div>
                     </div>
-                    
+
                     <div class="mb-4.5">
                         <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                             Nama Kelompok
                         </label>
                         <input name="nama_kelompok" type="text"placeholder="Nama Kelompok"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('nama_kelompok') }}" />
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->nama_kelompok }}" />
                     </div>
 
                     <div class="mb-4.5">
@@ -116,7 +123,8 @@
                             Kapasitas
                         </label>
                         <input name="kapasitas" type="number" placeholder="Kapasitas"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('kapasitas') }}" />
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->kapasitas }}" />
                     </div>
 
                     <div class="mb-4.5">
@@ -124,7 +132,8 @@
                             Desa
                         </label>
                         <input name="desa" type="text" placeholder="Masukan Nama Desa"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('desa') }}"/>
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->desa }}" />
                     </div>
 
                     <div class="mb-4.5">
@@ -132,7 +141,8 @@
                             Kecamatan
                         </label>
                         <input name="kecamatan" type="text" placeholder="Masukan Nama Kecamatan"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"value="{{ old('kecamatan') }}"" />
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->kecamatan }}"" />
                     </div>
 
                     <div class="mb-4.5">
@@ -140,7 +150,8 @@
                             Kabupaten
                         </label>
                         <input name="kabupaten" type="text" placeholder="Masukan Nama Kabupaten"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('kabupaten') }}"/>
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->kabupaten }}" />
                     </div>
 
                     <div class="mb-4.5">
@@ -148,12 +159,13 @@
                             Provinsi
                         </label>
                         <input name="provinsi" type="text" placeholder="Masukan Nama Provinsi"
-                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" value="{{ old('provinsi') }}" />
+                            class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            value="{{ $data->provinsi }}" />
                     </div>
 
                     <button
                         class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                        Tambah
+                        Simpan
                     </button>
                 </div>
             </form>

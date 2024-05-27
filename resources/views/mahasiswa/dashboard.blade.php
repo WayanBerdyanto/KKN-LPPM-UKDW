@@ -10,52 +10,75 @@
             <div class="w-full  lg:w-4/6 py-2">
                 <div class="flex justify-between border-b-2 border-gray-300 py-2">
                     <div>
-                        <h1 class="text-dark dark:text-secondary text-md font-bold">
-                            {{ Auth::guard('mahasiswa')->user()->nama }}
-                        </h1>
+                        @foreach ($resultmaster as $item)
+                            <h1 class="text-dark dark:text-secondary text-md font-bold">
+                                {{ $item->nama_kelompok }}
+                            </h1>
+                        @endforeach
                         <h2 class="text-dark dark:text-secondary mt-1 text-sm font-normal block">
                             <i class="fa-solid fa-location-dot mr-1"></i>
-                            Beji, Ngawen, Gunung Kidul, DIY
+                            @foreach ($resultmaster as $item)
+                                {{ $item->desa }},
+                                {{ $item->kecamatan }},
+                                {{ $item->kabupaten }},
+                                {{ $item->provinsi }}
+                            @endforeach
                         </h2>
                     </div>
                 </div>
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right">
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span>Pembimbing</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-semibold">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</span>
-                            </td>
-                        </tr>
-                        <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                                <span class="font-normal">Kelompok</span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="font-semibold">
-                                    2 Inclusive
+                                <span class="font-semibold text-dark dark:text-secondary">
+                                    @foreach ($resultmaster as $item)
+                                        {{ $item->nama_dosen1 }},
+                                        {{ $item->nama_dosen2 }}
+                                    @endforeach
                                 </span>
-
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Ketua Kelompok</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-semibold">Wayan Berdyanto / 72210481</span>
-
+                                <span class="font-semibold text-dark dark:text-secondary">
+                                    @forelse ($ketua as $item)
+                                        {{ $item->nama }}
+                                    @empty
+                                        Ketua kelompok belum ditetapkan
+                                    @endforelse
+                                </span>
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                                <span class="font-normal">Status Kelompok</span>
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                                <span class="font-normal">Kapasitas</span>
+                            </td>
+                            <td class="px-6 py-4 text-dark dark:text-secondary">
+                                @forelse ($resultmaster as $item)
+                                    <span class="text-dark dark:text-secondary font-semibold">
+                                        {{ $item->kapasitas }}
+                                    </span>
+                                @empty
+                                    Kapasitas Belom di Atur
+                                @endforelse
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                                <span class="font-normal">Status</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span
-                                    class="font-semibold bg-primary text-secondary px-3 cursor-pointer rounded-md py-0.5">Aktif</span>
+                                <span class="text-dark dark:text-secondary rounded-full font-semibold">
+                                    @foreach ($resultmaster as $item)
+                                        {{ $item->status }}
+                                    @endforeach
+                                </span>
                             </td>
                         </tr>
                     </table>
@@ -72,6 +95,9 @@
                 <table class="w-full table-auto">
                     <thead>
                         <tr class="bg-gray-2 text-left dark:bg-meta-4">
+                            <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+                                NO
+                            </th>
                             <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
                                 NIM
                             </th>
@@ -90,31 +116,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($result as $data)
+                        @foreach ($result as $idx => $data)
                             <tr>
                                 <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
                                     <h5 class="font-medium text-dark dark:text-secondary">
-                                        {{ $data['NIM'] }}
+                                        {{ $idx + 1 }}
+                                    </h5>
+                                </td>
+                                <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                                    <h5 class="font-medium text-dark dark:text-secondary">
+                                        {{ $data->username }}
                                     </h5>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary">
-                                        {{ $data['Nama'] }}
+                                        {{ $data->nama }}
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary">
-                                        {{ $data['Prodi'] }}
+                                        {{ $data->prodi }}
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary">
-                                        {{ $data['Angkatan'] }}
+                                        {{ $data->angkatan }}
                                     </p>
                                 </td>
                                 <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                     <p class="text-dark dark:text-secondary">
-                                        {{ $data['Status'] }}
+                                        {{ $data->status }}
                                     </p>
                                 </td>
                             </tr>

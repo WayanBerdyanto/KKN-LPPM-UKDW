@@ -19,11 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mahasiswa');
             $table->foreign('id_mahasiswa')->references('id')->on('mahasiswas');
 
-            $table->string('judul',30);
+            $table->string('judul',100);
             $table->longText('deskripsi');
             $table->date('tanggal');
             $table->string('file',250);
-            $table->longText('komentar_dosen');
+            $table->longText('komentar_dosen')->nulable();
 
             $table->timestamps();
         });

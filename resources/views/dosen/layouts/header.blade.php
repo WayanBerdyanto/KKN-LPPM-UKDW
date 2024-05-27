@@ -8,7 +8,10 @@
                 {{ Auth::guard('dosen')->user()->status }}
             </div>
         </div>
-        <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
+        <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400">
+             <img class="w-full h-full rounded-full"
+                src="{{ asset('img/dosen/' . ($data->foto ?? 'example1.jpg')) }}" />
+        </div>
     </button>
 </header>
 <div id="dropdown-menu"
@@ -20,7 +23,7 @@
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">Dashboard</a>
         </li>
         <li>
-            <a href="#"
+            <a href="/dosen/setting"
                 class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">Settings</a>
         </li>
         <li>

@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('jeniskkn', function (Blueprint $table) {
             $table->char('kode_jenis', 5)->primary();
-            $table->string('nama_kkn', 50);
-            $table->string('lokasi', 100);
+
+            $table->char('kode_semester', 5);
+            $table->foreign('kode_semester')->references('kode_semester')->on('semesteraktif');
+
+            $table->string('nama_kkn', 50)->nullable();
+            $table->string('lokasi', 100)->nullable();
             $table->timestamps();
         });
     }
