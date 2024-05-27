@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DetailKelompokKKN;
 use App\Models\Dosens;
-use App\Models\JenisKKN;
 use App\Models\KelompokKKN;
 use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
@@ -76,7 +75,11 @@ class KelompokKknController extends Controller
 
     public function FormInsertKelompok()
     {
-        $jenis = JenisKKN::All();
+        $jenis = DB::table('jeniskkn AS jk')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'jk.kode_semester')
+            ->select('jk.kode_jenis', 'jk.nama_kkn')
+            ->where('sa.status', '=', 'Aktif')
+            ->get();
         $dosen = Dosens::All();
         return view('admin.forms.FormInsertKelompok', ['key' => 'kelompok', 'jenis' => $jenis, 'dosen' => $dosen]);
     }
@@ -118,6 +121,20 @@ class KelompokKknController extends Controller
         return redirect()->back()->with('toast_error', 'Gagal Menginputkan Data')->withInput($request->input());
     }
 
+    public function formEditKelompok($kode_kelompok)
+    {
+        $data = KelompokKKN::where('kode_kelompok', $kode_kelompok)->first();
+        $jenis = DB::table('jeniskkn AS jk')
+            ->join('semesteraktif AS sa', 'sa.kode_semester', '=', 'jk.kode_semester')
+            ->select('jk.kode_jenis', 'jk.nama_kkn')
+            ->where('sa.status', '=', 'Aktif')
+            ->get();
+        $semester = SemesterAktif::where('status', 'Aktif')->get();
+        $dosen = Dosens::All();
+
+        return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
+    }
+
     public function postUpdateKelompok($id, Request $request)
     {
         $validate = $request->validate([
@@ -143,7 +160,7 @@ class KelompokKknController extends Controller
                 'provinsi' => $request->provinsi,
                 'kapasitas' => $request->kapasitas,
             ]);
-            return redirect('/admin/kelompok/detail/'.$id)->with('success', 'Data Kelompok Berhasil di Update');
+            return redirect('/admin/kelompok/detail/' . $id)->with('success', 'Data Kelompok Berhasil di Update');
         }
         if ($validate->fails()) {
             return redirect()->back()->with('toast_error', 'Terjadi Kesalahan')->withInput();
@@ -204,11 +221,16 @@ class KelompokKknController extends Controller
     }
     public function PilihKetua($id)
     {
+        $kode_kelompok = DB::table('detailkelompokkkn AS dk')
+        ->join('mahasiswas AS mh', 'mh.id', '=' ,'dk.id_mahasiswa')
+        ->select('dk.kode_kelompok')
+        ->where('mh.id', '=' , $id)
+        ->value('dk.kode_kelompok');
         $ketua = DB::table('detailkelompokkkn AS dk')
             ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
             ->join('kelompokkkn AS K', 'k.kode_kelompok', '=', 'dk.kode_kelompok')
             ->select('dk.id_mahasiswa', 'dk.kode_kelompok', 'mh.nama', 'mh.status')
-            ->where('dk.kode_kelompok', '=', 'KEL08')
+            ->where('dk.kode_kelompok', '=', $kode_kelompok)
             ->get();
         $takeketua = $ketua->contains('status', 'ketua');
         if ($takeketua) {
@@ -228,15 +250,5 @@ class KelompokKknController extends Controller
             'status' => 'anggota',
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
-    }
-
-    public function formEditKelompok($kode_kelompok)
-    {
-        $data = KelompokKKN::where('kode_kelompok', $kode_kelompok)->first();
-        $jenis = JenisKKN::All();
-        $semester = SemesterAktif::where('status', 'Aktif')->get();
-        $dosen = Dosens::All();
-
-        return view('admin.forms.FormUpdateKelompok', ['key' => 'kelompok', 'data' => $data, 'jenis' => $jenis, 'semester' => $semester, 'dosen' => $dosen]);
     }
 }
