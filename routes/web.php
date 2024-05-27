@@ -68,6 +68,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/kelompok/deletemahasiswa/{id}', [KelompokKknController::class, 'DeleteDataKelompok'])->name('Delete Data Kelompok');
     Route::get('/admin/kelompok/pilihketua/{id}', [KelompokKknController::class, 'PilihKetua'])->name('Pilih Ketua Kelompok');
     Route::get('/admin/kelompok/pilihanggota/{id}', [KelompokKknController::class, 'PilihAnggota'])->name('Pilih Anggota Kelompok');
+    Route::get('/admin/kelompok/logbook/', [KelompokKknController::class, 'LihatLogbook'])->name('lihatlogbook');
     // END KELOMPOK PAGE
 
     // START DaftarMahasiswa

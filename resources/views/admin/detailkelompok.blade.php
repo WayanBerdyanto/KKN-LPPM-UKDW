@@ -115,6 +115,12 @@
             <div class="flex justify-between items-center py-2">
                 <h1 class="font-semibold text-lg lg:text-2xl uppercase">Daftar Peserta</h1>
                 <div class="flex items-center text-right py-2">
+                    <a href="{{ route('lihatlogbook') }}"
+                    {{-- [$resultmaster[0]->kode_kelompok]) --}}
+                        class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                        <i class="fa-solid fa-book"></i>
+                        Lihat Logbook
+                    </a>&nbsp;
                     <a href="/admin/kelompok/{{ $resultmaster[0]->kode_kelompok }}/insertdatakelompok"
                         class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                         <i class="fa-solid fa-plus mr-1"></i>
