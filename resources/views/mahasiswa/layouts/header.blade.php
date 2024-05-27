@@ -35,7 +35,10 @@
                 {{ Auth::guard('mahasiswa')->user()->status }}
             </div>
         </div>
-        <div class="h-10 w-10 rounded-full cursor-pointer bg-secondary border-2 border-blue-400"></div>
+        <div class="h-10 w-10 rounded-full cursor-pointer bg-secondary border-2 border-blue-400">
+            <img class="w-full h-full rounded-full"
+                src="{{ asset('img/mahasiswa/' . Auth::guard('mahasiswa')->user()->foto )}}" />
+        </div>
     </button>
 </header>
 <div id="dropdown-menu"

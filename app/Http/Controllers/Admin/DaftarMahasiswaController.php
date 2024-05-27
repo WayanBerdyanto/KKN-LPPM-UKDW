@@ -8,17 +8,30 @@ use Illuminate\Http\Request;
 
 class DaftarMahasiswaController extends Controller
 {
+    public function daftarmahasiswa()
+    {
+        $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
+        return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
+    }
+
     // Start Search Mahasiswa
     public function search(Request $request)
     {
         $cari = $request->search;
-        $result = Mahasiswas::where('nama', 'like', '%' . $cari . '%')->paginate(15);
-        $result = Mahasiswas::where('username', 'like', '%' . $cari . '%')->paginate(15);
+        // $result = Mahasiswas::where('nama', 'like', '%' . $cari . '%')->paginate(15);
+        $result = Mahasiswas::where('username', 'like', '%' . $cari . '%')->orWhere('nama', 'like', '%' . $cari . '%')->paginate(15);
         $result->appends($request->all());
         return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
     }
     // End Search Mahasiswa
 
+    // Start Detail Mahasiswa
+    public function DetailMahasiswa($id)
+    {
+        $detail = Mahasiswas::where('id', $id)->first();
+        return response()->json(['detail' => $detail]);
+    }
+    // END Detail Mahasiswa
     public function insertMhs()
     {
         $prodi = array(
@@ -121,6 +134,9 @@ class DaftarMahasiswaController extends Controller
                 'angkatan' => $request->angkatan,
             ]);
             return redirect('/admin/daftarmahasiswa')->with('success', 'Data Berhasil DiUpdate');
+        }
+        if ($validate->fails()) {
+            return redirect()->back()->with('toast_error', 'Username / Email Telah digunakan')->withInput();
         } else {
             return redirect()->back()->withErrors($validate)->withInput();
         }

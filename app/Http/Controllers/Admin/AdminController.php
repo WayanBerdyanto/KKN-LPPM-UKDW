@@ -3,87 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mahasiswas;
-use App\Models\SemesterAktif;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $result = SemesterAktif::orderBy('kode_semester', 'desc')->paginate(15);
-        return view('admin.index', ['key' => 'home', 'result' => $result]);
-    }
-
-    public function PostSemesterAktif(Request $request)
-    {
-        $validate = $request->validate([
-            'kode_semester' => 'required | unique:SemesterAktif',
-            'semester' => 'required',
-            'tahun_ajaran' => 'required',
-            'status' => 'required',
-        ]);
-
-        if (!empty($validate)) {
-            SemesterAktif::create([
-                'kode_semester' => $request->kode_semester,
-                'semester' => $request->semester,
-                'tahun_ajaran' => $request->tahun_ajaran,
-                'status' => $request->status,
-            ]);
-            return redirect('/admin')->with('success', 'Data Berhasil Ditambahkan');
-        }
-
-        return redirect('/admin')->with('toast_error', 'Gagal Menginputkan Data')->withInput();
-    }
-
-    public function UpdateSemester($id)
-    {
-        $update = SemesterAktif::where('kode_semester', $id)->first();
-        return response()->json(['update' => $update]);
-    }
-
-    public function PostUpdateSemester($id, Request $request)
-    {
-        $validate = $request->validate([
-            'semester' => 'required',
-            'tahun_ajaran' => 'required',
-            'status' => 'required',
-        ]);
-
-        if (!empty($validate)) {
-            SemesterAktif::where('kode_semester', $id)->update([
-                'semester' => $request->semester,
-                'tahun_ajaran' => $request->tahun_ajaran,
-                'status' => $request->status,
-            ]);
-            return redirect('/admin')->with('success', 'Data Berhasil DiUpdate');
-        }
-
-        return redirect('/admin')->with('toast_error', 'Gagal Update Data')->withInput();
-    }
-
-    public function DeleteSemester($id)
-    {
-        SemesterAktif::where('kode_semester', $id)->delete();
-        return redirect('/admin')->with('success', 'Data berhasil ihapus');
-    }
-
-    public function kelompok()
-    {
-        return view('admin.kelompok', ['key' => 'kelompok']);
-    }
-
-    public function daftarmahasiswa()
-    {
-        $result = Mahasiswas::orderBy('id', 'desc')->paginate(15);
-        return view('admin.daftarmahasiswa', ['key' => 'daftarmahasiswa', 'result' => $result]);
-    }
-
-    public function detailKelompok()
-    {
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana']);
+        $result = DB::table('kelompokkkn AS kk')
+            ->join('jeniskkn AS jk', 'kk.kode_jenis', '=', 'jk.kode_jenis')
+            ->select('kk.nama_kelompok', 'jk.nama_kkn', DB::raw('COUNT(kk.kode_jenis) AS jumlah'))
+            ->groupBy('kk.nama_kelompok', 'jk.nama_kkn')
+            ->get();
+        $mahasiswa = DB::table('mahasiswas')
+            ->select(DB::raw('COUNT(mahasiswas.username) AS jumlah'))
+            ->get();
+        $dosen = DB::table('dosens')
+            ->select(DB::raw('COUNT(dosens.nip) AS jumlah'))
+            ->get();
+        $kelompok = DB::table('kelompokkkn as kel')
+            ->select(DB::raw('COUNT(kel.kode_kelompok) AS jumlah_kelompok'))
+            ->get();
+        return view('admin.index', ['key' => 'home', 'result' => $result, 'dosen' => $dosen, 'mahasiswa' => $mahasiswa, 'kelompok' => $kelompok]);
     }
 
     public function logout()

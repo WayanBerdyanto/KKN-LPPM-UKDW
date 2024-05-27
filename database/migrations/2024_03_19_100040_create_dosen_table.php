@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email', 50)->unique()->nullable();
             $table->string('no_telp', 50)->nullable();
             $table->string('status',100)->default('dosen');
+            $table->string('foto', 100)->nullable();
             $table->timestamps();
         });
     }

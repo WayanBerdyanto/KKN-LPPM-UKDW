@@ -1,3 +1,4 @@
+@section('title', 'Admin | Detail kelompok')
 @extends('admin.layouts.main')
 @section('content')
     <nav class="flex" aria-label="Breadcrumb">
@@ -31,15 +32,21 @@
         <div class="w-full  lg:w-4/6 py-2">
             <div class="flex justify-between border-b-2 border-gray-300 py-2">
                 <div>
-                    <h1 class="text-dark text-md font-bold">Kelompok 01</h1>
+                    <h1 class="text-dark text-md font-bold">
+                        {{ $resultmaster[0]->nama_kelompok }}
+                    </h1>
                     <h2 class="text-dark mt-1 text-sm font-normal block">
                         <i class="fa-solid fa-location-dot mr-1"></i>
-                        Beji, Ngawen, Gunung Kidul, DIY
+                        {{ $resultmaster[0]->desa }},
+                        {{ $resultmaster[0]->kecamatan }},
+                        {{ $resultmaster[0]->kabupaten }},
+                        {{ $resultmaster[0]->provinsi }}
                     </h2>
                 </div>
                 <div>
-                    <a href="" class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-blue-500">
-                        <i class="fa-solid fa-pen mr-1"></i>
+                    <a href="/admin/kelompok/formedit/{{ $resultmaster[0]->kode_kelompok }}"
+                        class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                        <i class="fa-solid fa-pencil mr-1"></i>
                         Edit
                     </a>
                 </div>
@@ -51,7 +58,10 @@
                             <span>Pembimbing</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-semibold">Aloysius Airlangga Bajuadji, S.Kom., M.Eng.</span>
+                            <span class="font-semibold">
+                                {{ $resultmaster[0]->nama_dosen1 }},
+                                {{ $resultmaster[0]->nama_dosen2 }}
+                            </span>
                         </td>
                     </tr>
                     <tr class="border-b">
@@ -59,19 +69,27 @@
                             <span class="font-normal">Ketua Kelompok</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-semibold">Wayan Berdyanto / 72210481</span>
-
+                            <span class="font-semibold">
+                                @forelse ($ketua as $item)
+                                    {{ $item->nama }}
+                                @empty
+                                    Ketua kelompok belum ditetapkan
+                                @endforelse
+                            </span>
                         </td>
                     </tr>
                     <tr class="border-b">
                         <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                            <span class="font-normal">Peserta</span>
+                            <span class="font-normal">Kapasitas</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="font-semibold">
-                                10 <i class="fa-solid fa-user ml-1"></i>
-                            </span>
-
+                            @if (!empty($resultmaster[0]->kapasitas))
+                                <span class="text-dark px-3 font-semibold">
+                                    {{ $resultmaster[0]->kapasitas }}
+                                </span>
+                            @else
+                                Kapasitas Belom di Atur
+                            @endif
                         </td>
                     </tr>
                     <tr class="border-b">
@@ -79,8 +97,15 @@
                             <span class="font-normal">Status</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span
-                                class="font-semibold bg-primary text-secondary px-3 cursor-pointer rounded-md py-0.5">Aktif</span>
+                            @if ($resultmaster[0]->status == 'Aktif')
+                                <span class="text-secondary px-3 rounded-full py-1 bg-primary font-semibold">
+                                    {{ $resultmaster[0]->status }}
+                                </span>
+                            @else
+                                <span class="text-secondary px-3 rounded-full py-1 bg-red-600 font-semibold">
+                                    {{ $resultmaster[0]->status }}
+                                </span>
+                            @endif
                         </td>
                     </tr>
                 </table>
@@ -90,10 +115,11 @@
             <div class="flex justify-between items-center py-2">
                 <h1 class="font-semibold text-lg lg:text-2xl uppercase">Daftar Peserta</h1>
                 <div class="flex items-center text-right py-2">
-                    <a href=""
-                        class="ml-0 lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary py-1.5 px-2 font-normal rounded-lg text-center hover:bg-blue-500">
-                        Laporan
-                        & Masukan</a>
+                    <a href="/admin/kelompok/{{ $resultmaster[0]->kode_kelompok }}/insertdatakelompok"
+                        class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                        <i class="fa-solid fa-plus mr-1"></i>
+                        Add
+                    </a>
                 </div>
             </div>
             <hr class="mt-2 border">
@@ -118,80 +144,108 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                            72210487
-                        </th>
-                        <td class="px-6 py-4">
-                            Kalistus Alvino
-                        </td>
-                        <td class="px-6 py-4">
-                            Sistem Informasi
-                        </td>
-                        <td class="px-6 py-4">
-                            2 Terisi
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                        </td>
-                    </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                            72210487
-                        </th>
-                        <td class="px-6 py-4">
-                            Kalistus Alvino
-                        </td>
-                        <td class="px-6 py-4">
-                            Sistem Informasi
-                        </td>
-                        <td class="px-6 py-4">
-                            2 Terisi
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                        </td>
-                    </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                            72210487
-                        </th>
-                        <td class="px-6 py-4">
-                            Kalistus Alvino
-                        </td>
-                        <td class="px-6 py-4">
-                            Sistem Informasi
-                        </td>
-                        <td class="px-6 py-4">
-                            2 Terisi
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                        </td>
-                    </tr>
-                    <tr class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                            72210487
-                        </th>
-                        <td class="px-6 py-4">
-                            Kalistus Alvino
-                        </td>
-                        <td class="px-6 py-4">
-                            Sistem Informasi
-                        </td>
-                        <td class="px-6 py-4">
-                            2 Terisi
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                        </td>
-                    </tr>
+                    @foreach ($resultDetail as $item)
+                        <tr
+                            class="odd:bg-secondary even:bg-gray-200 text-dark odd:hover:bg-gray-100 even:hover:bg-gray-300">
+                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                                {{ $item->username }}
+                            </th>
+                            <td class="px-6 py-4">
+                                <span class="font-semibold">{{ $item->nama }}</span>&nbsp; <span
+                                    class="font-normal">({{ $item->status }})</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $item->prodi }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('lihatlogbook',[$item->id]) }}"
+                                    class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-book"></i>
+                                    Lihat Logbook
+                                </a>&nbsp;
+                            </td>
+                            <td class="px-4 py-2 grid lg:gap-3 gap-y-2  lg:grid-cols-3 text-center">
+                                @if ($item->status == 'ketua')
+                                    <a href="#"
+                                        onclick="confirmAnggota('/admin/kelompok/pilihanggota/{{ $item->id_mahasiswa }}')"
+                                        class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                        <i class="fa-solid fa-user-group"></i>
+                                    </a>
+                                @else
+                                    <a href="#"
+                                        onclick="confirmKetua('/admin/kelompok/pilihketua/{{ $item->id_mahasiswa }}')"
+                                        class="bg-yellow-500 text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                        <i class="fa-solid fa-crown"></i>
+                                    </a>
+                                @endif
+                                <a href="#" class="bg-primary text-secondary py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-info"></i>
+                                </a>
+                                <a href="#"
+                                    onclick="confirmDelete('/admin/kelompok/deletemahasiswa/{{ $item->id_dtl }}')"
+                                    class="bg-red-600 text-secondary py-1.5 rounded-md hover:bg-opacity-90"
+                                    data-confirm-delete="true">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+            <script>
+                function confirmAnggota(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Ubah Sebagai Anggota",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2C7865',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yakin'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function confirmKetua(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Pilih Sebagai Ketua",
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2C7865',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yakin'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
+            <script>
+                function confirmDelete(url) {
+                    Swal.fire({
+                        title: 'Anda Yakin?',
+                        text: "Anda tidak akan dapat mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the delete URL
+                            window.location.href = url;
+                        }
+                    });
+                }
+            </script>
         </div>
     </div>
 @endsection
