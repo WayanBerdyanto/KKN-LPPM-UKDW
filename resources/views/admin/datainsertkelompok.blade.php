@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div x-data="{ isLoading: false }">
-                <a href="{{ route('adminkelompok', ['id' => $id]) }}" @click="isLoading = true"
+                <a href="{{ route('detailkelompok', ['id' => $id]) }}" @click="isLoading = true"
                     class="py-3 px-5 text-secondary bg-primary rounded-lg">
                     <template x-if="isLoading">
                         <svg class="inline-block animate-spin" xmlns="http://www.w3.org/2000/svg" width="16"

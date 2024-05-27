@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailKelompokKKN;
 use App\Models\Dosens;
 use App\Models\KelompokKKN;
+use App\Models\LogbookMahasiswa;
 use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
@@ -222,10 +223,10 @@ class KelompokKknController extends Controller
     public function PilihKetua($id)
     {
         $kode_kelompok = DB::table('detailkelompokkkn AS dk')
-        ->join('mahasiswas AS mh', 'mh.id', '=' ,'dk.id_mahasiswa')
-        ->select('dk.kode_kelompok')
-        ->where('mh.id', '=' , $id)
-        ->value('dk.kode_kelompok');
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.kode_kelompok')
+            ->where('mh.id', '=', $id)
+            ->value('dk.kode_kelompok');
         $ketua = DB::table('detailkelompokkkn AS dk')
             ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
             ->join('kelompokkkn AS K', 'k.kode_kelompok', '=', 'dk.kode_kelompok')
@@ -250,5 +251,19 @@ class KelompokKknController extends Controller
             'status' => 'anggota',
         ]);
         return redirect()->back()->with('toast_success', 'Berhasil DiUpdate');
+    }
+
+    public function lihatlogbook($id)
+    {
+        $datakelompok = DB::table('detailkelompokkkn AS dk')
+            ->join('mahasiswas AS mh', 'mh.id', '=', 'dk.id_mahasiswa')
+            ->select('dk.kode_kelompok')
+            ->where('mh.id', '=', $id)
+            ->value('dk.kode_kelompok');
+        $nama_kelompok = KelompokKKN::where('kode_kelompok', $datakelompok)
+        ->value('nama_kelompok');
+        $data = LogbookMahasiswa::orderBy('tanggal', 'desc')->where('id_mahasiswa', $id)->get();
+        $mahasiswa = Mahasiswas::where('id', $id)->first();
+        return view('admin.logbookmahasiswa', ['key' => 'kelompok', 'data' => $data, 'datakelompok' => $datakelompok, 'namakelompok' => $nama_kelompok, 'mahasiswa' => $mahasiswa]);
     }
 }
