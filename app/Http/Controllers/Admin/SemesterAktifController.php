@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mahasiswas;
 use App\Models\SemesterAktif;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class SemesterAktifController extends Controller
 {
-    public function SemesterAktif(){
-        $result = SemesterAktif::orderBy('kode_semester', 'desc')->paginate(15);
-        return view('admin.semesteraktif', ['key' =>'semesteraktif', 'result' => $result]);
+    public function SemesterAktif(Request $request)
+    {
+        $value = $request->input('value');
+        $result = SemesterAktif::orderBy('kode_semester', 'desc')
+            ->when($value, function ($query, $value) {
+                return $query->where('semester', 'LIKE', '%' . $value . '%')->orWhere('tahun_ajaran', 'LIKE', '%' . $value . '%')->orWhere('status', 'LIKE', '%' . $value . '%');
+            })
+            ->paginate(15);
+        return view('admin.semesteraktif', ['key' => 'semesteraktif', 'result' => $result]);
     }
     public function PostSemesterAktif(Request $request)
     {

@@ -95,6 +95,7 @@ Route::middleware('cekstatus:admin')->group(function () {
 
     // Start Semester Aktif KKN
     Route::get('/admin/semesteraktif', [SemesterAktifController::class, 'SemesterAktif'])->name('SemesterAktif');
+    Route::get('/admin/semesteraktif/filter', [SemesterAktifController::class, 'SemesterAktif'])->name('FilterSemesterAktif');
     Route::post('/admin/postsemester', [SemesterAktifController::class, 'PostSemesterAktif'])->name('postsemester');
     Route::get('/admin/updatesemester/{id}', [SemesterAktifController::class, 'UpdateSemester'])->name('Update Semester');
     Route::put('/admin/postupdate/{id}', [SemesterAktifController::class, 'PostUpdateSemester'])->name('Post Update Semester');
