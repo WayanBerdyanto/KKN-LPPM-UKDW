@@ -120,8 +120,16 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::post('/mahasiswa/uploadfoto', [SettingController::class, 'upload'])->name('Upload Foto');
 
     Route::get('/mahasiswa/rencanakegiatan', [RencanaKegiatanController::class, 'rencanakegiatan'])->name('rencanakegiatan');
+
     Route::post('/mahasiswa/rencanakegiatan/postrencanakegiatan', [RencanaKegiatanController::class, 'postrencanakegiatan'])->name('postrencanakegiatan');
+
     Route::get('/mahasiswa/templaterencana', [RencanaKegiatanController::class, 'templaterencana'])->name('templaterencanakegiatan');
+
+    Route::get('/mahasiswa/downloadfilerencana/{filename}', [RencanaKegiatanController::class, 'downloadfilerencana'])->name('downloadfilerencana');
+
+    Route::get('/mahasiswa/deleterencana/{id}', [RencanaKegiatanController::class, 'deleterencana'])->name('deleterencana');
+
+    Route::get('/mahasiswa/rencanakegiatan/detail/{id}', [RencanaKegiatanController::class, 'detailrencanakegiatan'])->name('detailrencanakegiatan');
 
     Route::get('/mahasiswa/laporankegiatan', [LaporanKegiatanController::class, 'laporankegiatan'])->name('laporankegiatan');
 

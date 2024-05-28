@@ -13,9 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-</head> 
+</head>
 
-<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalLogbook': false, 'modalkegiatan': false, 'modalDetailLogbook': false, 'modalUpdateLogbook': false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
+<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalLogbook': false, 'modalkegiatan': false, 'modalDetailLogbook': false, 'modalUpdateLogbook': false, 'modalupdatekegiatan':false, 'modaldetailrencana':false }" x-init="darkMode = JSON.parse(localStorage.getItem('darkMode'));
 $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{ 'dark text-secondary bg-dark': darkMode === true }">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })"
         class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-dark">
@@ -73,7 +73,7 @@ $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(valu
     <script src="{{ asset('js/dropdown.js') }}"></script>
     <script src="{{ asset('js/alpine.min.js') }}"></script>
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{-- Larapex Chart --}}
     {{-- <script src="{{ $chart->cdn() }}"></script>
