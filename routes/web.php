@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
+use App\Http\Controllers\Dosen\LogbookDosenController;
 use App\Http\Controllers\Dosen\SettingDosenController;
+use App\Http\Controllers\Dosen\KelompokDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\Mahasiswa\LaporanKegiatanController;
 use App\Http\Controllers\Mahasiswa\LogbookController;
@@ -45,6 +47,16 @@ Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen/updateprofile', [SettingDosenController::class, 'updateProfile'])->name('Update Profile Dosen');
     Route::get('/dosen/gantipassword', [SettingDosenController::class, 'password'])->name('Update Password Dosen');
     Route::post('/dosen/uploadfoto', [SettingDosenController::class, 'upload'])->name('Upload Foto Dosen');
+
+    Route::get('/dosen/kelompok', [KelompokDosenController::class, 'kelompok'])->name('Index Kelompok');
+    Route::get('/dosen/kelompok/search', [KelompokDosenController::class, 'kelompok'])->name('Search Kelompok');
+    Route::get('/dosen/kelompok/detail/{id}', [KelompokDosenController::class, 'detailKelompok'])->name('dosendetailkelompok');
+    Route::get('/dosen/kelompok/logbook/{id}', [KelompokDosenController::class, 'LihatLogbook'])->name('dosenlihatlogbook');
+
+    Route::post('/dosen/logbook/postKomentar/{id}', [LogbookDosenController::class, 'postKomentar'])->name('postkomentar');
+    Route::get('/dosen/detaillogbook/{id}', [LogbookDosenController::class, 'detailLogbook'])->name('Detail Logbook for Komentar');
+    Route::post('/dosen/updatekomentar/postupdate/{id}', [LogbookDosenController::class, 'postUpdateKomentar'])->name('Update Komentar');
+    Route::get('/dosen/deletekomentar/{id}', [LogbookDosenController::class, 'deleteKomentar'])->name('Delete Komentar');
 
     Route::get('/dosen/logout', [DosenController::class, 'logout'])->name('dosen');
 });

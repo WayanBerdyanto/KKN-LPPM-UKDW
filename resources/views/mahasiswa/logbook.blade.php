@@ -24,7 +24,6 @@
                             </h5>
                         </div>
                         <div class="flex p-2 text-secondary">
-
                             <button @click="modalDetailLogbook = true" data-toggle="modal" data-target="#modalDetailLogbook"
                                 class="bg-primary hover:bg-opacity-90 mr-4 px-3 py-2 rounded-lg detailLogbook"
                                 data-id="{{ $data->id }}">

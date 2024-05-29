@@ -10,15 +10,15 @@
                 </a>
             </li>
             <li class="pt-12">
-                <a href="#" class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group ">
+                <a href="/dosen" class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group {{ $key == 'home' ? 'bg-primary hover:text-secondary' : '' }}">
                     <i class="fa-solid fa-house"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
                 </a>
             </li>
             <li class="pt-5">
-                <a href="#" class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group ">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
+                <a href="/dosen/kelompok" class="flex items-center p-2 text-secondary rounded-lg hover:text-primary  group {{ $key == 'kelompok' ? 'bg-primary hover:text-secondary' : '' }}">
+                     <i class="fa-solid fa-users-line"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Kelompok</span>
                 </a>
             </li>
         </ul>

@@ -15,7 +15,7 @@
         rel="stylesheet">
 </head>
 
-<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false }">
+<body x-data="{ modalOpen: false, 'darkMode': true, 'loaded': true, 'sidebarToggle': false, 'modalInsertKomentar': false, 'modalUpdateKomentar': false }">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => { setTimeout(() => loaded = false, 500) })"
         class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-dark">
         <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent">
@@ -29,6 +29,11 @@
     </button>
     @include('dosen.layouts.header')
     @include('dosen.layouts.sidebar')
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('sweetalert::alert')
+
     <div class="md:ml-64">
         <div class="p-4 ">
             @yield('content')
