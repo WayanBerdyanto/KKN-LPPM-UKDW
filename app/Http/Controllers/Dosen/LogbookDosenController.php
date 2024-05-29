@@ -62,7 +62,9 @@ class LogbookDosenController extends Controller
         $logbook = LogbookMahasiswa::find($id);
         $id_mahasiswa = $logbook->id_mahasiswa;
 
-        LogbookMahasiswa::where('id', $id)->delete();
+        LogbookMahasiswa::where('id', $id)->update([
+            'komentar_dosen' => null
+        ]);
 
         return redirect('/dosen/kelompok/logbook/' . $id_mahasiswa)->with('success', 'Berhasil Menghapus Komentar');
     }
