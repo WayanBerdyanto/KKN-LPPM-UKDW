@@ -125,6 +125,12 @@
                         <th scope="col" class="px-6 py-3">
                             Logbook
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nilai
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Acton Nilai
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -142,71 +148,111 @@
                                 {{ $item->prodi }}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{ route('dosenlihatlogbook',[$item->id]) }}"
+                                <a href="{{ route('dosenlihatlogbook', [$item->id]) }}"
                                     class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                                     <i class="fa-solid fa-book"></i>
                                     Lihat Logbook
                                 </a>&nbsp;
                             </td>
-                          
+                            <td class="px-6 py-4">
+                                @if ($item->nilai != null)
+                                    {{ $item->nilai }}
+                                @else
+                                    Belum ada nilai
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                <button @click="modalInsertNilai = true" data-toggle="modal" data-target="#modalInsertNilai"
+                                    class="bg-primary hover:bg-opacity-90 px-3 py-1 rounded-lg text-white content-center insertNilai"
+                                    data-id="{{ $item->id_mahasiswa }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <a href="#" onclick="confirmDelete('/dosen/deletenilai/{{ $item->id_mahasiswa }}')"
+                                    class="bg-red-500 hover:bg-opacity-90 px-3 py-1 rounded-lg text-white content-center"
+                                    data-confirm-delete="true">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            <script>
-                function confirmAnggota(url) {
-                    Swal.fire({
-                        title: 'Anda Yakin?',
-                        text: "Ubah Sebagai Anggota",
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#2C7865',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Yakin'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Redirect to the delete URL
-                            window.location.href = url;
-                        }
-                    });
-                }
-            </script>
-            <script>
-                function confirmKetua(url) {
-                    Swal.fire({
-                        title: 'Anda Yakin?',
-                        text: "Pilih Sebagai Ketua",
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#2C7865',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Yakin'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Redirect to the delete URL
-                            window.location.href = url;
-                        }
-                    });
-                }
-            </script>
-            <script>
-                function confirmDelete(url) {
-                    Swal.fire({
-                        title: 'Anda Yakin?',
-                        text: "Anda tidak akan dapat mengembalikan ini!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Yes, delete!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Redirect to the delete URL
-                            window.location.href = url;
-                        }
-                    });
-                }
-            </script>
         </div>
     </div>
+
+    {{-- Modal Insert Komentar --}}
+    <div x-show="modalInsertNilai" x-transition
+        class="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 px-4 py-5 z-40">
+        <div id="modalInsertNilai" @click.outside="modalInsertNilai = false"
+            class="w-full max-w-[570px] rounded-[20px] bg-white px-8 py-12  dark:bg-dark-2 md:px-[70px] md:py-[60px]">
+            <h3 class="pb-[18px] text-xl font-semibold text-dark text-center sm:text-2xl">
+                Insert / Update Nilai
+            </h3>
+            <span class="mx-auto mb-6 flex h-1 w-[120px] rounded text-center bg-primary"></span>
+            <form action="" method="POST">
+                @csrf
+                <div class="mb-4.5">
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Isi Nilai
+                    </label>
+                    <input name="nilai" type="number" placeholder="Masukan Nilai" max="100" min="0"
+                        class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                </div>
+                <div class="-mx-3 flex flex-wrap">
+                    <div class="w-1/2 px-3">
+                        <button @click="modalInsertNilai = false" type="reset"
+                            class="block w-full rounded-md border border-stroke p-3 text-center text-base font-medium text-dark transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="w-1/2 px-3">
+                        <button
+                            class="block w-full rounded-md border border-primary bg-primary hover:opacity-90 p-3 text-center text-base font-medium text-white transition hover:bg-blue-dark">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- End Of Modal Insert Komentar --}}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var id_mahasiswa;
+
+            $('.insertNilai').click(function() {
+                id_mahasiswa = $(this).data('id');
+                console.log(id_mahasiswa);
+                $('form').attr('action', '/dosen/postnilai/' + id_mahasiswa);
+                $.ajax({
+                    url: "/dosen/detailMahasiswa/" + id_mahasiswa,
+                    method: "GET",
+                    dataType: "json"
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+        function confirmDelete(url) {
+            Swal.fire({
+                title: 'Anda Yakin?',
+                text: "Anda tidak akan dapat mengembalikan data yang sudah dihapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to the delete URL
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 @endsection

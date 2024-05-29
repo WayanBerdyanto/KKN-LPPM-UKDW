@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->string('no_telp', 50)->nullable();
             $table->string('role',100)->default('mahasiswa');
             $table->string('foto', 100)->nullable();
+            $table->integer('nilai')->nullable();
             $table->timestamps();
         });
     }

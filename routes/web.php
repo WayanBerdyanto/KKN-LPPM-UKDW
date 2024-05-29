@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\LogbookDosenController;
+use App\Http\Controllers\Dosen\NilaiMahasiswaController;
 use App\Http\Controllers\Dosen\SettingDosenController;
 use App\Http\Controllers\Dosen\KelompokDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
@@ -52,6 +53,10 @@ Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen/kelompok/search', [KelompokDosenController::class, 'kelompok'])->name('Search Kelompok');
     Route::get('/dosen/kelompok/detail/{id}', [KelompokDosenController::class, 'detailKelompok'])->name('dosendetailkelompok');
     Route::get('/dosen/kelompok/logbook/{id}', [KelompokDosenController::class, 'LihatLogbook'])->name('dosenlihatlogbook');
+
+    Route::get('/dosen/detailMahasiswa/{id}', [NilaiMahasiswaController::class, 'detailMahasiswa'])->name('detailMahasiswa');
+    Route::post('/dosen/postnilai/{id}', [NilaiMahasiswaController::class, 'postNilai'])->name('postNilai');
+    Route::get('/dosen/deletenilai/{id}', [NilaiMahasiswaController::class, 'deleteNilai'])->name('postNilai');
 
     Route::post('/dosen/logbook/postKomentar/{id}', [LogbookDosenController::class, 'postKomentar'])->name('postkomentar');
     Route::get('/dosen/detaillogbook/{id}', [LogbookDosenController::class, 'detailLogbook'])->name('Detail Logbook for Komentar');
