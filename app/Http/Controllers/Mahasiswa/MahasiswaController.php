@@ -10,6 +10,7 @@ class MahasiswaController extends Controller
 {
     public function dashboard()
     {
+        $keterangan = '';
 
         $idMhs = Auth::guard('mahasiswa')->user()->id;
         $resultKode = "";
@@ -43,10 +44,42 @@ class MahasiswaController extends Controller
             ->select('dk.*', 'kk.*', 'mh.*')
             ->where('dk.kode_kelompok', '=', $resultKode)
             ->get();
+        $nilai = DB::table('mahasiswas')->where('id', $idMhs)->value('nilai');
+        switch (true) {
+            case $nilai < 45:
+                $keterangan = 'E';
+                break;
+            case $nilai > 45 && $nilai < 55:
+                $keterangan = 'D';
+                break;
+            case $nilai > 55 && $nilai < 60:
+                $keterangan = 'C';
+            case $nilai > 60 && $nilai < 65:
+                $keterangan = 'C+';
+                break;
+            case $nilai > 65 && $nilai < 70:
+                $keterangan = 'B-';
+                break;
+            case $nilai > 70 && $nilai < 75:
+                $keterangan = 'B';
+                break;
+            case $nilai > 75 && $nilai < 80:
+                $keterangan = 'B+';
+                break;
+            case $nilai > 80 && $nilai < 85:
+                $keterangan = 'A-';
+                break;
+            case $nilai > 85:
+                $keterangan = 'A';
+                break;
+            default:
+                $keterangan = 'Invalid';
+                break;
+        }
         $collection = collect($resultDashboard);
         $ketua = $collection->where('kode_kelompok', $resultKode)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('mahasiswa.dashboard', ['key' => 'home', 'result' => $resultDashboard, 'resultmaster' => $resultmaster, 'ketua' => $ketua]);
+        return view('mahasiswa.dashboard', ['key' => 'home', 'result' => $resultDashboard, 'resultmaster' => $resultmaster, 'ketua' => $ketua, 'nilai' => $nilai, 'keterangan' => $keterangan]);
     }
 
     public function profile()

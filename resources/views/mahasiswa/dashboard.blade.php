@@ -29,7 +29,8 @@
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right">
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                            <td scope="row"
+                                class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span>Pembimbing</span>
                             </td>
                             <td class="px-6 py-4">
@@ -42,7 +43,8 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                            <td scope="row"
+                                class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Ketua Kelompok</span>
                             </td>
                             <td class="px-6 py-4">
@@ -56,7 +58,8 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                            <td scope="row"
+                                class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Kapasitas</span>
                             </td>
                             <td class="px-6 py-4 text-dark dark:text-secondary">
@@ -70,7 +73,8 @@
                             </td>
                         </tr>
                         <tr class="border-b">
-                            <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                            <td scope="row"
+                                class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
                                 <span class="font-normal">Status</span>
                             </td>
                             <td class="px-6 py-4">
@@ -78,6 +82,23 @@
                                     @foreach ($resultmaster as $item)
                                         {{ $item->status }}
                                     @endforeach
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="border-b">
+                            <td scope="row"
+                                class="pr-6 py-4 font-medium whitespace-nowrap text-dark dark:text-secondary">
+                                <span class="font-normal">Nilai</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-dark dark:text-secondary rounded-full font-semibold">
+                                    @if (!empty($nilai))
+                                        <span class="text-dark dark:text-secondary font-semibold">
+                                            {{ $keterangan }}
+                                        </span>
+                                    @else
+                                        Nilai Belom di Atur
+                                    @endif
                                 </span>
                             </td>
                         </tr>
