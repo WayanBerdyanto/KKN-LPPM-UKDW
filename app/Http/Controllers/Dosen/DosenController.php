@@ -16,20 +16,23 @@ class DosenController extends Controller
     public function index()
     {
         $id_dosen = Auth::guard('dosen')->id();
-        $logbooks = LogbookMahasiswa::select('logbookmahasiswa.*','mahasiswas.nama')
+        $logbooks = LogbookMahasiswa::select('logbookmahasiswa.*', 'mahasiswas.nama')
             ->join('mahasiswas', 'logbookmahasiswa.id_mahasiswa', '=', 'mahasiswas.id')
             ->join('detailkelompokkkn', 'mahasiswas.id', '=', 'detailkelompokkkn.id_mahasiswa')
             ->join('kelompokkkn', 'detailkelompokkkn.kode_kelompok', '=', 'kelompokkkn.kode_kelompok')
             ->where('kelompokkkn.id_dosen', $id_dosen)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $laporanKegiatans = LaporanKegiatan::join('kelompokkkn', 'laporankegiatan.kode_kelompok', '=', 'kelompokkkn.kode_kelompok')
             ->where('kelompokkkn.id_dosen', $id_dosen)
-            ->select('laporankegiatan.*','kelompokkkn.nama_kelompok')
+            ->select('laporankegiatan.*', 'kelompokkkn.nama_kelompok')
+            ->orderBy('created_at', 'desc')
             ->get();
         $rencanaKegiatans = RencanaKegiatan::join('kelompokkkn', 'rencanakegiatan.kode_kelompok', '=', 'kelompokkkn.kode_kelompok')
             ->where('kelompokkkn.id_dosen', $id_dosen)
-            ->select('rencanakegiatan.*','kelompokkkn.nama_kelompok')
+            ->select('rencanakegiatan.*', 'kelompokkkn.nama_kelompok')
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('dosen.index', ['key' => 'home', 'log' => $logbooks, 'lap' => $laporanKegiatans, 'ren' => $rencanaKegiatans]);
     }

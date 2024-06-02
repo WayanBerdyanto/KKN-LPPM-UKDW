@@ -44,7 +44,7 @@
         </div>
         {{-- END Logbook --}}
 
-        {{-- START KEGIATAN KELOMPOK --}}
+        {{-- START RENCANA KEGIATAN KELOMPOK --}}
         <div class="mr-5" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
             <button @click="dropdownOpen = !dropdownOpen"
                 class="relative bg-blue-700 hover:bg-blue-800 duration-300 py-2 px-4 text-blue-100 rounded">
@@ -56,11 +56,11 @@
                 class="absolute right-28 flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border z-40">
                 <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
                     <div class="flex justify-between items-center px-3">
-                        <span class="text-center font-semibold text-2xl">Laporan Kelompok</span>
+                        <span class="text-center font-semibold text-2xl">Laporan Kegiatan Kelompok</span>
                         <span @click="dropdownOpen = false" class="cursor-pointer text-4xl text-right">&times;</span>
                     </div>
                     @foreach ($lap as $item)
-                    <div role="button"
+                    <div role="button" onclick="window.location='{{ route('laporandosen',['id'=>$item->kode_kelompok]) }}'"
                         class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
                         <div class="grid mr-4 place-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
                 </nav>
             </div>
         </div>
-        {{-- END KEGIATAN KELOMPOK --}}
+        {{-- END RENCANA KEGIATAN KELOMPOK --}}
 
         {{-- START RENCANA KELOMPOK --}}
         <div class="mr-5" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
@@ -101,7 +101,7 @@
                 class="absolute right-10 flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border z-40">
                 <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
                     <div class="flex justify-between items-center px-3">
-                        <span class="text-center font-semibold text-2xl">Rencana Kelompok</span>
+                        <span class="text-center font-semibold text-2xl">Rencana Kegiatan Kelompok</span>
                         <span @click="dropdownOpen = false" class="cursor-pointer text-4xl text-right">&times;</span>
                     </div>
                     @foreach ($ren as $item)
