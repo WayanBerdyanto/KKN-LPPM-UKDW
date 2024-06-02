@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Dosen;
 use App\Models\KelompokKKN;
 
 use App\Http\Controllers\Controller;
+use App\Models\LaporanKegiatan;
 use App\Models\LogbookMahasiswa;
 use App\Models\Mahasiswas;
+use App\Models\RencanaKegiatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -72,7 +74,9 @@ class KelompokDosenController extends Controller
         $collection = collect($resultDetail);
         $ketua = $collection->where('kode_kelompok', $id)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('dosen.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua]);
+        $laporan = LaporanKegiatan::where('kode_kelompok', $id)->first();
+        $rencana = RencanaKegiatan::where('kode_kelompok', $id)->first();
+        return view('dosen.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua,'laporan'=>$laporan,'rencana'=>$rencana]);
     }
     public function lihatlogbook($id)
     {

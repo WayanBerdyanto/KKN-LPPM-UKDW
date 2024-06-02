@@ -18,7 +18,7 @@
                         <span @click="dropdownOpen = false" class="close cursor-pointer text-4xl text-right">&times;</span>
                     </div>
                     @foreach ($log as $item)
-                        <div role="button"
+                        <div role="button" onclick="window.location='{{ route('dosenlihatlogbook',['id'=>$item->id_mahasiswa]) }}'"
                             class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
                             <div class="grid mr-4 place-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +59,7 @@
                         <span class="text-center font-semibold text-2xl">Laporan Kelompok</span>
                         <span @click="dropdownOpen = false" class="cursor-pointer text-4xl text-right">&times;</span>
                     </div>
+                    @foreach ($lap as $item)
                     <div role="button"
                         class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
                         <div class="grid mr-4 place-items-center">
@@ -69,7 +70,7 @@
                                     d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
                             </svg>
                         </div>
-                        @foreach ($lap as $item)
+
                             <div class="overflow-hidden">
                                 <h6
                                     class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
@@ -80,8 +81,9 @@
                                     {{ $item->judul }}
                                 </p>
                             </div>
-                        @endforeach
+
                     </div>
+                     @endforeach
                 </nav>
             </div>
         </div>
@@ -102,29 +104,31 @@
                         <span class="text-center font-semibold text-2xl">Rencana Kelompok</span>
                         <span @click="dropdownOpen = false" class="cursor-pointer text-4xl text-right">&times;</span>
                     </div>
-                    <div role="button"
-                        class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
-                        <div class="grid mr-4 place-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
-                                viewBox="0 0 512 512" fill="currentColor">
-                                <path
-                                    d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
-                            </svg>
-                        </div>
-                        @foreach ($ren as $item)
+                    @foreach ($ren as $item)
+                        <div role="button" onclick="window.location='{{ route('rencanadosen',['id'=>$item->kode_kelompok]) }}'"
+                            class="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 hover:bg-gray-100 duration-200">
+                            <div class="grid mr-4 place-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="items-center relative inline-block h-12 w-12 !rounded-full  object-cover object-center text-blue-400"
+                                    viewBox="0 0 512 512" fill="currentColor">
+                                    <path
+                                        d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z" />
+                                </svg>
+                            </div>
+
                             <div class="overflow-hidden">
-                            <h6
-                                class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-                                {{ $item->nama_kelompok }}
-                            </h6>
-                            <p
-                                class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 truncate">
-                                {{$item->judul}}
-                            </p>
+                                <h6
+                                    class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+                                    {{ $item->nama_kelompok }}
+                                </h6>
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 truncate">
+                                    {{ $item->judul }}
+                                </p>
+                            </div>
+
                         </div>
-                        @endforeach
-                    </div>
+                    @endforeach
                 </nav>
             </div>
         </div>

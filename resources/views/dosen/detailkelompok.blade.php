@@ -102,6 +102,31 @@
                             @endif
                         </td>
                     </tr>
+                    <tr class="border-b">
+                        <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <span class="font-normal">Laporan & Rencana</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            @if($rencana!=null)
+                            <a href="{{ route('rencanadosen', [$rencana->kode_kelompok]) }}"
+                                class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                <i class="fa-solid fa-book"></i>
+                                Lihat Rencana
+                            </a>&nbsp;
+                            @else
+                                Belum ada rencana
+                            @endif
+                            @if($laporan!=null)
+                            <a href="{{ route('laporandosen', [$laporan->kode_kelompok]) }}"
+                                class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                <i class="fa-solid fa-book"></i>
+                                Lihat Laporan
+                            </a>&nbsp;
+                            @else
+                                Belum ada laporan
+                            @endif
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

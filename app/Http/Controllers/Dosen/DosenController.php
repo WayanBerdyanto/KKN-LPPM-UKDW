@@ -16,7 +16,7 @@ class DosenController extends Controller
     public function index()
     {
         $id_dosen = Auth::guard('dosen')->id();
-        $logbooks = LogbookMahasiswa::select('logbookmahasiswa.id', 'logbookmahasiswa.judul', 'logbookmahasiswa.tanggal', 'logbookmahasiswa.deskripsi', 'logbookmahasiswa.komentar_dosen', 'logbookmahasiswa.komentar_admin','mahasiswas.nama')
+        $logbooks = LogbookMahasiswa::select('logbookmahasiswa.*','mahasiswas.nama')
             ->join('mahasiswas', 'logbookmahasiswa.id_mahasiswa', '=', 'mahasiswas.id')
             ->join('detailkelompokkkn', 'mahasiswas.id', '=', 'detailkelompokkkn.id_mahasiswa')
             ->join('kelompokkkn', 'detailkelompokkkn.kode_kelompok', '=', 'kelompokkkn.kode_kelompok')

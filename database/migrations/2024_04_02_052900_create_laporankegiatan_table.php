@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('deskripsi');
             $table->date('tanggal');
             $table->string('file',250);
-            $table->longText('komentar_dosen')->nulable();
+            $table->longText('komentar_dosen')->nullable();
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
+use App\Http\Controllers\Dosen\LaporanController;
 use App\Http\Controllers\Dosen\LogbookDosenController;
 use App\Http\Controllers\Dosen\NilaiMahasiswaController;
 use App\Http\Controllers\Dosen\SettingDosenController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Mahasiswa\LogbookController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\RencanaKegiatanController;
 use App\Http\Controllers\Mahasiswa\SettingController;
+use App\Http\Controllers\Dosen\RencanaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,9 +61,21 @@ Route::middleware('cekstatusDosen:dosen')->group(function () {
     Route::get('/dosen/deletenilai/{id}', [NilaiMahasiswaController::class, 'deleteNilai'])->name('postNilai');
 
     Route::post('/dosen/logbook/postKomentar/{id}', [LogbookDosenController::class, 'postKomentar'])->name('postkomentar');
-    Route::get('/dosen/detaillogbook/{id}', [LogbookDosenController::class, 'detailLogbook'])->name('Detail Logbook for Komentar');
+    Route::get('/dosen/detaillogbook/{id}', [LogbookDosenController::class, 'detailLogbook'])->name('detaillogbookdosen');
     Route::post('/dosen/updatekomentar/postupdate/{id}', [LogbookDosenController::class, 'postUpdateKomentar'])->name('Update Komentar');
     Route::get('/dosen/deletekomentar/{id}', [LogbookDosenController::class, 'deleteKomentar'])->name('Delete Komentar');
+
+    Route::get('/dosen/kelompok/rencana/{id}', [RencanaController::class, 'detailrencana'])->name('rencanadosen');
+    Route::get('/dosen/kelompok/downloadrencana/{filename}', [RencanaController::class, 'dosendownload'])->name('dosendownloadrencana');
+    Route::get('/dosen/detailrencana/{id}', [RencanaController::class, 'jsonrencana'])->name('dosendetailrencana');
+    Route::post('/dosen/rencana/postkomentarrencana/{id}', [RencanaController::class, 'postkomentar'])->name('dosenpostkomentar');
+    Route::get('/dosen/deletekomentarrencana/{id}', [RencanaController::class, 'deletekomentarrencana'])->name('dosendeletekomentar');
+
+    Route::get('/dosen/kelompok/laporan/{id}', [LaporanController::class, 'laporan'])->name('laporandosen');
+    Route::get('/dosen/kelompok/downloadlaporan/{filename}', [LaporanController::class, 'downloadlaporan'])->name('dosendownloadlaporan');
+    Route::get('/dosen/detaillaporan/{id}', [LaporanController::class, 'jsonlaporan'])->name('jsonlaporan');
+    Route::post('/dosen/laporan/postkomentarlaporan/{id}', [LaporanController::class, 'postkomentar'])->name('dosenkomentarlaporan');
+    Route::get('/dosen/deletekomentarlaporan/{id}', [LaporanController::class, 'deletekomentarlaporan'])->name('dosendeletekomentarlaporan');
 
     Route::get('/dosen/logout', [DosenController::class, 'logout'])->name('dosen');
 });
@@ -146,9 +160,15 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
 
     Route::get('/mahasiswa/deleterencana/{id}', [RencanaKegiatanController::class, 'deleterencana'])->name('deleterencana');
 
+
     Route::get('/mahasiswa/rencanakegiatan/detail/{id}', [RencanaKegiatanController::class, 'detailrencanakegiatan'])->name('detailrencanakegiatan');
 
     Route::get('/mahasiswa/laporankegiatan', [LaporanKegiatanController::class, 'laporankegiatan'])->name('laporankegiatan');
+    Route::post('/mahasiswa/laporankegiatan/postlaporankegiatan', [LaporanKegiatanController::class, 'postlaporan'])->name('laporankegiatan');
+    Route::post('/mahasiswa/postupdatelaporan/{id}', [LaporanKegiatanController::class, 'postupdatelaporan'])->name('laporankegiatan');
+
+    Route::get('/mahasiswa/deletelaporan/{id}', [LaporanKegiatanController::class, 'deletelaporan'])->name('deletelaporan');
+    Route::get('/mahasiswa/laporankegiatan/detail/{id}', [LaporanKegiatanController::class, 'detailLaporan'])->name('deletelaporan');
 
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 });
