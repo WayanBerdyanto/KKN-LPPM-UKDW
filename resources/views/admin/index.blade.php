@@ -30,7 +30,7 @@
 
     <div class="container items-center mt-7 m-auto">
         <div class="flex flex-wrap items-center bg-white divide-y rounded-sm shadow-lg xl:divide-x xl:divide-y-0">
-            <div class="w-full p-2 xl:w-1/4 sm:w-1/2">
+            <div class="w-full p-2 md:w-1/3 sm:w-1/2">
                 <div class="flex flex-col">
                     <div class="flex flex-row items-center justify-between px-4 py-4">
                         <div class="flex mr-4">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full p-2 xl:w-1/4 sm:w-1/2">
+            <div class="w-full p-2 md:w-1/3 sm:w-1/2">
                 <div class="flex flex-col">
                     <div class="flex flex-row items-center justify-between px-4 py-4">
                         <div class="flex mr-4">
@@ -82,7 +82,7 @@
 
                 </div>
             </div>
-            <div class="w-full p-2 xl:w-1/4 sm:w-1/2">
+            <div class="w-full p-2 md:w-1/3 sm:w-1/2">
                 <div class="flex flex-col">
                     <div class="flex flex-row items-center justify-between px-4 py-4">
                         <div class="flex mr-4">
@@ -103,28 +103,6 @@
                             </div>
                             <div class="text-sm text-gray-400 sm:text-base">
                                 Jumlah Kelompok
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full p-2 xl:w-1/4 sm:w-1/2">
-                <div class="flex flex-col">
-                    <div class="flex flex-row items-center justify-between px-4 py-4">
-                        <div class="flex mr-4">
-                            <span class="items-center px-4 py-4 m-auto bg-green-200 rounded-full hover:bg-green-300">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="items-center w-8 h-8 m-auto text-green-500 hover:text-green-600"
-                                    viewBox="0 0 384 512" fill="currentColor">
-                                    <path
-                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="flex-1 pl-1">
-                            <div class="text-xl font-medium text-gray-600">20</div>
-                            <div class="text-sm text-gray-400 sm:text-base">
-                                Sebaran Lokasi
                             </div>
                         </div>
                     </div>
