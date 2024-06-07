@@ -104,24 +104,31 @@
                     </tr>
                     <tr class="border-b">
                         <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
-                            <span class="font-normal">Laporan & Rencana</span>
+                            <span class="font-normal">Rencana Kegiatan</span>
                         </td>
                         <td class="px-6 py-4">
-                            @if($rencana!=null)
-                            <a href="{{ route('rencanadosen', [$rencana->kode_kelompok]) }}"
-                                class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
-                                <i class="fa-solid fa-book"></i>
-                                Lihat Rencana
-                            </a>&nbsp;
+                            @if ($rencana != null)
+                                <a href="{{ route('rencanadosen', [$rencana->kode_kelompok]) }}"
+                                    class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-book"></i>
+                                    Lihat Rencana
+                                </a>&nbsp;
                             @else
                                 Belum ada rencana
                             @endif
-                            @if($laporan!=null)
-                            <a href="{{ route('laporandosen', [$laporan->kode_kelompok]) }}"
-                                class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
-                                <i class="fa-solid fa-book"></i>
-                                Lihat Laporan
-                            </a>&nbsp;
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td scope="row" class="pr-6 py-4 font-medium whitespace-nowrap">
+                            <span class="font-normal">Laporan Kegiatan</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            @if ($laporan != null)
+                                <a href="{{ route('laporandosen', [$laporan->kode_kelompok]) }}"
+                                    class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
+                                    <i class="fa-solid fa-book"></i>
+                                    Lihat Laporan
+                                </a>&nbsp;
                             @else
                                 Belum ada laporan
                             @endif
@@ -187,7 +194,8 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4">
-                                <button @click="modalInsertNilai = true" data-toggle="modal" data-target="#modalInsertNilai"
+                                <button @click="modalInsertNilai = true" data-toggle="modal"
+                                    data-target="#modalInsertNilai"
                                     class="bg-primary hover:bg-opacity-90 px-3 py-1 rounded-lg text-white content-center insertNilai"
                                     data-id="{{ $item->id_mahasiswa }}">
                                     <i class="fa-solid fa-pen-to-square"></i>

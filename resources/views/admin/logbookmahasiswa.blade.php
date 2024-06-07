@@ -71,6 +71,9 @@
                     <th scope="col" class="px-2 py-3">
                         TANGGAL
                     </th>
+                    <th scope="col" class="px-2 py-3">
+                        KOMENTAR DOSEN
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -96,6 +99,9 @@
                             </td>
                             <td scope="row" class="px-2 py-4 max-w-10">
                                 {{ $item->tanggal }}
+                            </td>
+                            <td scope="row" class="px-2 py-4 max-w-10">
+                                {{ $item->komentar_dosen }}
                             </td>
                         </tr>
                     @endforeach

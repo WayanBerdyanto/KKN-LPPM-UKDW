@@ -49,21 +49,21 @@ class MahasiswaController extends Controller
             case $nilai < 45:
                 $keterangan = 'E';
                 break;
-            case $nilai > 45 && $nilai < 55:
+            case $nilai > 45 && $nilai <= 55:
                 $keterangan = 'D';
                 break;
-            case $nilai > 55 && $nilai < 60:
+            case $nilai > 55 && $nilai <= 60:
                 $keterangan = 'C';
-            case $nilai > 60 && $nilai < 65:
+            case $nilai > 60 && $nilai <= 65:
                 $keterangan = 'C+';
                 break;
-            case $nilai > 65 && $nilai < 70:
+            case $nilai > 65 && $nilai <= 70:
                 $keterangan = 'B-';
                 break;
-            case $nilai > 70 && $nilai < 75:
+            case $nilai > 70 && $nilai <= 75:
                 $keterangan = 'B';
                 break;
-            case $nilai > 75 && $nilai < 80:
+            case $nilai > 75 && $nilai <= 80:
                 $keterangan = 'B+';
                 break;
             case $nilai > 80 && $nilai < 85:

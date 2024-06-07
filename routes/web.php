@@ -7,18 +7,18 @@ use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Admin\SemesterAktifController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
+use App\Http\Controllers\Dosen\KelompokDosenController;
 use App\Http\Controllers\Dosen\LaporanController;
 use App\Http\Controllers\Dosen\LogbookDosenController;
 use App\Http\Controllers\Dosen\NilaiMahasiswaController;
+use App\Http\Controllers\Dosen\RencanaController;
 use App\Http\Controllers\Dosen\SettingDosenController;
-use App\Http\Controllers\Dosen\KelompokDosenController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use App\Http\Controllers\Mahasiswa\LaporanKegiatanController;
 use App\Http\Controllers\Mahasiswa\LogbookController;
 use App\Http\Controllers\Mahasiswa\MahasiswaController;
 use App\Http\Controllers\Mahasiswa\RencanaKegiatanController;
 use App\Http\Controllers\Mahasiswa\SettingController;
-use App\Http\Controllers\Dosen\RencanaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +100,15 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/kelompok/pilihketua/{id}', [KelompokKknController::class, 'PilihKetua'])->name('Pilih Ketua Kelompok');
     Route::get('/admin/kelompok/pilihanggota/{id}', [KelompokKknController::class, 'PilihAnggota'])->name('Pilih Anggota Kelompok');
     Route::get('/admin/kelompok/logbook/{id}', [KelompokKknController::class, 'LihatLogbook'])->name('lihatlogbook');
+
+    // Start Laporan And Kegiatan
+    Route::get('/admin/kelompok/rencana/{id}', [KelompokKKnController::class, 'detailrencana'])->name('rencanaMhsAdmin');
+    Route::get('/admin/kelompok/downloadrencana/{filename}', [KelompokKKnController::class, 'AdminDownloadRencana'])->name('admindownloadrencana');
+
+    Route::get('/admin/kelompok/laporan/{id}', [KelompokKKnController::class, 'detaillaporan'])->name('laporanMhsAdmin');
+    Route::get('/admin/kelompok/downloadlaporan/{filename}', [KelompokKKnController::class, 'AdminDownloadLaporan'])->name('admindownloadlaporan');
+    // End Laporan And Kegiatan
+
     // END KELOMPOK PAGE
 
     // START DaftarMahasiswa
@@ -131,6 +140,7 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/updatesemester/{id}', [SemesterAktifController::class, 'UpdateSemester'])->name('Update Semester');
     Route::put('/admin/postupdate/{id}', [SemesterAktifController::class, 'PostUpdateSemester'])->name('Post Update Semester');
     Route::get('/admin/deletesemester/{id}', [SemesterAktifController::class, 'DeleteSemester'])->name('Hapus Semester');
+
     // END Semester Aktif KKN
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin');
 });
@@ -159,7 +169,6 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
     Route::get('/mahasiswa/downloadfilerencana/{filename}', [RencanaKegiatanController::class, 'downloadfilerencana'])->name('downloadfilerencana');
 
     Route::get('/mahasiswa/deleterencana/{id}', [RencanaKegiatanController::class, 'deleterencana'])->name('deleterencana');
-
 
     Route::get('/mahasiswa/rencanakegiatan/detail/{id}', [RencanaKegiatanController::class, 'detailrencanakegiatan'])->name('detailrencanakegiatan');
 

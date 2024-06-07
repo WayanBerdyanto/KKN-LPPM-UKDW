@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($resultRencana as $idx => $item)
+                    @foreach ($resultLaporan as $idx => $item)
                         <tr class="bg-white border-b border-slate-200 hover:bg-slate-50 ">
                             <td scope="row" class="font-semibold px-4 py-4 text-sm">
                                 {{ $idx + 1 }}
@@ -49,7 +49,7 @@
                                 {{ $item->tanggal }}
                             </td>
                             <td scope="row" class="px-2 py-4 max-w-20">
-                                <a href="{{ route('admindownloadrencana', [$item->file]) }}"
+                                <a href="{{ route('admindownloadlaporan', [$item->file]) }}"
                                     class="text-primary underline">Download</a>
                             </td>
                             <td scope="row" class="px-2 py-4 max-w-36 truncate">

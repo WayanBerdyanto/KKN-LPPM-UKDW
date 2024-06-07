@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\DetailKelompokKKN;
 use App\Models\Dosens;
 use App\Models\KelompokKKN;
+use App\Models\LaporanKegiatan;
 use App\Models\LogbookMahasiswa;
 use App\Models\Mahasiswas;
+use App\Models\RencanaKegiatan;
 use App\Models\SemesterAktif;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -71,7 +74,11 @@ class KelompokKknController extends Controller
         $collection = collect($resultDetail);
         $ketua = $collection->where('kode_kelompok', $id)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua]);
+
+        $laporan = LaporanKegiatan::where('kode_kelompok', $id)->first();
+        $rencanaKegiatan = RencanaKegiatan::where('kode_kelompok', $id)->first();
+
+        return view('admin.detailkelompok', ['key' => 'kelompok', 'active' => 'rencana', 'resultmaster' => $resultmaster, 'resultDetail' => $resultDetail, 'ketua' => $ketua], compact('laporan', 'rencanaKegiatan'));
     }
 
     public function FormInsertKelompok()
@@ -261,9 +268,81 @@ class KelompokKknController extends Controller
             ->where('mh.id', '=', $id)
             ->value('dk.kode_kelompok');
         $nama_kelompok = KelompokKKN::where('kode_kelompok', $datakelompok)
-        ->value('nama_kelompok');
+            ->value('nama_kelompok');
         $data = LogbookMahasiswa::orderBy('tanggal', 'desc')->where('id_mahasiswa', $id)->get();
         $mahasiswa = Mahasiswas::where('id', $id)->first();
         return view('admin.logbookmahasiswa', ['key' => 'kelompok', 'data' => $data, 'datakelompok' => $datakelompok, 'namakelompok' => $nama_kelompok, 'mahasiswa' => $mahasiswa]);
+    }
+
+    public function detailrencana($id)
+    {
+        $rencana = RencanaKegiatan::where('kode_kelompok', $id)->first();
+        $id_mahasiswa = $rencana->id_mahasiswa;
+        $mahasiswa = Mahasiswas::where('id', $id_mahasiswa)->first();
+        $nim = $mahasiswa->username;
+        $file = RencanaKegiatan::where('id_mahasiswa', $id)->value('file');
+        $file = $nim . '/' . $file;
+        $resultRencana = RencanaKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultKode = "kode kelompok tidak ditemukan";
+        $kode_kel = DB::table('detailkelompokkkn as dk')
+            ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
+            ->select('dk.kode_kelompok', 'mh.nama')
+            ->where('dk.id_mahasiswa', '=', $mahasiswa)
+            ->get();
+        if ($kode_kel->count() > 0) {
+            $resultKode = $kode_kel[0]->kode_kelompok;
+        }
+
+        return view('admin.rencana', ['key' => 'kelompok', 'resultKode' => $resultKode], compact('resultRencana', 'file'));
+    }
+
+    public function AdminDownloadRencana($filename)
+    {
+        $rencana = RencanaKegiatan::where('file', $filename)->first();
+        $id_mahasiswa = $rencana->id_mahasiswa;
+        $mahasiswa = Mahasiswas::where('id', $id_mahasiswa)->first();
+        $nim = $mahasiswa->username;
+
+        $filePath = $nim. '/' .$filename;
+        if (Storage::disk('public')->exists($filePath)) {
+            return Storage::disk('public')->download($filePath);
+        }
+        abort(404, 'File not found');
+    }
+
+    public function detaillaporan($id)
+    {
+        $laporan = LaporanKegiatan::where('kode_kelompok', $id)->first();
+        $id_mahasiswa = $laporan->id_mahasiswa;
+        $mahasiswa = Mahasiswas::where('id', $id_mahasiswa)->first();
+        $nim = $mahasiswa->username;
+        $file = LaporanKegiatan::where('id_mahasiswa', $id)->value('file');
+        $file = $nim . '/' . $file;
+        $resultLaporan = LaporanKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultKode = "kode kelompok tidak ditemukan";
+        $kode_kel = DB::table('detailkelompokkkn as dk')
+            ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
+            ->select('dk.kode_kelompok', 'mh.nama')
+            ->where('dk.id_mahasiswa', '=', $mahasiswa)
+            ->get();
+        if ($kode_kel->count() > 0) {
+            $resultKode = $kode_kel[0]->kode_kelompok;
+        }
+
+        return view('admin.laporan', ['key' => 'kelompok', 'resultKode' => $resultKode], compact('resultLaporan', 'file'));
+    }
+
+    public function AdminDownloadLaporan($filename)
+    {
+        $laporan = LaporanKegiatan::where('file', $filename)->first();
+        $id_mahasiswa = $laporan->id_mahasiswa;
+        $mahasiswa = Mahasiswas::where('id', $id_mahasiswa)->first();
+        $nim = $mahasiswa->username;
+
+        $filePath = $nim . '/' . $filename;
+        if (Storage::disk('public')->exists($filePath)) {
+            return Storage::disk('public')->download($filePath);
+        }
+        abort(404, 'File not found');
     }
 }
