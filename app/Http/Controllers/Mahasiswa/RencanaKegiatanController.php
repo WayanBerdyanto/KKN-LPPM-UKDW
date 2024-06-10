@@ -18,7 +18,7 @@ class RencanaKegiatanController extends Controller
         $id = Auth::guard('mahasiswa')->user()->id;
         $file = RencanaKegiatan::where('id_mahasiswa', $id)->value('file');
         $file = $nim . '/' . $file;
-        $resultRencana = RencanaKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultRencana = RencanaKegiatan::where('id_mahasiswa', $id)->orderBy('tanggal', 'DESC')->get();
         $idMhs = Auth::guard('mahasiswa')->user()->id;
         $resultKode = "kode kelompok tidak ditemukan";
         $kode_kel = DB::table('detailkelompokkkn as dk')

@@ -17,7 +17,7 @@ class LaporanKegiatanController extends Controller
         $id = Auth::guard('mahasiswa')->user()->id;
         $file = LaporanKegiatan::where('id_mahasiswa', $id)->value('file');
         $file = $nim . '/' . $file;
-        $resultLaporan = LaporanKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultLaporan = LaporanKegiatan::where('id_mahasiswa', $id)->orderBy('tanggal', 'DESC')->get();
         $idMhs = Auth::guard('mahasiswa')->user()->id;
         $resultKode = "kode kelompok tidak ditemukan";
         $kode_kel = DB::table('detailkelompokkkn as dk')

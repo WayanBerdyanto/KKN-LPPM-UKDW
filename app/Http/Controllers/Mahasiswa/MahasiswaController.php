@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Mahasiswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\LaporanKegiatan;
+use App\Models\RencanaKegiatan;
 
 class MahasiswaController extends Controller
 {
@@ -79,7 +81,11 @@ class MahasiswaController extends Controller
         $collection = collect($resultDashboard);
         $ketua = $collection->where('kode_kelompok', $resultKode)->where('status', 'ketua');
         $ketua = $ketua->all();
-        return view('mahasiswa.dashboard', ['key' => 'home', 'result' => $resultDashboard, 'resultmaster' => $resultmaster, 'ketua' => $ketua, 'nilai' => $nilai, 'keterangan' => $keterangan]);
+
+        $laporan = LaporanKegiatan::where('kode_kelompok', $resultKode)->first();
+        $rencanaKegiatan = RencanaKegiatan::where('kode_kelompok', $resultKode)->first();
+
+        return view('mahasiswa.dashboard', ['key' => 'home', 'result' => $resultDashboard, 'resultmaster' => $resultmaster, 'ketua' => $ketua, 'nilai' => $nilai, 'keterangan' => $keterangan], compact('laporan', 'rencanaKegiatan'));
     }
 
     public function profile()
