@@ -94,7 +94,7 @@
                                 <span class="text-dark dark:text-secondary rounded-full font-semibold">
                                     @if (!empty($nilai))
                                         <span class="text-dark dark:text-secondary font-semibold">
-                                            {{ $keterangan }}
+                                            {{ $nilai }}&nbsp; ({{ $keterangan }})
                                         </span>
                                     @else
                                         Nilai Belom di Atur
@@ -109,7 +109,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($rencanaKegiatan != null)
-                                    <a href="{{ route('rencanaMhsAdmin', [$rencanaKegiatan->kode_kelompok]) }}"
+                                    <a href="{{ route('rencanaMhs', [$rencanaKegiatan->kode_kelompok]) }}"
                                         class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                                         <i class="fa-solid fa-book"></i>
                                         Lihat Rencana
@@ -125,7 +125,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($laporan != null)
-                                    <a href="{{ route('laporanMhsAdmin', [$laporan->kode_kelompok]) }}"
+                                    <a href="{{ route('laporanMhs', [$laporan->kode_kelompok]) }}"
                                         class="bg-primary text-secondary px-3 py-1.5 rounded-md hover:bg-opacity-90">
                                         <i class="fa-solid fa-book"></i>
                                         Lihat Laporan

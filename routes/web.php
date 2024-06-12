@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\DaftarMahasiswaController;
 use App\Http\Controllers\Admin\JenisKKNController;
 use App\Http\Controllers\Admin\KelompokKknController;
 use App\Http\Controllers\Admin\SemesterAktifController;
+use App\Http\Controllers\Admin\RencanaAdminController;
+use App\Http\Controllers\Admin\LaporanAdminController;
+use App\Http\Controllers\Admin\DaftarDosenController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dosen\DosenController;
 use App\Http\Controllers\Dosen\KelompokDosenController;
@@ -101,6 +104,14 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/kelompok/pilihanggota/{id}', [KelompokKknController::class, 'PilihAnggota'])->name('Pilih Anggota Kelompok');
     Route::get('/admin/kelompok/logbook/{id}', [KelompokKknController::class, 'LihatLogbook'])->name('lihatlogbook');
 
+    //Rencana Admin
+    Route::get('/admin/detailrencana/{id}', [RencanaAdminController::class, 'jsonRencana'])->name('jsonRencana');
+    Route::get('/admin/detaillaporan/{id}', [LaporanAdminController::class, 'jsonlaporan'])->name('jsonLaporan');
+    Route::post('/admin/rencana/postkomentarrencana/{id}', [RencanaAdminController::class, 'postKomentar'])->name('post admin');
+    Route::post('/admin/laporan/postkomentarlaporan/{id}', [LaporanAdminController::class, 'postKomentar'])->name('post admin');
+    Route::get('/admin/deletekomentarrencana/{id}', [RencanaAdminController::class, 'deletekomentar'])->name('delete admin');
+    Route::get('/admin/deletekomentarlaporan/{id}', [LaporanAdminController::class, 'deletekomentar'])->name('delete admin');
+
     // Start Laporan And Kegiatan
     Route::get('/admin/kelompok/rencana/{id}', [KelompokKKnController::class, 'detailrencana'])->name('rencanaMhsAdmin');
     Route::get('/admin/kelompok/downloadrencana/{filename}', [KelompokKKnController::class, 'AdminDownloadRencana'])->name('admindownloadrencana');
@@ -122,6 +133,9 @@ Route::middleware('cekstatus:admin')->group(function () {
     Route::get('/admin/daftarmahasiswa/delete/{id}', [DaftarMahasiswaController::class, 'DeleteMahasiswa'])->name('Hapus Mahasiswa');
     Route::get('/admin/detailMahasiswa/{id}', [DaftarMahasiswaController::class, 'DetailMahasiswa'])->name('Detail Mahasiswa');
     // END Daftar Mahasiswa
+
+    // Start Dosen
+    Route::get('/admin/daftardosen', [DaftarDosenController::class, 'DaftarDosen'])->name('DaftarDosen');
 
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
@@ -178,6 +192,9 @@ Route::middleware('cekstatusmahasiswa:mahasiswa')->group(function () {
 
     Route::get('/mahasiswa/deletelaporan/{id}', [LaporanKegiatanController::class, 'deletelaporan'])->name('deletelaporan');
     Route::get('/mahasiswa/laporankegiatan/detail/{id}', [LaporanKegiatanController::class, 'detailLaporan'])->name('deletelaporan');
+
+    Route::get('/mahasiswa/kelompok/laporan/{id}', [LaporanKegiatanController::class, 'laporankelompok'])->name('laporanMhs');
+    Route::get('/mahasiswa/kelompok/rencana/{id}', [RencanaKegiatanController::class, 'rencanakelompok'])->name('rencanaMhs');
 
     Route::get('/mahasiswa/logout', [MahasiswaController::class, 'logout'])->name('logout');
 });

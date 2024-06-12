@@ -68,7 +68,7 @@ class MahasiswaController extends Controller
             case $nilai > 75 && $nilai <= 80:
                 $keterangan = 'B+';
                 break;
-            case $nilai > 80 && $nilai < 85:
+            case $nilai > 80 && $nilai <= 85:
                 $keterangan = 'A-';
                 break;
             case $nilai > 85:

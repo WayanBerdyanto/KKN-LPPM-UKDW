@@ -5,19 +5,23 @@
         <div class="w-full mt-5 relative overflow-x-auto">
             <div class="flex justify-between items-center py-2">
                 <h1 class="font-semibold text-lg lg:text-2xl uppercase">Laporan Kegiatan KKN</h1>
+                @if (Auth::guard('mahasiswa')->user()->status == 'ketua')
                 <div class="flex items-center text-right py-2">
                     <button @click="modalLaporan = true" data-toggle="modal" data-target="#modalLaporan"
                         class="ml-0 text-sm lg:text:lg lg:ml-5 mt-2 lg:mt-0 block bg-primary text-secondary px-3 py-2 font-normal rounded-lg text-center hover:bg-opacity-90">
                         <i class="fa-solid fa-address-book mr-2"></i>Tambah</button>
                 </div>
+                @endif
             </div>
             <hr class="mt-4 border-opacity-50 border-primary">
             {{-- Start File Info Template --}}
+            @if (Auth::guard('mahasiswa')->user()->status == 'ketua')
             <div class="border border-opacity-50 border-primary p-2.5 mt-4">
                 <i class="fa-solid fa-download mx-3"></i>
                 <span>Template Laporan Kegiatan </span>
                 <a href="/mahasiswa/templaterencana" class="text-primary underline">Klik Donwload</a>
             </div>
+            @endif
             {{-- End File Info Template --}}
         </div>
 
@@ -44,8 +48,13 @@
                             KOMENTAR DOSEN
                         </th>
                         <th scope="col" class="px-2 py-3">
+                            KOMENTAR ADMIN
+                        </th>
+                        @if (Auth::guard('mahasiswa')->user()->status == 'ketua')
+                        <th scope="col" class="px-2 py-3">
                             ACTION
                         </th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -70,6 +79,10 @@
                             <td scope="row" class="px-2 py-4 max-w-36 truncate">
                                 {{ $item->komentar_dosen }}
                             </td>
+                            <td scope="row" class="px-2 py-4 max-w-36 truncate">
+                                {{ $item->komentar_admin }}
+                            </td>
+                            @if (Auth::guard('mahasiswa')->user()->status == 'ketua')
                             <td scope="row" class="px-2 py-4 flex justify-center items-center">
                                 <button @click="modalUpdateLaporan = true" data-toggle="modal"
                                     data-target="#modalUpdateLaporan" data-id="{{ $item->id_laporan }}"
@@ -82,6 +95,7 @@
                                     <i class="fa-solid fa-trash"></i>&nbsp;
                                 </button>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

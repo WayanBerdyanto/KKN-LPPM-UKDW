@@ -17,9 +17,9 @@ class LaporanController extends Controller
         $id_mahasiswa = $laporan->id_mahasiswa;
         $mahasiswa = Mahasiswas::where('id', $id_mahasiswa)->first();
         $nim = $mahasiswa->username;
-        $file = LaporanKegiatan::where('id_mahasiswa', $id)->value('file');
+        $file = LaporanKegiatan::where('id_mahasiswa', $id_mahasiswa)->value('file');
         $file = $nim . '/' . $file;
-        $resultRencana = LaporanKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultRencana = LaporanKegiatan::where('kode_kelompok', $id)->orderBy('tanggal', 'DESC')->get();
         $resultKode = "kode kelompok tidak ditemukan";
         $kode_kel = DB::table('detailkelompokkkn as dk')
             ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')

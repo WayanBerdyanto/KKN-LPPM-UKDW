@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Mahasiswas;
 
 class LaporanKegiatanController extends Controller
 {
@@ -115,6 +116,26 @@ class LaporanKegiatanController extends Controller
         }
         LaporanKegiatan::where('id_laporan', $id)->delete();
         return redirect('/mahasiswa/laporankegiatan')->with('toast_success', 'Laporan Berhasil Dihapus');
+    }
+
+    public function laporankelompok($id)
+    {
+        $ketua = laporankegiatan::where('kode_kelompok', $id)->value('id_mahasiswa');
+        $nim = Mahasiswas::where('id',$ketua)->value('username');
+        $file = LaporanKegiatan::where('kode_kelompok', $id)->value('file');
+        $file = $nim . '/' . $file;
+        $resultLaporan = LaporanKegiatan::where('kode_kelompok', $id)->orderBy('tanggal', 'DESC')->get();
+        $idMhs = Auth::guard('mahasiswa')->user()->id;
+        $resultKode = "kode kelompok tidak ditemukan";
+        $kode_kel = DB::table('detailkelompokkkn as dk')
+            ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
+            ->select('dk.kode_kelompok', 'mh.nama')
+            ->where('dk.id_mahasiswa', '=', $idMhs)
+            ->get();
+        if ($kode_kel->count() > 0) {
+            $resultKode = $kode_kel[0]->kode_kelompok;
+        }
+        return view('mahasiswa.laporankegiatan', ['key' => 'home', 'resultKode' => $resultKode], compact('resultLaporan', 'file'));
     }
 
 

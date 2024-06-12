@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Mahasiswas;
 
 class RencanaKegiatanController extends Controller
 {
@@ -95,5 +96,25 @@ class RencanaKegiatanController extends Controller
             return Storage::disk('public')->download($filePath);
         }
         abort(404, 'File not found');
+    }
+
+    public function rencanakelompok($id)
+    {
+        $ketua = RencanaKegiatan::where('kode_kelompok', $id)->value('id_mahasiswa');
+        $nim = Mahasiswas::where('id',$ketua)->value('username');
+        $file = RencanaKegiatan::where('kode_kelompok', $id)->value('file');
+        $file = $nim . '/' . $file;
+        $resultRencana = RencanaKegiatan::where('kode_kelompok', $id)->orderBy('tanggal', 'DESC')->get();
+        $idMhs = Auth::guard('mahasiswa')->user()->id;
+        $resultKode = "kode kelompok tidak ditemukan";
+        $kode_kel = DB::table('detailkelompokkkn as dk')
+            ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
+            ->select('dk.kode_kelompok', 'mh.nama')
+            ->where('dk.id_mahasiswa', '=', $idMhs)
+            ->get();
+        if ($kode_kel->count() > 0) {
+            $resultKode = $kode_kel[0]->kode_kelompok;
+        }
+        return view('mahasiswa.rencanakegiatan', ['key' => 'home', 'resultKode' => $resultKode], compact('resultRencana', 'file'));
     }
 }

@@ -282,7 +282,7 @@ class KelompokKknController extends Controller
         $nim = $mahasiswa->username;
         $file = RencanaKegiatan::where('id_mahasiswa', $id)->value('file');
         $file = $nim . '/' . $file;
-        $resultRencana = RencanaKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultRencana = RencanaKegiatan::where('kode_kelompok', $id)->orderBy('tanggal', 'DESC')->get();
         $resultKode = "kode kelompok tidak ditemukan";
         $kode_kel = DB::table('detailkelompokkkn as dk')
             ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
@@ -318,7 +318,7 @@ class KelompokKknController extends Controller
         $nim = $mahasiswa->username;
         $file = LaporanKegiatan::where('id_mahasiswa', $id)->value('file');
         $file = $nim . '/' . $file;
-        $resultLaporan = LaporanKegiatan::orderBy('tanggal', 'DESC')->get();
+        $resultLaporan = LaporanKegiatan::where('kode_kelompok',$id)->orderBy('tanggal', 'DESC')->get();
         $resultKode = "kode kelompok tidak ditemukan";
         $kode_kel = DB::table('detailkelompokkkn as dk')
             ->join('mahasiswas as mh', 'dk.id_mahasiswa', '=', 'mh.id')
