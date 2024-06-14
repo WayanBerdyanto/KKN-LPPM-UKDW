@@ -136,6 +136,15 @@ Route::middleware('cekstatus:admin')->group(function () {
 
     // Start Dosen
     Route::get('/admin/daftardosen', [DaftarDosenController::class, 'DaftarDosen'])->name('DaftarDosen');
+    Route::get('/admin/daftardosen/search', [DaftarDosenController::class, 'SearchDosen'])->name('SearchDaftarDosen');
+    Route::get('/admin/daftardosen/forminsertdosen', [DaftarDosenController::class, 'FormInsertDosen'])->name('FormInsertDosen');
+    Route::post('/admin/daftardosen/postinsert', [DaftarDosenController::class, 'PostInsertDosen'])->name('InsertDosen');
+
+    Route::get('/admin/daftardosen/formupdatedosen/{id}', [DaftarDosenController::class, 'FormUpdateDosen'])->name('FormUpdateDosen');
+
+    Route::put('/admin/daftardosen/postupdatedosen/{id}', [DaftarDosenController::class, 'PostUpdateDosen'])->name('UpdateDosen');
+
+    Route::get('/admin/daftardosen/deletedosen/{id}', [DaftarDosenController::class, 'DeleteDosen'])->name('DeleteDosen');
 
     // START JENISKKN PAGE
     Route::get('/admin/jeniskkn', [JenisKKNController::class, 'jenisKKN'])->name('jeniskkn');
